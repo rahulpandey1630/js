@@ -1,29 +1,31 @@
-"use strict"; // treat all JS code as newer version
+"use strict"; // Enforce stricter parsing and error handling in your JavaScript code
 
-// alert( 3 + 3) // we are using nodejs, not browser
+// Uncomment the next line if running in a browser environment
+// alert(3 + 3); // Alerts the sum of 3 + 3 in a browser
 
 console.log(3 
     +
-     3) // code readability should be high
+     3); // Prints the sum of 3 + 3 to the console, demonstrating good readability
 
-console.log("Hitesh")
+console.log("Hitesh"); // Prints "Hitesh" to the console
 
+// Variable declarations
+let name = "hitesh"; // String variable
+let age = 18; // Number variable
+let isLoggedIn = false; // Boolean variable
+let state; // Undefined variable, as no value is assigned
 
-let name = "hitesh"
-let age = 18
-let isLoggedIn = false
-let state;
+// Notes on data types in JavaScript:
+// number => Represents both integer and floating-point numbers, can handle values up to 2^53
+// bigint => Represents integer values larger than 2^53 - 1
+// string => Represents textual data, enclosed in quotes ("")
+// boolean => Represents true or false
+// null => Represents the intentional absence of any object value, considered a standalone value
+// undefined => Represents a variable that has been declared but not assigned a value
+// symbol => Represents a unique identifier, often used to add unique property keys to an object
 
-// number => 2 to power 53
-// bigint
-// string => ""
-// boolean => true/false
-// null => standalone value
-// undefined => 
-// symbol => unique
+// Objects can store collections of data and more complex entities
 
-
-// object
-
-console.log(typeof undefined); // undefined
-console.log(typeof null); // object
+// Using typeof to check the type of variables
+console.log(typeof undefined); // Outputs: "undefined"
+console.log(typeof null); // Outputs: "object" (this is a historical quirk in JavaScript)
