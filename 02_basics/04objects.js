@@ -75,20 +75,23 @@ const course = {
 }
 
 // Extracting and renaming the variable
+// const {courseInstructor} = course can do this way too without renaming but rename if feel name is long
+// console.log(courseinstructor); // Outputs: "hitesh"
+
 const {courseInstructor: instructor} = course
 // console.log(courseInstructor); // Would throw an error because courseInstructor is not defined
 console.log(instructor); // Outputs: "hitesh"
 
-// Example JSON-like structure for reference
-const exampleJson = {
-    name: "hitesh",
-    coursename: "js in hindi",
-    price: "free"
-}
+// Example JSON-like structure for reference either object or arrays form
+//  {
+//     name: "hitesh",
+//     coursename: "js in hindi",
+//     price: "free"
+// }
 
-// Array of empty objects as an example
-const emptyObjectsArray = [
-    {},
-    {},
-    {}
-]
+// // Array of empty objects as an example
+//  [
+//     {},
+//     {},
+//     {}
+// ]
