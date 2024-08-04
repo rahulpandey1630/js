@@ -33,7 +33,7 @@ console.log(anotherString);         // Outputs: '' (incorrect usage)
 // Removing whitespace from both ends of the string
 const newStringOne = "   rahul    ";
 console.log(newStringOne);          // Outputs: '   rahul    '
-console.log(newStringOne.trim());   // Outputs: 'rahul'
+console.log(newStringOne.trim());   // trim start and trim rnd is also there Outputs: 'rahul'
 
 // Replacing a substring within a string
 const url = "https://rahul.com/rahul%20choudhary";

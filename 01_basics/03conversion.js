@@ -4,7 +4,7 @@ let score = "hitesh";
 let valueInNumber = Number(score);
 console.log(valueInNumber); // NaN because "hitesh" is not a numeric string
 
-// Examples:
+// Examples: using Number()
 // "33" => 33
 // "33abc" => NaN (non-numeric characters)
 // true => 1; false => 0

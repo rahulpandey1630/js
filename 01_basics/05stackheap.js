@@ -7,7 +7,7 @@ const firstVariable = 'javascript';
 // 'firstVariable' is stored on the stack with the value 'javascript'
 let secondVariable = firstVariable; 
 // 'secondVariable' gets a copy of 'firstVariable' value, also stored on the stack
-
+ 
 console.log(firstVariable); // Output: 'javascript'
 console.log(secondVariable); // Output: 'javascript'
 

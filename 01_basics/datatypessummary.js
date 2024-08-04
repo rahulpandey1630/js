@@ -17,7 +17,7 @@ console.log(id === anotherId); // false (each Symbol is unique)
 // const bigNumber = 3456543576654356754n; // BigInt for large integers
 
 // Reference (Non-primitive) Types
-
+ 
 // Arrays, Objects, Functions
 
 const heros = ["shaktiman", "naagraj", "doga"]; // Array
