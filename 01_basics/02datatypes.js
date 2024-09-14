@@ -1,11 +1,11 @@
-"use strict"; // Enforce stricter parsing and error handling in your JavaScript code
+"use strict"; // Enforce stricter parsing and error handling in your JavaScript code and treats all js code as newer version and write without it also
 
 // Uncomment the next line if running in a browser environment
-// alert(3 + 3); // Alerts the sum of 3 + 3 in a browser
+// alert(3 + 3); // Alerts the sum of 3 + 3 in a browser , cannot use it in this way in node environment has a diff syntax for it in node
 
-console.log(3 
+console.log(3
     +
-     3); // Prints the sum of 3 + 3 to the console, demonstrating good readability
+    3); // Prints the sum of 3 + 3 to the console, demonstrating good readability
 
 console.log("Hitesh"); // Prints "Hitesh" to the console
 
@@ -20,7 +20,7 @@ let state; // Undefined variable, as no value is assigned
 // bigint => Represents integer values larger than 2^53 - 1
 // string => Represents textual data, enclosed in quotes ("")
 // boolean => Represents true or false
-// null => Represents the intentional absence of any object value, considered a standalone value
+// null => Represents the intentional absence of any object value, considered a standalone value. When typeof used it gives object
 // undefined => Represents a variable that has been declared but not assigned a value
 // symbol => Represents a unique identifier, often used to add unique property keys to an object
 

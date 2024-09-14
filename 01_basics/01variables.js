@@ -3,7 +3,8 @@ let accountEmail = "hitesh@google.com"; // `let` is used for variables that can 
 var accountPassword = "12345"; // `var` is function-scoped and should be avoided in modern JavaScript
 accountCity = "Jaipur"; // Without `let`, `const`, or `var`, this creates a global variable (not recommended)
 let accountState; // `let` allows declaration without initialization
-
+var id;
+let id2;
 // The following line would throw an error because `accountId` is a constant
 // accountId = 2; // not allowed
 
@@ -13,7 +14,7 @@ because of issue in block scope and functional scope
 */
 
 
-console.table([accountId, accountEmail, accountPassword, accountCity, accountState])
+console.table([accountId, accountEmail, accountPassword, accountCity, accountState,id2,id])
 /*var vs let in JavaScript
 Scope
 var: Function-scoped.
