@@ -1,5 +1,6 @@
-// Arrays
-// resizable,diff dataypes,shallow copy(same reference)
+// Arrays enables storing a collection of multiple items under a single variable name,
+// resizable,diff dataypes,shallow copy(same reference),zero-indexed,mix of different datatypes
+//Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
 const myArr = [0, 1, 2, 3, 4, 5];            // Define an array with numbers 0 to 5
 const myHeroes = ["shaktiman", "naagraj"];   // Define an array with hero names
 
@@ -15,7 +16,7 @@ const myArr2 = new Array(1, 2, 3, 4);        // Create a new array using the Arr
 // Remove the last element from the array
 // myArr.pop();
 
-// // Add elements to the beginning of the array
+// // Add elements to the beginning of the array. time consuming if large set
 // myArr.unshift(9);
 
 // // Remove the first element from the array
@@ -28,7 +29,7 @@ const myArr2 = new Array(1, 2, 3, 4);        // Create a new array using the Arr
 // // console.log(myArr.indexOf(3));               // Outputs the index of 3, or -1 if not found
 
 // // Join the elements of the array into a string
-// const newArr = myArr.join();                 // Joins all elements into a string separated by commas
+// const newArr = myArr.join();                 // Joins all elements into a string separated by commas 0,1,2,3,4,5
 
 // // console.log(myArr);                          // Outputs the current state of myArr
 // // console.log(newArr);                         // Outputs the string representation of myArr
@@ -43,7 +44,7 @@ const myn1 = myArr.slice(1, 3);
 console.log(myn1);                           // Outputs the sliced portion [1, 2]
 console.log("B ", myArr);                    // Outputs the state of myArr after slice (unchanged)
 
-// Splice removes elements from the array and can insert new elements
+// Splice removes elements from the array and can insert new elements. so splice make modifications in original array
 const myn2 = myArr.splice(1, 3);             // Removes 3 elements starting from index 1
 
 console.log("C ", myArr);                    // Outputs the state of myArr after splice
