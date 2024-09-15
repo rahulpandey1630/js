@@ -1,6 +1,18 @@
 // Object literals and properties
+//An object literal is a list of name:value pairs inside curly braces {}.
+//Objects are mutable: They are addressed by reference, not by value.
+//In JavaScript, objects can be created in two main ways: using object literals or constructors(THEN SINGLETON).
+//USING LITERALS
+//Object Literals: Each time you declare an object using literals ({}), a new, unique object is created,
+// meaning they are not singletons.
+let obj1 = { name: "John" };
+let obj2 = { name: "John" };
+
+console.log(obj1 === obj2);  // Output: false (because these are two distinct objects)
+
 
 // Define a Symbol for a unique property key
+
 const mySym = Symbol("key1");
 
 // Define an object using object literal notation
@@ -16,6 +28,7 @@ const JsUser = {
 }
 
 // Accessing object properties
+//keys are treated as string
 console.log(JsUser.email); // Outputs: "hitesh@google.com"
 console.log(JsUser["email"]); // Outputs: "hitesh@google.com"
 console.log(JsUser["full name"]); // Outputs: "Hitesh Choudhary"
@@ -30,6 +43,23 @@ JsUser.email = "hitesh@chatgpt.com";
 // Attempt to update a property on a frozen object (will not change the property)
 // JsUser.email = "hitesh@microsoft.com";
 // console.log(JsUser.email); // Outputs: "hitesh@chatgpt.com" if frozen
+
+//This example creates an empty JavaScript object, and then adds 4 properties:
+const person = {};
+// Add Properties
+person.firstName = "John";
+person.lastName = "Doe";
+person.age = 50;
+person.eyeColor = "blue";
+
+// Create an Object
+const person = new Object();
+
+// Add Properties
+person.firstName = "John";
+person.lastName = "Doe";
+person.age = 50;
+person.eyeColor = "blue";
 
 // Adding methods to the object
 JsUser.greeting = function() {

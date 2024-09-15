@@ -13,7 +13,7 @@ const dc_heros = ["superman", "flash", "batman"];
 // Concatenate marvel_heros and dc_heros into a single array
 // const allHeros = marvel_heros.concat(dc_heros);
 // console.log(allHeros);                 // Outputs: ["thor", "Ironman", "spiderman", "superman", "flash", "batman"]
-
+  
 // Use spread operator to merge marvel_heros and dc_heros into a new array
 const all_new_heros = [...marvel_heros, ...dc_heros];
 console.log(all_new_heros);              // Outputs: ["thor", "Ironman", "spiderman", "superman", "flash", "batman"]
@@ -27,10 +27,10 @@ console.log(real_another_array);         // Outputs: [1, 2, 3, 4, 5, 6, 7, 6, 7,
 
 // Check if a value is an array
 console.log(Array.isArray("Hitesh"));    // Outputs: false (since "Hitesh" is a string)
-console.log(Array.from("Hitesh"));       // Converts a string to an array of characters: ["Hitesh"]
+console.log(Array.from("Hitesh"));       // Converts a string to an array of characters: [ 'H', 'i', 't', 'e', 's', 'h' ]
 console.log(Array.from({name: "hitesh"})); // Interesting case: Outputs an empty array since the object is not iterable
 
-// Create an array from individual scores
+// Create an array from individual  scores
 let score1 = 100;
 let score2 = 200;
 let score3 = 300;
