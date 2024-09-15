@@ -9,7 +9,8 @@ console.log(typeof myDate);           // Outputs the type of myDate (object)
 
 // Create a new Date object with a specific date
 // Uncomment one of the following lines to see different date formats
-
+// new Date(year,month,day,hour,minute,second)
+//month start from 0 in js
 // let myCreatedDate = new Date(2023, 0, 23);          // January 23, 2023
 // let myCreatedDate = new Date(2023, 0, 23, 5, 3);    // January 23, 2023, 05:03:00
 // let myCreatedDate = new Date("2023-01-14");         // January 14, 2023
@@ -31,5 +32,12 @@ console.log(newDate.getDay());                         // Outputs the current da
 // Get the current day of the week in long format
 // `${newDate.getDay()} and the time `
 
+
+// Extract the weekday from the current date using toLocaleString
+// 'default' refers to the default locale (system locale)
+// { weekday: "long" } specifies that we want the full name of the weekday (e.g., "Monday", "Tuesday")
 let weekday = newDate.toLocaleString('default', { weekday: "long" });
-console.log(`Today is ${weekday}`);                    // Outputs the day of the week
+
+// Log the day of the week to the console
+// This will output something like "Today is Monday" if the current day is Monday
+console.log(`Today is ${weekday}`);

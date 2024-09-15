@@ -25,16 +25,25 @@ let myObj = {
     name: "hitesh",
     age: 22,
 }; // Object
-
+//declaring function in variable way
 const myFunction = function() {
     console.log("Hello world");
 }; // Function
 
 console.log(typeof anotherId); // "symbol" (type of Symbol)
 console.log(typeof myObj);
+console.log(typeof myFunction);
+console.log(typeof heros);
+
 // Link to study more about type conversion in JavaScript:
-// https://262.ecma-international.org/5.1/#sec-11.4.3
+// https://262.ecma-international.org/5.1/#sec-11.4.3 check once
 /*For null, typeof returns "object".
 For undefined, it returns "undefined".
-For functions, it returns "function".
+For functions, it returns "function object".
 For other objects (including arrays), it returns "object".*/
+/*               Type                                   typeof
+
+i)               Object                                object
+ii)              Array                                  object
+iii)             Function                            function(object)
+*/

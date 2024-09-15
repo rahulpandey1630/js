@@ -1,6 +1,6 @@
 // Stack and Heap Memory in JavaScript
 
-// Stack Memory (Primitive Data Types)
+// Stack Memory (Primitive Data Types) gets a value
 // Primitive data types: string, number, boolean, null, undefined, symbol, BigInt
 
 const firstVariable = 'javascript'; 
@@ -19,7 +19,7 @@ console.log(firstVariable); // Output: 'javascript'
 console.log(secondVariable); // Output: 'javascriptBackend'
 // 'secondVariable' is updated independently
 
-// Heap Memory (Non-Primitive Data Types)
+// Heap Memory (Non-Primitive Data Types) gets a reference so change reflect in original
 // Non-primitive data types: objects, arrays, functions
 
 const firstObject = { channel: "hiteshChoudhary" }; 
