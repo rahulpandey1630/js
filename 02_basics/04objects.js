@@ -25,6 +25,10 @@ const regularUser = {
 // Accessing nested properties
 // console.log(regularUser.fullname.userfullname.firstname); // Outputs: "hitesh"
 
+// Accessing nested properties safely using optional chaining
+//console.log(regularUser?.fullname?.userfullname?.firstname); // Outputs: "hitesh"
+// If any property in the chain is undefined, it won't throw an error; it returns undefined instead.
+
 // Merging objects using Object.assign
 const obj1 = {1: "a", 2: "b"}
 const obj2 = {3: "a", 4: "b"}
@@ -46,7 +50,7 @@ const users = [
         id: 1,
         email: "h@gmail.com"
     },
-    {
+    { 
         id: 2,  // Changed id to be unique
         email: "s@gmail.com" // Changed email to be unique
     },
@@ -74,11 +78,11 @@ const course = {
     courseInstructor: "hitesh"
 }
 
-// Extracting and renaming the variable
+// Extracting and renaming the variable(destructuring)
 // const {courseInstructor} = course can do this way too without renaming but rename if feel name is long
 // console.log(courseinstructor); // Outputs: "hitesh"
 
-const {courseInstructor: instructor} = course
+const {courseInstructor: instructor} = course // renaming courseinstructor to instructor 
 // console.log(courseInstructor); // Would throw an error because courseInstructor is not defined
 console.log(instructor); // Outputs: "hitesh"
 
