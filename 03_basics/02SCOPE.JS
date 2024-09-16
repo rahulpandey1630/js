@@ -1,4 +1,5 @@
 // Global scope
+//var c=300
 let a = 300; // 'a' is defined in the global scope
 
 if (true) {
@@ -10,6 +11,29 @@ if (true) {
 // console.log(a); // Would print 300, refers to global 'a'
 // console.log(b); // Error: 'b' is not defined in this scope
 // console.log(c); // Error: 'c' is not defined, 'var c = 300' is commented out
+
+
+// Global Scope Differences:
+
+// 1. In Browser (Console):
+// - The global object is `window`.
+// - Variables declared with `var` become properties of `window`.
+
+var myVar = "hello";
+console.log(window.myVar); // Output: "hello"
+
+// 2. In Node.js:
+// - The global object is `global`.
+// - Variables declared with `var` do NOT become properties of `global`.
+
+var myVarNode = "hello";
+console.log(global.myVarNode); // Output: undefined
+
+// Main Difference:
+// - Browser: Global `var` variables are part of `window`.
+// - Node.js: Global `var` variables are not part of `global`; they are scoped to the module.
+
+
 
 function one() {
     const username = "hitesh"; // Function-scoped 'username'
