@@ -2,13 +2,13 @@ let score = "hitesh";
 
 // Convert string to number
 let valueInNumber = Number(score);
-console.log(valueInNumber); // NaN because "hitesh" is not a numeric string
+console.log(valueInNumber); // NaN because "hitesh" is not a numeric string but its typeof will be number
 
 // Examples: using Number()
 // "33" => 33
 // "33abc" => NaN (non-numeric characters)
 // true => 1; false => 0
-// null => 0
+// null => 0, " "=>0
 // undefined => NaN
  /* falsy values= null , undefined , empty string , -0 , +0 ,NaN, false */
 let isLoggedIn = "hitesh";
@@ -28,6 +28,7 @@ let someNumber = 33;
 let stringNumber = String(someNumber);
 console.log(stringNumber); // "33"
 console.log(typeof stringNumber); // "string"
+//someNumber.toString();
 
 // *********************** Operations ***********************
 

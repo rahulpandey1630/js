@@ -21,7 +21,7 @@ var: Function-scoped.
 let: Block-scoped.
 Hoisting
 var: Hoisted and initialized with undefined.
-let: Hoisted but not initialized (temporal dead zone).
+let: Hoisted but not initialized (temporal dead zone). intialized with undefined
 Re-declaration
 var: Allows re-declaration within the same scope.
 let: Does not allow re-declaration within the same scope.

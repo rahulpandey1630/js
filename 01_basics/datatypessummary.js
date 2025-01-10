@@ -1,5 +1,5 @@
 // Primitive Types
-
+//  JS IS DYNAMICALLY TYPED LANGUAGE
 // 7 types: String, Number, Boolean, null, undefined, Symbol, BigInt
 
 const score = 100; // Number

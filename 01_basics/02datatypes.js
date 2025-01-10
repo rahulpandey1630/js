@@ -3,9 +3,7 @@
 // Uncomment the next line if running in a browser environment
 // alert(3 + 3); // Alerts the sum of 3 + 3 in a browser , cannot use it in this way in node environment has a diff syntax for it in node
 
-console.log(3
-    +
-    3); // Prints the sum of 3 + 3 to the console, demonstrating good readability
+console.log(3+3); // Prints the sum of 3 + 3 to the console, demonstrating good readability
 
 console.log("Hitesh"); // Prints "Hitesh" to the console
 
