@@ -28,7 +28,13 @@ let myObj = {
 //declaring function in variable way
 const myFunction = function() {
     console.log("Hello world");
-}; // Function
+}; 
+//defining with function keyword
+function greet(name)
+{
+    console.log('hello' + name);
+}
+greet('rahul')
 
 console.log(typeof anotherId); // "symbol" (type of Symbol)
 console.log(typeof myObj);

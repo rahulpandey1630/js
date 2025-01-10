@@ -5,7 +5,7 @@ const repoCount = 50;
 console.log(`Hello my name is ${name} and my repo count is ${repoCount}`);
 
 const gameName = new String('rahul-hc-com');
-
+ 
 // Accessing characters and properties of a string object
 // console.log(gameName[0]);          // Outputs: 'r'
 // console.log(gameName.__proto__);   // Outputs: String prototype object
@@ -23,7 +23,7 @@ console.log(gameName.charAt(2));    // Outputs: 'h'
 console.log(gameName.indexOf('t')); // Outputs: 5
 
 // Extracting a substring from the string
-const newString = gameName.substring(0, 4);
+const newString = gameName.substring(0, 4); //last value not include . if given -ve value than start from 0.
 console.log(newString);             // Outputs: 'rahu'
 
 // Using slice with negative index

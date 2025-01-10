@@ -2,6 +2,7 @@
 
 // Create a new Date object with the current date and time
 let myDate = new Date();
+console.log(myDate );       // Outputs the date and time as a string
 console.log(myDate.toString());       // Outputs the date and time as a string
 console.log(myDate.toDateString());   // Outputs the date as a string (without time)
 console.log(myDate.toLocaleString()); // Outputs the date and time in local format
@@ -9,7 +10,7 @@ console.log(typeof myDate);           // Outputs the type of myDate (object)
 
 // Create a new Date object with a specific date
 // Uncomment one of the following lines to see different date formats
-// new Date(year,month,day,hour,minute,second)
+// let d = new Date(year,month,day,hour,minute,second)
 //month start from 0 in js
 // let myCreatedDate = new Date(2023, 0, 23);          // January 23, 2023
 // let myCreatedDate = new Date(2023, 0, 23, 5, 3);    // January 23, 2023, 05:03:00
@@ -19,7 +20,7 @@ console.log(myCreatedDate.toLocaleString());           // Outputs the created da
 
 // Get the current timestamp in milliseconds since January 1, 1970
 let myTimeStamp = Date.now(); 
-console.log(myTimeStamp);                              // Outputs the current timestamp
+console.log(myTimeStamp);                              // Outputs the current timestamp . Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.
 console.log(myCreatedDate.getTime());                  // Outputs the timestamp for the created date
 console.log(Math.floor(Date.now() / 1000));            // Outputs the current timestamp in seconds
 
