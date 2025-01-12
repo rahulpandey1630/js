@@ -34,8 +34,8 @@ console.log(global.myVarNode); // Output: undefined
 // - Browser: Global `var` variables are part of `window`.
 // - Node.js: Global `var` variables are not part of `global`; they are scoped to the module.
 
-
-
+// closure is a function that retains access to variables from its outer scope, even after the outer function has finished executing.
+// nested scope 
 function one() {
     const username = "hitesh"; // Function-scoped 'username'
 
@@ -45,10 +45,12 @@ function one() {
     }
     // console.log(website); // Error: 'website' is not defined in this scope
 
-    two(); // Calls 'two' function
+    two(); // Calls 'two' function // calls two inside one
 }
 
 // one(); // Calls 'one' function
+
+//similar like above but with conditionals
 
 if (true) {
     const username = "hitesh"; // Block-scoped 'username'
