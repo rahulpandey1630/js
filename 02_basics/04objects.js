@@ -1,6 +1,6 @@
 // Creating an empty object using object literal notation
-// const tinderUser = new Object{} a singleton object
- const tinderUser = {} 
+//const tinderUser = new Object{} //a singleton object
+ const tinderUser = {} //not singleton object
 //  created object using literal
 
 // Adding properties to the object
@@ -34,12 +34,12 @@ const obj1 = {1: "a", 2: "b"}
 const obj2 = {3: "a", 4: "b"}
 const obj4 = {5: "a", 6: "b"}
 
-// Attempting to create a nested object with obj1 and obj2 as properties (incorrect approach)
+// Attempting to create a nested object with obj1 and obj2 as properties (incorrect approach) . same problem like array
 // const obj3 = { obj1, obj2 }
 
 // Correct way to merge objects using Object.assign
-// const obj3 = Object.assign({}, obj1, obj2, obj4) assign(target,source) here {}is target
-
+// const obj3 = Object.assign({}, obj1, obj2, obj4) assign(target,source) here {}is target .{} is a optional parameter, code will run without it also
+ 
 // Merging objects using the spread operator (modern approach)
 const obj3 = {...obj1, ...obj2, ...obj4}
 // console.log(obj3); // Outputs: { '1': 'a', '2': 'b', '3': 'a', '4': 'b', '5': 'a', '6': 'b' }
@@ -82,9 +82,10 @@ const course = {
 // const {courseInstructor} = course can do this way too without renaming but rename if feel name is long
 // console.log(courseinstructor); // Outputs: "hitesh"
 
-const {courseInstructor: instructor} = course // renaming courseinstructor to instructor 
+const {courseInstructor: instructor} = course // renaming courseinstructor to instructor  . { property: newName }=from which object
 // console.log(courseInstructor); // Would throw an error because courseInstructor is not defined
 console.log(instructor); // Outputs: "hitesh"
+//destructuring happens in a similar way in react
 
 // Example JSON-like structure for reference either object or arrays form
 //  {

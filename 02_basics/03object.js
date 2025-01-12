@@ -1,4 +1,5 @@
 // Object literals and properties
+//object when declared with constructor then singleton and when declared with literals then not singleton.
 //An object literal is a list of name:value pairs inside curly braces {}.
 //Objects are mutable: They are addressed by reference, not by value.
 //In JavaScript, objects can be created in two main ways: using object literals or constructors(THEN SINGLETON).

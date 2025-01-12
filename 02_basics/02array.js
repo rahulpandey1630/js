@@ -21,7 +21,7 @@ console.log(all_new_heros);              // Outputs: ["thor", "Ironman", "spider
 // Define a nested array
 const another_array = [1, 2, 3, [4, 5, 6], 7, [6, 7, [4, 5]]];
 
-// Flatten the nested array to a single level using Infinity depth
+// Flatten the nested array to a single level using Infinity depth(can give depth 1 2 )
 const real_another_array = another_array.flat(Infinity);
 console.log(real_another_array);         // Outputs: [1, 2, 3, 4, 5, 6, 7, 6, 7, 4, 5]
 

@@ -57,5 +57,5 @@ console.log(myn2);                           // Outputs the removed elements [1,
 // - `indexOf()` returns the first index of an element or -1 if not found.
 // - `join()` converts the array into a string with elements separated by commas (or any specified delimiter).
 // - `slice()` returns a shallow copy of a portion of an array into a new array, without modifying the original array.
-// - `splice()` changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.
+// - `splice()` changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.and last ranges is also included in splice.
 // splice make changes in original array
