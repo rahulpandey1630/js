@@ -1,5 +1,5 @@
-
-function sayMyName(){
+// Function to print letters of a name
+function sayMyName() {
     console.log("H");
     console.log("I");
     console.log("T");
@@ -9,127 +9,146 @@ function sayMyName(){
 }
 
 // sayMyName()
+// Output:
+// H
+// I
+// T
+// E
+// S
+// H
 
-/*1. Functions can be defined in several ways in JavaScript:
-   a. **Function Declaration**: Defined using the `function` keyword. Can be called before it's defined due to hoisting.
-   b. **Function Expression**: Function is assigned to a variable. Not hoisted, so must be defined before calling.
-   c. **Arrow Function**: A shorter syntax for writing functions, does not have its own `this` context.
+/* 
+Important Points:
+1. The `sayMyName` function is a **Function Declaration**.
+2. It can be called **before or after** its definition because of **hoisting**.
 
-Examples:
+sayHello(); // ✅ No error! This works due to hoisting.
+
+function sayHello() {
+    console.log("Hello, Rahul!");
+}
+Explanation: Even though sayHello() is called before the function sayHello() is defined, 
+it works fine because JavaScript hoists the function declaration to the top internally.
+3. It does not take any parameters or return any value.
 */
 
-// a. Function Declaration
-function addTwoNumbers(number1, number2){
-    return number1 + number2;
+// Function Declaration Example
+function addTwoNumbers(number1, number2) { //during function declaration are parameters
+    return number1 + number2; // no statement will run after return statement
 }
-const result1 = addTwoNumbers(3, 5);
-// console.log("Result: ", result);
+const result1 = addTwoNumbers(3, 5); // during function call are arguments
+console.log("Result: ", result1); 
+// Output: Result: 8
 
-// b. Function Expression
+// Function Expression Example
 const subtractTwoNumbers = function(number1, number2) {
     return number1 - number2;
 }
 const resultSubtraction = subtractTwoNumbers(10, 5);
-// console.log("Subtraction Result: ", resultSubtraction);
+console.log("Subtraction Result: ", resultSubtraction);
+// Output: Subtraction Result: 5
 
-// c. Arrow Function (ES6+)
+// Arrow Function Example
 const multiplyTwoNumbers = (number1, number2) => number1 * number2;
 const resultMultiplication = multiplyTwoNumbers(4, 5);
-// console.log("Multiplication Result: ", resultMultiplication);
-
-/* 
-Important Notes:
-1. Function is a block of reusable code designed to perform a specific task.
-2. Functions can take parameters (inputs) and can return a value.
-3. If no return statement is provided, the function returns `undefined` by default.
-4. In the commented example below, the function does not return anything, so the `sum` will be `undefined`:
-   
-   const sum = addTwoNumbers(3, 5)
-   console.log(sum) // Outputs `undefined`
-*/
-
-function addTwoNumbers(number1, number2){
-    // Adding the two parameters
-    return number1 + number2 
-    // No code after return statement is executed.
-}
-
-const result = addTwoNumbers(3, 5)
-// console.log("Result: ", result);
+console.log("Multiplication Result: ", resultMultiplication);
+// Output: Multiplication Result: 20
 
 /*
-More Notes on Parameters and Default Values:
-1. Functions can have default parameters, which are used if no argument is passed when the function is called.
-2. In the function `loginUserMessage`, the parameter `username` has a default value of "sam".
-3. If no value is passed during function call, "sam" will be used. Otherwise, the passed value will override the default.
-4. If there is no default value and no argument is passed, the parameter will be `undefined`.
-5. In this example, if the username is not provided or if it is empty, the function will log a message asking the user to enter a username.
+Key Points on Functions:
+1. **Function Declaration** is hoisted.
+2. **Function Expression** and **Arrow Functions** are not hoisted.
+3. Functions can accept parameters and return values.
+4. If no `return` is provided, the function returns `undefined`.
 */
 
-function loginUserMessage(username = "sam"){
-    // Check if username is not provided (falsey values)
-    if(!username){
+function addTwoNumbers(number1, number2) {
+    return number1 + number2;
+}
+
+const result = addTwoNumbers(3, 5);
+console.log("Result: ", result);
+// Output: Result: 8
+
+// Function with Default Parameters
+ // if no parameters provide then  sam used. even no default parameter provided then undefined printed at username
+function loginUserMessage(username = "sam") {
+    if (!username) {
         console.log("Please enter a username");
-        return; // Stops further execution if no username is provided
+        return;
     }
-    // If username is provided, return the login message
     return `${username} just logged in`;
 }
 
+console.log(loginUserMessage());
+// Output: sam just logged in
 
- 
-// The ...rest syntax allows a function to accept an indefinite number of arguments as an array.
-//depends on usecase whether it is spread operator or rest operator
-// function calculateCartPrice(...num1){
-//     return num1
-// }
+console.log(loginUserMessage("Rahul"));
+// Output: Rahul just logged in
 
-// console.log(calculateCartPrice(200, 400, 500, 2000)) WILL RETURN ARRAY OF ALL THESE VALUES
+/*
+Important Points on Default Parameters:
+1. If no value is passed for `username`, the default value "sam" is used.
+2. If a value is passed, it overrides the default.
+3. If a parameter is `undefined`, the default value is used.
+*/
 
-function calculateCartPrice(val1, val2, ...num1){
+// Rest Parameters Example
+function calculateCartPrice(val1, val2, ...num1) {
     return num1;
 }
 
-/* 
-Explanation:
+console.log(calculateCartPrice(200, 400, 500, 2000));
+// Output: [500, 2000] as 200 and 400 are val 1 and 2
 
-1. The function `calculateCartPrice` uses **rest parameters** (indicated by `...num1`).
-   - Rest parameters allow a function to accept an indefinite number of arguments as an array.
-   - In this example, the first two parameters `val1` and `val2` are handled separately, and any additional arguments passed to the function are collected into the `num1` array.
-
-2. When you call the function with more than two arguments, everything after the first two arguments will be captured in the `num1` array.
-
-Example:
-
-const result = calculateCartPrice(10, 20, 30, 40, 50);
-console.log(result); // Outputs [30, 40, 50]
+/*
+Key Points on Rest Parameters:
+1. **Rest Parameters** allow a function to accept an indefinite number of arguments as an array.
+2. `val1` and `val2` are handled separately, and the rest of the values go into `num1`.
 */
 
-// Functions can accept objects as parameters and access their properties.
-// Object properties can be accessed using dot notation.
-
+// Handling Objects as Function Parameters
 const user = {
     username: "hitesh",
-    prices: 199
+    price: 199
 }
 
-function handleObject(anyobject){
+function handleObject(anyobject) {
     console.log(`Username is ${anyobject.username} and price is ${anyobject.price}`);
 }
 
-// handleObject(user) 
-//can pass direct object also
+handleObject(user);
+// Output: Username is hitesh and price is 199
+
+//another way passing object directly 
 handleObject({
     username: "sam",
     price: 399
-})
+});
+// Output: Username is sam and price is 399
 
-const myNewArray = [200, 400, 100, 600]
-// Functions can accept arrays as parameters and access their elements using index notation.
-function returnSecondValue(getArray){
-    return getArray[1]
+/*
+Key Points on Objects as Function Parameters:
+1. Functions can accept objects as parameters.
+2. Object properties can be accessed using dot notation.
+3. You can pass an entire object or create one directly in the function call.
+*/
+
+// Handling Arrays as Function Parameters
+const myNewArray = [200, 400, 100, 600];
+
+function returnSecondValue(getArray) {
+    return getArray[1];
 }
 
-//other way
-// console.log(returnSecondValue(myNewArray));
+console.log(returnSecondValue(myNewArray));
+// Output: 400
+
 console.log(returnSecondValue([200, 400, 500, 1000]));
+// Output: 400
+
+/*
+Key Points on Arrays as Function Parameters:
+1. Functions can accept arrays and access their elements using index notation.
+2. Arrays can be passed directly in the function call or via a variable.
+*/

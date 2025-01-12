@@ -1,7 +1,7 @@
 // Global scope
 //var c=300
 let a = 300; // 'a' is defined in the global scope
-
+// {} this is a scope
 if (true) {
     let a = 10; // Block-scoped 'a' shadows global 'a'
     const b = 20; // Block-scoped 'b'
@@ -15,6 +15,7 @@ if (true) {
 
 // Global Scope Differences:
 
+//global scope is different in browser and nodejs
 // 1. In Browser (Console):
 // - The global object is `window`.
 // - Variables declared with `var` become properties of `window`.
