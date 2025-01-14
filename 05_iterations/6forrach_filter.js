@@ -17,7 +17,10 @@ const newNums = myNums.filter((num) => {
     return num > 4
 })
 
-console.log(newNums); // Output: [5, 6, 7, 8, 9, 10]
+console.log(newNums); // Output: [5, 6, 7, 8, 9, 10] 
+//  can write const newNums = myNums.filter((num) =>  num > 4
+//) writing condition directly but when we 
+ 
 
 // The 'forEach' method executes a provided function once for each array element but does not return a new array.
 // Using 'forEach' to push numbers greater than 4 into 'newNums'
@@ -31,7 +34,7 @@ myNums.forEach((num) => {
 console.log(newNums2); // Output: [5, 6, 7, 8, 9, 10]
 
 
-// Array of books, each with properties like 'title', 'genre', 'publish' year, and 'edition' year
+// Array of books, each with properties like 'title', 'genre', 'publish' year, and 'edition' year array of object
 const books = [
     { title: 'Book One', genre: 'Fiction', publish: 1981, edition: 2004 },
     { title: 'Book Two', genre: 'Non-Fiction', publish: 1992, edition: 2008 },
