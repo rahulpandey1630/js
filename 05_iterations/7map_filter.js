@@ -10,7 +10,7 @@ const newNums = myNumers
                 .filter( (num) => num >= 40)  // filter() keeps only elements >= 40
 
 console.log(newNums);  // Displays the final array after map and filter operations
-output 
+//output 
 /*
 [
   41, 51,  61, 71,
