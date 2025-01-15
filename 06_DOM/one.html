@@ -1,0 +1,150 @@
+<!--  DOM (Document Object Model)
+The DOM is a programming interface that represents the structure of an HTML or XML document 
+as a tree of objects, allowing JavaScript to manipulate content, styles, and structure dynamically.
+
+The DOM represents a webpage as a tree of nodes, where each element (like <div>, <h1>, etc.) is a node 
+in the tree.
+
+Think of the DOM as a bridge between HTML and JavaScript. It allows you to:
+
+✅ Access HTML elements
+✅ Modify content or styles dynamically
+✅ Add or remove elements
+✅ Handle events like clicks or form submissions
+
+Types of Nodes:
+Element Node: Represents HTML tags (e.g., <div>, <p>)
+Text Node: Represents the text inside an element
+Attribute Node: Represents attributes like class, id, etc.
+ 
+Key DOM Methods:
+
+getElementById(): Selects an element by its ID
+querySelector(): Selects the first matching element
+innerHTML: Gets or sets the content of an element
+style: Changes the inline styles of an element
+
+Event Handling:
+The DOM allows you to respond to user interactions like clicks, input, hover, etc.
+
+Real-Life Example:
+When you click a "Like" button on a social media post, the DOM updates the like count without reloading the page.
+-->
+
+<!--window->document->html->(head and body) 
+head->title and meta. title further into text node(text). meto into attribute
+body->div->attribute,h1->attribute,text node , p->text node
+
+//in inspect console
+// Prints the complete URL of the current webpage
+console.log(document.URL);
+
+// Prints the title of the current webpage
+console.log(document.title);
+
+// Prints the domain name of the website
+console.log(document.domain);
+
+// Prints the entire <body> element of the webpage
+console.log(document.body);
+
+// Prints the entire <head> element of the webpage
+console.log(document.head);
+
+// Prints the cookies stored for the webpage
+console.log(document.cookie);
+
+// Prints the current loading state of the document (loading, interactive, complete)
+console.log(document.readyState);
+
+// Prints details about the location (URL, protocol, host, etc.)
+console.log(document.location);
+
+// Prints a collection of all forms on the webpage
+console.log(document.forms);
+
+// Prints a collection of all links (<a> tags) on the webpage
+console.log(document.links); -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM learning</title>
+    <style>
+        /* CSS class definition to style background and text color */
+        .bg-black{
+            background-color: #212121; /* Dark background */
+            color: #fff; /* White text color */
+        }
+    </style>
+</head>
+<body class="bg-black">  <!-- The class bg-black is applied to body to style background and text -->
+
+    <div>
+        <!-- <h1> with id 'title' and class 'heading', which defines the main title of the page -->
+        <h1 id="title" class="heading">DOM learning on Chai aur code 
+            <!-- <span> with style display:none is hidden initially -->
+            <span style="display: none;">test text</span>
+        </h1>
+
+        <!-- Heading elements, displaying subheadings -->
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
+
+        <!-- Paragraph element with some text -->
+        <p>Lorem ipsum dolor sit amet.</p>
+
+        <!-- Input field of type 'password' -->
+        <input type="password" name="" id="">
+
+        <!-- Unordered list with class 'list-item' for each list item -->
+        <ul>
+            <li class="list-item">one</li>
+            <li class="list-item">two</li>
+            <li class="list-item">three</li>
+            <li class="list-item">four</li>
+        </ul>
+    </div>
+
+</body>
+</html>
+ 
+
+<!-- <html>
+    <body>
+    
+    <p id="demo"></p>
+    
+    <script>
+    document.getElementById("demo").innerHTML = "Hello World!";
+    </script>
+    
+    </body>
+    </html>
+
+document.getElementById(id)          	Find an element by element id
+document.getElementsByTagName(name) 	Find elements by tag name
+document.getElementsByClassName(name)	Find elements by class name
+
+
+Changing HTML Elements
+
+Property	Description
+element.innerHTML =  new html content	Change the inner HTML of an element
+element.attribute = new value	Change the attribute value of an HTML element
+element.style.property = new style	Change the style of an HTML element
+
+Method	Description
+element.setAttribute(attribute, value)	Change the attribute value of an HTML element
+
+Adding and Deleting Elements
+Method	Description
+document.createElement(element)	Create an HTML element
+document.removeChild(element)	Remove an HTML element
+document.appendChild(element)	Add an HTML element
+document.replaceChild(new, old)	Replace an HTML element
+document.write(text)	Write into the HTML output stream
+-->

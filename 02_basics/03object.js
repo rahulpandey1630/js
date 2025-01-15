@@ -11,7 +11,6 @@ let obj2 = { name: "John" };
 
 console.log(obj1 === obj2);  // Output: false (because these are two distinct objects)
 
-
 // Define a Symbol for a unique property key
 
 const mySym = Symbol("key1");

@@ -13,7 +13,6 @@ Prefer not to use var
 because of issue in block scope and functional scope
 */
 
-
 console.table([accountId, accountEmail, accountPassword, accountCity, accountState,id2,id])
 /*var vs let in JavaScript
 Scope
@@ -22,9 +21,26 @@ let: Block-scoped.
 Hoisting
 var: Hoisted and initialized with undefined.
 let: Hoisted but not initialized (temporal dead zone). intialized with undefined
+
+Example with var:
+javascript
+Copy code
+console.log(name);  // Output: undefined
+var name = "Rahul";
+Explanation:
+
+The variable name is hoisted to the top and initialized with undefined.
+Example with let:
+javascript
+Copy code
+console.log(age);  // ReferenceError: Cannot access 'age' before initialization
+let age = 25;
+Explanation:
+
+The variable age is hoisted, but it remains in the Temporal Dead Zone (TDZ) until the line let age = 25; is executed.
 Re-declaration
 var: Allows re-declaration within the same scope.
-let: Does not allow re-declaration within the same scope.
+let: Does not allow re-declaration within the same scope.cannot access outside the scope
 Usage
 var: Older code, backward compatibility.
 let: Modern code, preferred due to block-scoping and fewer bugs.
