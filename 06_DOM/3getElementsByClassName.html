@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>getElementsByClassName Examples</title>
+</head>
+<body>
+  <!-- HTML Content -->
+  <div class="example">Div 1</div>
+  <div class="example">Div 2</div>
+  <div class="example">Div 3</div>
+
+  <script>
+    // Example 1: Get all elements with the class "example"
+    const elements = document.getElementsByClassName("example");
+    console.log("All elements with class 'example':", elements); 
+    // Logs an HTMLCollection of 3 divs
+
+    // Accessing each element in the HTMLCollection
+    console.log("Access specific elements in the HTMLCollection:");
+    console.log(elements[0].textContent); // Output: "Div 1"
+    console.log(elements[1].textContent); // Output: "Div 2"
+    console.log(elements[2].textContent); // Output: "Div 3"
+
+    // Example 2: Access a specific element
+    const firstElement = elements[0];
+    console.log("First element text content:", firstElement.textContent); // Output: "Div 1"
+
+    // Example 3: Loop through all elements
+    console.log("Loop through all elements:");
+    for (let i = 0; i < elements.length; i++) {
+      console.log(`Element ${i + 1} text content:`, elements[i].textContent); 
+      // Logs: "Div 1", "Div 2", "Div 3"
+    }
+
+    // Example 4: Modify all elements
+    console.log("Modify all elements to have blue text color:");
+    for (let element of elements) {
+      element.style.color = "blue"; // Changes text color of all elements to blue
+    }
+  </script>
+  </body>
+  <!-- An HTMLCollection is an array-like object that contains a list of elements.
+  It is not a true array, so methods like forEach don’t work directly. You can use a for loop or for...of loop instead.
+  The HTMLCollection is live, meaning it reflects changes to the DOM (e.g., adding or removing elements). -->

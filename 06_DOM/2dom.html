@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai aur Code</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <div class="parent">
+        <!-- This is a comment inside the HTML structure -->
+        <div class="day">Monday</div>  <!-- First child of the parent -->
+        <div class="day">Tuesday</div> <!-- Second child of the parent -->
+        <div class="day">Wednesday</div> <!-- Third child of the parent -->
+        <div class="day">Thursday</div> <!-- Fourth child of the parent -->
+    </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent'); // Selects the parent container
+    
+    // Access all child elements of 'parent' and logs them
+    console.log(parent.children); 
+    // OUTPUT: HTMLCollection(4) [div.day, div.day, div.day, div.day]
+
+    // Logs the innerHTML of the second child (Tuesday)
+    console.log(parent.children[1].innerHTML); 
+    // OUTPUT: Tuesday
+
+    // Change the text color of the second child to orange
+    parent.children[1].style.color = "orange"; 
+
+    // Loop through each child and log its content (commented example)
+    // for (let i = 0; i < parent.children.length; i++) {
+    //      console.log(parent.children[i].innerHTML);
+    // }
+    // OUTPUT: Monday, Tuesday, Wednesday, Thursday (each on a new line)
+
+    // Logs the first and last child of the parent
+    console.log(parent.firstElementChild); 
+    // OUTPUT: <div class="day">Monday</div>
+    console.log(parent.lastElementChild); 
+    // OUTPUT: <div class="day">Thursday</div>
+
+    const dayOne = document.querySelector('.day'); // Selects the first '.day' element
+    
+    // Logs the first '.day' element
+    console.log(dayOne); 
+    // OUTPUT: <div class="day">Monday</div>
+
+    // Logs the parent of the selected '.day' element
+    console.log(dayOne.parentElement); 
+    // OUTPUT: <div class="parent">...</div>
+
+    // Logs the next sibling of the selected '.day' element
+    console.log(dayOne.nextElementSibling); 
+    // OUTPUT: <div class="day">Tuesday</div>
+
+    // Logs all nodes of the parent container, including text nodes
+    console.log("NODES: ", parent.childNodes); 
+    // OUTPUT: NodeList(9) [text, div.day, text, div.day, text, div.day, text, div.day, text]
+</script>
+</html>

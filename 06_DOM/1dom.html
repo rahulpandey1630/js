@@ -66,6 +66,15 @@ console.log(document.forms);
 // Prints a collection of all links (<a> tags) on the webpage
 console.log(document.links); -->
 
+<!--Aspect	console.log()	                 console.dir()
+
+Output 
+Format	Shows a stringified version	    Shows a detailed, interactive tree
+
+Focus	Prints objects as-is	        Focuses on properties and prototype
+
+Use Case	For quick logs	            For inspecting deeply nested objects
+--> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,7 +136,83 @@ console.log(document.links); -->
 
 document.getElementById(id)          	Find an element by element id
 document.getElementsByTagName(name) 	Find elements by tag name
-document.getElementsByClassName(name)	Find elements by class name
+document.getElementsByClassName(name)	Find elements by class name //similar like id
+
+const element = document.getElementById('div1');
+
+// Get and log attribute value
+console.log(element.getAttribute('id'));
+
+// Set an attribute value
+element.setAttribute('class', 'new-class'); //overwrite
+
+// Get and log inner HTML
+console.log(element.innerHTML);
+
+// Set inner HTML
+element.innerHTML = 'Updated content!';
+
+//get inner text
+const text = document.getElementById('div1').innerText;
+console.log(text);
+
+//set inner text
+document.getElementById('div1').innerText = 'This is new visible text!';
+
+// Get and log text content
+console.log(element.textContent);
+
+// Set text content
+element.textContent = 'New text!';
+
+// Change CSS style
+element.style.color = 'blue'; // .color,.backgroundcolor ,borderRaduis similarly other
+
+// Add a new class
+element.classList.add('additional-class');
+
+// Remove an existing class
+element.classList.remove('old-class');
+
+// Log final state of the element
+console.log(element);
+
+// Difference between innerHTML, innerText, and textContent: as they give same content on getting 
+
+// Difference between innerHTML, innerText, and textContent:
+
+// 1. innerHTML:
+//    - Retrieves or sets the HTML content of an element, including tags.
+//    - Parses the string as HTML when setting, allowing you to inject HTML elements.
+//    - Example:
+element.innerHTML = "<b>Bold Text</b>"; // Renders: Bold Text (in bold)
+
+// 2. innerText:
+//    - Retrieves or sets only the visible text, as rendered on the page.
+//    - Considers CSS styles like 'display: none;' or 'visibility: hidden'.
+//    - Slower because it accounts for layout/rendering.
+//    - Example:
+element.innerText = "Visible Text"; // Renders only visible text.
+
+// 3. textContent:
+//    - Retrieves or sets all the text content of an element, including hidden text.
+//    - Ignores styles like 'display: none;'.
+//    - Faster because it does not consider rendering or layout.
+//    - Example:
+element.textContent = "Raw Text Content"; // Outputs all text in the DOM, hidden or visible.
+
+
+<div id="example" style="display: none;">
+  <b>Hidden Text</b>
+</div>
+
+<script>
+  const element = document.getElementById("example");
+
+  console.log(element.innerHTML);    // Output: "<b>Hidden Text</b>" (HTML + tags)
+  console.log(element.innerText);    // Output: "" (because it's hidden)
+  console.log(element.textContent);  // Output: "Hidden Text" (all raw text, including hidden)
+</script>
 
 
 Changing HTML Elements
