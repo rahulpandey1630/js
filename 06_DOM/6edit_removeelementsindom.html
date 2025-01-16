@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur Code | DOM</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <!-- List of programming languages -->
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    // Function to add a new language using innerHTML
+    function addLanguage(langName) {
+        const li = document.createElement('li'); // Create a new <li> element
+        li.innerHTML = `${langName}`; // Set its innerHTML
+        document.querySelector('.language').appendChild(li); // Append to the list
+    }
+    addLanguage("Python"); // Adds Python
+    addLanguage("TypeScript"); // Adds TypeScript
+
+    // Function to add a new language using a text node (optimized method)
+    function addOptiLanguage(langName) {
+        const li = document.createElement('li'); // Create a new <li> element
+        li.appendChild(document.createTextNode(langName)); // Append a text node
+        document.querySelector('.language').appendChild(li); // Append to the list
+    }
+    addOptiLanguage('Golang'); // Adds Golang
+
+   <!-- Using appendChild(document.createTextNode()) is safer and faster than innerHTML
+     because it prevents XSS attacks by treating content as plain text, avoids unnecessary
+      HTML parsing for better performance, and ensures clarity when adding text. Use innerHTML only when inserting HTML intentionally. -->
+
+    // Replace the second list item with a new language
+    const secondLang = document.querySelector("li:nth-child(2)");
+    console.log(secondLang); // Logs the second <li> element
+    const newLi = document.createElement('li'); // Create a new <li> element
+    newLi.textContent = "Mojo"; // Set its text content
+    secondLang.replaceWith(newLi); // Replace the second <li> with the new one
+
+    // Replace the first list item entirely using outerHTML
+    const firstLang = document.querySelector("li:first-child");
+    firstLang.outerHTML = '<li>TypeScript</li>'; // Replaces Javascript with TypeScript
+
+    // Remove the last language from the list
+    const lastLang = document.querySelector('li:last-child');
+    lastLang.remove(); // Removes Golang
+</script>
+</html>
+
+
+<!--Summary of Important Points:
+1. Use `createElement` to dynamically create new DOM elements.
+2. Use `innerHTML` for simple content addition, but prefer `createTextNode` for better performance and security.
+3. Use `appendChild` to add newly created elements to an existing parent element in the DOM.
+4. Use `replaceWith` to replace an existing DOM element with a new one.
+5. Use `outerHTML` to completely replace an element, including its tag and content, with new content.
+6. Use `remove` to delete elements from the DOM.
+7. Use `querySelector` with pseudo-classes like `:nth-child()` and `:first-child` for targeted element selection.
+8. Combine DOM manipulation techniques for creating, editing, and removing elements efficiently.
+-->
+
+<!--innerHTML: Inserts both text and HTML. It can parse HTML tags and is less secure for user input.
+outerHTML: Replaces the entire element (not just its content).
+textContent: Adds or retrieves plain text only, without parsing HTML.-->

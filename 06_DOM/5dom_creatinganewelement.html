@@ -18,7 +18,7 @@
     div.className = "main"; // Adds the class 'main'
 
     // Step 3: Add a random ID to the div
-    div.id = Math.round(Math.random() * 10 + 1); // Generates a random number between 1 and 10, inclusive
+    div.id = Math.round(Math.random() * 10 + 1); // Generates a random number between 1 and 10, inclusive //can do simple div.id="obj"
 
     // Step 4: Set a title attribute for the div
     div.setAttribute("title", "generated title"); // Adds a tooltip text
@@ -30,8 +30,9 @@
     // Step 6: Add text content to the div
     const addText = document.createTextNode("Chai aur Code"); // Creates a text node
     div.appendChild(addText); // Appends the text node to the div
+    //or div.innerText="chai aur code"
 
-    // Step 7: Append the div to the body
+    // Step 7: Append the div to the body as all above statements were just gii=ving answer on console to have it on screen , appen div to body of html
     document.body.appendChild(div); // Appends the styled div with content to the document body
 
     console.log("Final DIV:", div);
