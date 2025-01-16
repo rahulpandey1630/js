@@ -58,5 +58,24 @@
     // Logs all nodes of the parent container, including text nodes
     console.log("NODES: ", parent.childNodes); 
     // OUTPUT: NodeList(9) [text, div.day, text, div.day, text, div.day, text, div.day, text]
+
+
+
+
+    <!-- Select the parent container
+    const parent = document.querySelector('.parent');
+
+    // Logs all child nodes (includes text nodes for spaces/newlines in div here)
+    console.log("NODES:", parent.childNodes);
+    // OUTPUT: NodeList(9) [text, div.day, text, div.day, text, div.day, text, div.day, text]
+
+    // Logs only child elements (ignores text nodes)
+    console.log("CHILDREN:", parent.children);
+    // OUTPUT: HTMLCollection(4) [div.day, div.day, div.day, div.day]
+
+    // Change the color of the second day
+    parent.children[1].style.color = "orange"; // Changes 'Tuesday' to orange
+-->
+
 </script>
 </html>

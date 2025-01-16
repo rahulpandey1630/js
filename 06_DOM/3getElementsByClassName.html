@@ -44,3 +44,9 @@
   <!-- An HTMLCollection is an array-like object that contains a list of elements.
   It is not a true array, so methods like forEach don’t work directly. You can use a for loop or for...of loop instead.
   The HTMLCollection is live, meaning it reflects changes to the DOM (e.g., adding or removing elements). -->
+
+
+  to use "for each" loop on htmlcollection convert it to array
+  const elements = document.getElementsByClassName("example");
+  Array.from(elements)
+  now can you use anything that you use on array like map reduce loops
