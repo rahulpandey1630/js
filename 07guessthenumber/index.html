@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Specifies character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page responsive to different screen sizes -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- Ensures compatibility with older versions of Internet Explorer -->
+    <title>Number Guessing Game</title> <!-- Title of the page shown in the browser tab -->
+    <link rel="stylesheet" href="style.css"> <!-- External CSS file for styling the page -->
+    <link rel="stylesheet" href="../styles.css"> <!-- Another CSS file that may contain shared styles -->
+</head>
+<body style="background-color:#212121; color:#fff;"> <!-- Inline styles to set background color and text color -->
+
+  <!-- Navigation bar with links -->
+  <nav>
+    <a href="/" aria-current="page">Home</a> <!-- Link to the homepage, indicates current page -->
+    <a target="_blank" href="https://www.youtube.com/@chaiaurcode">Youtube channel</a> <!-- Link to a YouTube channel, opens in a new tab -->
+  </nav>
+    
+  <div id="wrapper">
+    <!-- Main content of the game -->
+    <h1>Number guessing game</h1> <!-- Heading for the game -->
+    <p>Try and guess a random number between 1 and 100.</p> <!-- Instructions for the game -->
+    <p>You have 10 attempts to guess the right number.</p> <!-- Additional instructions for the game -->
+
+    </br> <!-- Line break -->
+
+    <!-- Form for the user to input their guess -->
+    <form class="form">
+        <label2 for="guessField" id="guess">Guess a number</label> <!-- Label for the input field -->
+        <input type="text" id="guessField" class="guessField"> <!-- Input field for the user's guess -->
+        <input type="submit" id="subt" value="Submit guess" class="guessSubmit"> <!-- Submit button to submit the guess -->
+    </form>
+
+    <!-- Displaying game results and information -->
+    <div class="resultParas">
+        <p>Previous Guesses: <span class="guesses"></span></p> <!-- Display previous guesses made by the player -->
+        <p>Guesses Remaining: <span class="lastResult">10</span></p> <!-- Display remaining guesses -->
+        <p class="lowOrHi"></p> <!-- Display feedback if the guess is too low, too high, or correct -->
+    </div>
+  </div>
+
+  <script src="index.js"></script> <!-- Linking the JavaScript file that handles game logic -->
+</body>
+</html>
