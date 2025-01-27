@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Specifies character encoding for the webpage -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ensures responsive design for mobile and desktop views -->
+    <title>HTML Events</title> <!-- The title of the webpage -->
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <!-- Background color set to dark, with white text for contrast -->
+    <h2>Amazing Image</h2> <!-- Page heading -->
+    <div>
+        <ul id="images">
+            <!-- An unordered list that serves as a container for images and links -->
+            <li>
+                <img width="200px" id="photoshop" 
+                src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="photoshop">
+                <!-- Image with ID "photoshop". It has a fixed width of 200px -->
+            </li>
+            <li>
+                <img width="200px" id="japan" 
+                src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="">
+                <!-- Image with ID "japan". No alt text is provided. -->
+            </li>
+            <li>
+                <img width="200px" id="river" 
+                src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="">
+                <!-- Image with ID "river". -->
+            </li>
+            <li>
+                <img width="200px" id="owl" 
+                src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="">
+                <!-- Image with ID "owl". -->
+            </li>
+            <li>
+                <img width="200px" id="prayer" 
+                src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="">
+                <!-- Image with ID "prayer". -->
+            </li>
+            <li>
+                <a style="color: aliceblue;" href="https://google.com" id="google">Google</a>
+                <!-- A hyperlink styled with white color -->
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    // Events Overview
+    // Events are actions that occur on a webpage, such as clicks, keypresses, mouse movements, etc.
+    // Developers can "listen" for these events and respond with specific actions using event listeners.
+
+    // Older Event Handling: attachEvent()
+    // Before modern standards, `attachEvent()` was used in older browsers like IE.
+    // Example: attachEvent('onclick', handler);
+    // It's outdated and replaced by `addEventListener()`.
+
+    // jQuery - on
+    // jQuery uses `.on()` to attach event handlers.
+    // Example: $('#element').on('click', function(){...});
+    // Modern JavaScript can achieve the same functionality natively using `addEventListener()`.
+
+    // Event Object Properties:
+    // - type: The type of event (e.g., 'click', 'keydown').
+    // - timestamp: The time the event occurred.
+    // - defaultPrevented: Indicates whether the default action was prevented.
+
+    // Element Properties in Events:
+    // - target: The element that triggered the event.
+    // - toElement/srcElement: Points to the element receiving the event.
+    // - currentTarget: Refers to the element with the event listener.
+
+    // Mouse Event Properties:
+    // - clientX, clientY: Coordinates of the mouse pointer relative to the viewport.
+    // - screenX, screenY: Coordinates of the pointer relative to the screen.
+
+    // Keyboard Event Properties:
+    // - altKey, ctrlKey, shiftKey: Boolean values indicating if these keys were pressed during the event.
+    // - keyCode: The code of the key pressed (deprecated in favor of `event.key`).
+
+    // Inline event example  (discouraged): as it gives less features
+    // document.getElementById('owl').onclick = function() {
+    //     alert("Owl clicked"); // Displays an alert when the "owl" image is clicked.
+    // }
+
+    // Attaching an event listener to the <ul> element.
+
+    // **What is an Event Listener?**
+    // An event listener is a JavaScript mechanism used to listen to events (e.g., clicks, keypresses, mouse movements) 
+    // on an HTML element and execute a specified callback function when the event occurs.
+    // It provides a way to make the web page interactive.
+
+    // **Syntax of addEventListener**
+    // element.addEventListener(event, callbackFunction, useCapture);
+    // - `event`: Type of the event to listen for (e.g., 'click', 'keydown').
+    // - `callbackFunction`: Function executed when the event occurs.
+    // - `useCapture` (optional): Boolean indicating event capturing or bubbling phase (default is false).
+   
+    // Stopping event propagation example:
+    // document.getElementById('owl').addEventListener('click', function(e) {
+    //     console.log("Owl clicked");
+    //     e.stopPropagation(); 
+    //     // Prevents the event from bubbling up to parent elements.
+    // }, false);
+
+    // Preventing default behavior:
+    // document.getElementById('google').addEventListener('click', function(e) {
+    //     e.preventDefault(); 
+    //     // Prevents navigation to Google's website.
+    //     e.stopPropagation(); 
+    //     console.log("Google clicked");
+    // }, false);
+    
+    /*
+    Key Event Listener Concepts:
+    - addEventListener(type, listener, options):
+      1. type: The event type to listen for (e.g., 'click', 'keydown').
+      2. listener: A callback function executed when the event occurs.
+      3. options (optional):
+         - capture: If true, the event is captured during the capture phase. goes top to bottom
+         - once: If true, the listener is removed after being executed once.
+         - passive: If true, indicates the listener will not call preventDefault().
+    - e.preventDefault(): Stops the default action of the event (e.g., link navigation).
+    - e.stopPropagation(): Stops the event from propagating (bubbling) to parent elements.
+    - Event Delegation: Attaching one listener to a parent to handle events for multiple children.
+    */
+
+   // Example 1: General Event Listener on 'images' (ul element)
+// document.getElementById('images').addEventListener('click', function(e){
+//     console.log("clicked inside the ul");
+// }, false);
+
+// Explanation:
+// - This event listener is attached to the 'images' unordered list (ul) element.
+// - When any child element inside the ul is clicked, this listener will log "clicked inside the ul".
+// - It utilizes event bubbling (default behavior when the third parameter is 'false').
+// - Output:
+//   If you click on any image or link inside the ul, the console will log "clicked inside the ul" because the event bubbles up to the ul element.
+
+//Bubbling in Events is a mechanism in the DOM where an event triggered on a child element propagates (or "bubbles") up to its
+//  parent and then to ancestor elements, up to the root of the document.
+
+
+// Example 2: Specific Event Listener on 'owl' (an img element)
+// document.getElementById('owl').addEventListener('click', function(e){
+//     console.log("owl clicked");
+//     e.stopPropagation(); // Prevents event from propagating further
+// }, false);
+
+// Explanation:
+// - This event listener is attached specifically to the 'owl' image element.
+// - When the 'owl' image is clicked, it logs "owl clicked" in the console.
+// - The e.stopPropagation() method prevents the click event from propagating to parent elements (e.g., 'images' ul).
+// - Output:
+//   Clicking the 'owl' image will log "owl clicked" only. The parent ul's event listener will not be triggered due to stopPropagation.
+
+// Example 3: Event Listener on 'google' (a link element)
+// document.getElementById('google').addEventListener('click', function(e){
+//     e.preventDefault(); // Prevents the default action (navigation to the link)
+//     e.stopPropagation(); // Stops event propagation to parent elements
+//     console.log("google clicked");
+// }, false);
+
+// Explanation:
+// - This event listener is attached to the 'google' anchor (a) element.
+// - When the 'Google' link is clicked, e.preventDefault() prevents the browser's default behavior of navigating to the URL.
+// - e.stopPropagation() ensures the click event does not bubble up to parent elements (e.g., 'images' ul).
+// - Output:
+//   Clicking the 'Google' link will only log "google clicked" in the console. The link will not navigate, and the ul's click listener won't be triggered.
+
+// The 'e' (event object) provides a wide range of information and methods 
+// that allow developers to respond effectively to events. Here's a detailed breakdown:
+
+// General Event Information:
+// 1. e.type:
+//    - Returns the type of event that was triggered (e.g., 'click', 'mouseover', 'keydown').
+//    - Example: console.log(e.type); // Outputs 'click'.
+
+// 2. e.target:
+//    - Refers to the element that triggered the event (the event source).
+//    - Example: console.log(e.target.tagName); // Outputs the tag name of the clicked element.
+
+// 3. e.currentTarget:
+//    - Refers to the element to which the event listener is attached.
+//    - Differs from e.target when the event bubbles or captures through the DOM.
+//    - Example: console.log(e.currentTarget.id); // Outputs the ID of the element with the listener.
+
+// 4. e.defaultPrevented:
+//    - Boolean indicating whether e.preventDefault() has been called.
+//    - Example: if (e.defaultPrevented) { console.log('Default action prevented'); }
+
+// Mouse Event Information (specific to mouse-related events):
+// 5. e.clientX / e.clientY:
+//    - Coordinates of the mouse pointer relative to the viewport.
+//    - Example: console.log(`X: ${e.clientX}, Y: ${e.clientY}`);
+
+// 6. e.screenX / e.screenY:
+//    - Coordinates of the mouse pointer relative to the screen.
+//    - Example: console.log(`Screen X: ${e.screenX}, Screen Y: ${e.screenY}`);
+
+// 7. e.altKey, e.ctrlKey, e.shiftKey:
+//    - Boolean values indicating whether Alt, Ctrl, or Shift was pressed during the event.
+//    - Example: if (e.ctrlKey) { console.log('Control key was held down'); }
+
+// Keyboard Event Information (specific to keyboard events):
+// 8. e.key:
+//    - Returns the key value of the pressed key (e.g., 'a', 'Enter').
+//    - Example: console.log(`Key pressed: ${e.key}`);
+
+// 9. e.keyCode (deprecated):
+//    - Returns the numeric key code of the pressed key. Use e.key instead for modern usage.
+//    - Example: console.log(`Key code: ${e.keyCode}`);
+
+// Event Propagation Control:
+// 10. e.stopPropagation():
+//     - Prevents the event from propagating (bubbling) to parent elements.
+//     - Example: e.stopPropagation(); // Stops parent listeners from triggering.
+
+// 11. e.stopImmediatePropagation():
+//     - Prevents the event from propagating and stops other listeners on the same element from executing.
+//     - Example: e.stopImmediatePropagation(); // Stops all further event handlers.
+
+// Default Action Control:
+// 12. e.preventDefault():
+//     - Prevents the default browser behavior for the event.
+//     - Example: e.preventDefault(); // Stops a link from navigating or a form from submitting.
+
+// Timestamp and Event State:
+// 13. e.timeStamp:
+//     - The time (in milliseconds) when the event was created relative to the page's load time.
+//     - Example: console.log(`Event occurred at: ${e.timeStamp} ms`);
+
+// 14. e.isTrusted:
+//     - Boolean indicating whether the event was triggered by the browser (true) or manually (false).
+//     - Example: console.log(`Was the event trusted? ${e.isTrusted}`);
+
+// Event Phase:
+// 15. e.eventPhase:
+//     - Indicates the phase of event propagation (capturing, target, or bubbling).
+//     - 1: Capturing phase, 2: At target, 3: Bubbling phase.
+//     - Example: console.log(`Event phase: ${e.eventPhase}`);
+
+
+document.querySelector('#images').addEventListener('click', function(e) {
+        console.log(e.target.tagName); 
+        // Logs the tag name of the clicked element (e.g., IMG, A).
+
+        if (e.target.tagName === 'IMG') {
+            // Checks if the clicked element is an image (IMG tag).
+            console.log(e.target.id);
+            // Logs the ID of the clicked image (e.g., "photoshop", "japan").
+
+            let removeIt = e.target.parentNode;
+            // Accesses the parent <li> of the clicked image.
+
+            removeIt.remove();
+            // Removes the <li> element containing the clicked image from the DOM.
+        }
+    });
+
+// Additional Notes:
+// The event object is context-dependent:
+// - For mouse events: Provides details like coordinates and button states.
+// - For keyboard events: Provides key information.
+// - For touch events: Provides touch point data.
+// - For custom events: Can be extended with additional properties as needed.
+
+// The event object enables fine-grained control and detailed insights for handling user interactions.
+
+</script>
+</html>

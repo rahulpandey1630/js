@@ -1,55 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8"> <!-- Specifies the character encoding for the HTML document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the page is responsive on different screen sizes -->
+    <title>Document</title> <!-- Title of the webpage, displayed in the browser's title bar -->
 </head>
 <body>
-    <h1>Chai aur Code</h1>
-    <button id="stop">Stop</button>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
+    <h1>Chai aur code</h1> <!-- Initial content of the page, heading text -->
+    <button id="stop">Stop</button> <!-- A button to stop the timeout action from occurring -->
+
 </body>
 <script>
-    setTimeout(function(){
-        console.log("Rahul");
-    },2000)
+    // Definition: setTimeout() is a JavaScript method that executes a function after a specified delay.
+    // Use Case: To execute a function once after a delay, such as showing a message after a few seconds or changing page content dynamically after some time.
+    const sayHitesh = function(){
+        console.log("Hitesh");
+    }
+
+    // Function to change the content of the <h1> element to "best JS series"
+    // This function will be executed after the 2-second timeout.
+    const changeText = function(){
+        document.querySelector('h1').innerHTML = "best JS series";  // Dynamically changes the content of <h1>
+    }
+
+    // setTimeout: Executes a function after a specified delay (2000 milliseconds = 2 seconds)
+    // This schedules the changeText function to run after a 2-second delay.
+    const changeMe = setTimeout(changeText, 2000);
+
+    // Definition: clearTimeout() is used to cancel the execution of a function scheduled by setTimeout().
+    // Use Case: To cancel a delayed function call before it runs, such as stopping a visual change on a page if the user decides to take action (like clicking a button).
+    // Event listener on the "Stop" button
+    // When the user clicks the button, it clears the timeout, preventing the scheduled function (changeText) from running.
+    document.querySelector('#stop').addEventListener('click', function(){
+        clearTimeout(changeMe);  // Stops the timeout, preventing the changeText function from executing
+        console.log("STOPPED");  // Logs "STOPPED" in the console when the timeout is cleared
+    }) 
 </script>
 </html>

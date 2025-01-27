@@ -9,50 +9,17 @@
     <h1>Chai aur Javascript</h1> <!-- Initial content of the page, heading text -->
     <button id="start">Start</button> <!-- Button to trigger the interval action -->
     <button id="stop">Stop</button> <!-- Button to stop the interval action -->
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
 </body>
 <script>
     // Definition: setInterval() is a JavaScript method that repeatedly calls a function at a specified interval (in milliseconds).
     // Use Case: To execute a function at regular intervals, such as displaying the current time every second or performing a task periodically.
-    
-    let intervalId; // Variable to store the interval ID
+    // Syntax: 
+    // let intervalId = setInterval(function, delay, param1, param2, ...);
+    // - function: The function to execute.
+    // - delay: The time, in milliseconds (1000 milliseconds = 1 second), between each execution.
+    // - param1, param2,... : Optional arguments passed to the function.
+
+    let intervalId; // Variable to store the interval ID returned by setInterval.
 
     const sayDate = function(str){
         console.log(str, Date.now()); // Logs the string "str" and the current timestamp to the console
@@ -63,14 +30,26 @@
         // setInterval: Calls the sayDate function every 1000 milliseconds (1 second)
         // This function will log "hi" along with the current timestamp every second.
         intervalId = setInterval(sayDate, 1000, "hi");
-        console.log("Interval started");
+        console.log("Interval started"); // Logs when the interval starts
     });
 
     // Stop button logic
     document.querySelector('#stop').addEventListener('click', function(){
         // clearInterval: Clears the interval set by setInterval, preventing further calls to the sayDate function.
+        // This stops the repeated execution of sayDate function.
         clearInterval(intervalId);
-        console.log("Interval stopped");
+        console.log("Interval stopped"); // Logs when the interval stops
     });
+
+    // Definition of clearInterval():
+    // clearInterval() is used to stop the execution of a function repeatedly called by setInterval().
+    // Syntax: 
+    // clearInterval(intervalId);
+    // - intervalId: The ID returned by setInterval() when the interval was set.
+    // Use Case: To stop the function scheduled by setInterval() before it executes again, for example, stopping a timer or halting updates.
+
+    // In this code:
+    // - setInterval starts calling sayDate function every 1 second, logging "hi" and the timestamp.
+    // - clearInterval stops this interval when the "Stop" button is clicked, preventing any further function calls.
 </script>
 </html>

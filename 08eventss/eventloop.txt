@@ -1,0 +1,73 @@
+// The diagram explains how the JavaScript engine handles asynchronous code, involving the Call Stack, Web APIs, Event Loop, and Task Queue.
+
+// --- JavaScript Engine ---
+
+// Memory Heap:
+// - The Memory Heap is where JavaScript stores variables and objects.
+// - Dynamic memory allocation happens here.
+
+// Call Stack:
+// - A stack data structure where function calls are managed.
+// - Functions are added (pushed) when invoked and removed (popped) when execution finishes.
+// - Example: When function fn() is called, it is pushed to the stack. Once completed, it is popped out.
+
+// --- Web APIs ---
+
+// Web APIs:
+// - Provided by the browser to handle asynchronous tasks.
+// - Examples include:
+//   1. DOM API: Allows interaction with the Document Object Model (HTML/CSS).
+//   2. setTimeout/setInterval: Schedules execution of code after a delay or repeatedly.
+//   3. Fetch: Performs HTTP requests asynchronously.
+// - Web APIs are external to the JavaScript engine but play a key role in handling async operations.
+
+// Callback Registration:
+// - When functions like setTimeout or fetch are called, their callbacks are registered with Web APIs.
+// - These callbacks will be moved to the Task Queue once their work is complete.
+
+// --- Task Queue and Promise Queue (Microtask Queue) ---
+
+// Task Queue:
+// - Stores callbacks (e.g., from setTimeout or fetch) that are ready to be executed.
+// - The Event Loop moves these callbacks to the Call Stack when the stack is empty.
+
+// Microtask Queue (Promise Queue):
+// - A separate, high-priority queue for Promise-based callbacks.
+// - Promises' `.then()` or `async/await` operations are handled here.
+// - Microtasks are processed before moving to the Task Queue.
+
+// --- Event Loop ---
+
+// Event Loop:
+// - A mechanism that monitors the Call Stack and Task Queue.
+// - If the Call Stack is empty, it pushes tasks from the Task Queue or Microtask Queue to the Call Stack.
+// - Ensures the non-blocking, asynchronous behavior of JavaScript.
+
+// --- Flow Example ---
+
+// 1. Synchronous code executes first in the Call Stack.
+// 2. Asynchronous tasks (e.g., setTimeout, fetch) are delegated to Web APIs.
+// 3. When the Web API completes, the corresponding callback is added to the Task Queue or Microtask Queue.
+// 4. The Event Loop checks the Call Stack. If empty, it moves the callback to the Call Stack for execution.
+// 5. Promises (from the Microtask Queue) are prioritized over Task Queue callbacks.
+
+// The flow ensures JavaScript's non-blocking, asynchronous functionality.
+
+
+
+question
+Even if the timeout is set to 0 in a setTimeout function, the callback will not execute immediately.
+Instead, it is added to the Task Queue and will only execute after the current synchronous code in the Call Stack has finished executing
+
+console.log("First"); // Synchronous - executed immediately.
+
+setTimeout(() => {
+  console.log("Timeout callback"); // Asynchronous - added to Task Queue.
+}, 0);
+
+console.log("Second"); // Synchronous - executed immediately.
+
+Output:
+First
+Second
+Timeout callback
