@@ -1,0 +1,60 @@
+Introduction
+The Fetch API is now available in Node.js, making network requests easier without external libraries. It was added to Node.js core on February 1, 2022.
+
+Why Is This Important?
+
+Previously, Node.js required third-party packages like node-fetch or axios for HTTP requests.
+Now, Fetch is built into Node.js, providing a consistent API across frontend and backend.
+
+Evolution of Asynchronous Requests
+1998: Internet Explorer introduced XMLHttpRequest to enable web requests.
+jQuery Era: Simplified AJAX calls but relied on callbacks.
+2015: Fetch API introduced, using Promises to handle requests more cleanly.
+Before Fetch in Node.js: Developers relied on request, node-fetch, and axios.
+Undici (2018): A fast HTTP client that made Fetch possible in Node.js.
+How to Use Fetch in Node.js
+
+Basic Fetch request in Node.js:
+
+fetch("http://example.com/api/endpoint")
+  .then(response => response.json())  // Convert response to JSON
+  .then(data => console.log(data))    // Log the data
+  .catch(error => console.log("Error:", error));  // Handle errors
+
+Benefits of Fetch in Node.js
+🚀 No extra packages – No need for node-fetch or axios.
+🔄 Cross-platform familiarity – Works the same in browsers and Node.js.
+⚡ Faster & more efficient – Uses Undici for improved performance.
+
+Limitations of Fetch
+❌ Error handling: Fetch doesn't reject HTTP errors (e.g., 404, 500).
+⏳ No built-in timeout: Requires additional logic to handle request timeouts.
+📶 No request progress tracking: Unlike Axios, Fetch doesn’t support monitoring upload/download progress.
+
+
+The Fetch API provides a JavaScript interface for making HTTP requests and processing the responses.
+
+Fetch is the modern replacement for XMLHttpRequest: unlike XMLHttpRequest, which uses callbacks, Fetch is promise-based
+and is integrated with features of the modern web such as service workers and Cross-Origin Resource Sharing (CORS).
+
+With the Fetch API, you make a request by calling fetch(), which is available as a global function in both window and 
+worker contexts. You pass it a Request object or a string containing the URL to fetch, along with an optional argument to configure the request.
+
+The fetch() function returns a Promise which is fulfilled with a Response object representing the server's response. You can then check the request 
+status and extract the body of the response in various formats, including text and JSON, by calling the appropriate method on the response.
+
+2)
+
+The fetch() method of the Window interface starts the process of fetching a resource from the network, returning a promise that is fulfilled once the response is available.
+
+The promise resolves to the Response object representing the response to your request.
+
+A fetch() promise only rejects when the request fails, for example, because of a badly-formed request URL or a network error. A fetch() promise 
+does not reject if the server responds with HTTP status codes that indicate errors (404, 504, etc.). Instead, a then() handler must check the Response.ok and/or Response.status properties.
+
+sending more data with fetch 
+const headers = {
+  'C ontent-Type': 'text/xml',
+  'Breaking-Bad': '<3',
+};
+fetch('https://example.com/', { headers });

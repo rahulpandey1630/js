@@ -31,10 +31,10 @@
 // - Stores callbacks (e.g., from setTimeout or fetch) that are ready to be executed.
 // - The Event Loop moves these callbacks to the Call Stack when the stack is empty.
 
-// Microtask Queue (Promise Queue):
+// Microtask Queue (Promise Queue):  fast queue
 // - A separate, high-priority queue for Promise-based callbacks.
 // - Promises' `.then()` or `async/await` operations are handled here.
-// - Microtasks are processed before moving to the Task Queue.
+// - Microtasks are processed before moving to the Task Queue. 
 
 // --- Event Loop ---
 

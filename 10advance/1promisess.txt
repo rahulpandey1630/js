@@ -1,0 +1,26 @@
+The image explains how the fetch function works in JavaScript, particularly in the context of Promises and network requests.
+
+Breakdown of the Image:
+fetch('something')
+
+This initiates a network request and returns a Promise.
+Storage in Global Memory
+
+The response variable is declared in global memory, but it does not immediately hold the actual response data.
+Instead, it holds a Promise object.
+Network Request Process
+
+The request is sent to either a Web Browser or Node.js (depending on the environment).
+The browser or Node.js handles the request asynchronously.
+Promise States
+
+The Promise will have two possible states:
+✅ Fulfilled (Success) → The response is stored in the onFulfilled[] queue.
+❌ Rejected (Failure) → The error is stored in the onRejection[] queue.
+Handling the Response
+
+Once the request completes successfully, the Promise resolves, and the data is processed.
+Key Takeaways:
+fetch() is asynchronous and returns a Promise.
+The response isn't immediately available; it is handled via .then() or async/await.
+Errors must be handled explicitly using .catch().

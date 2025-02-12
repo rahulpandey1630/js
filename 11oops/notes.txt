@@ -1,0 +1,60 @@
+javascript and classes
+
+1) Does JavaScript Have Classes? Is JavaScript Prototype-Based?
+Yes, JavaScript has classes, but it is fundamentally a prototype-based language.
+
+JavaScript Classes
+JavaScript introduced classes in ES6 (ECMAScript 2015) as a syntactic sugar over prototype-based inheritance. However, under the hood, JavaScript still uses prototypes.
+
+Example of a Class in JavaScript
+javascript
+Copy
+Edit
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayHello() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+const p1 = new Person("Rahul");
+p1.sayHello(); // Output: Hello, my name is Rahul
+Here, Person looks like a class, but JavaScript still uses prototype-based inheritance internally.
+
+2)OOP
+JavaScript supports OOP principles (Encapsulation, Inheritance, Polymorphism, and Abstraction(ex fetch)).
+It follows a prototype-based model but allows class-based syntax (ES6).
+
+//OBJECTS
+
+an object is a collection of properties and methods.
+Properties → Store data (key-value pairs).
+Methods → Functions inside an object that perform actions.
+Example:
+const car = {
+  brand: "Tesla",  // Property
+  speed: 200,      // Property
+  drive() {        // Method
+    console.log(`${this.brand} is driving at ${this.speed} km/h.`);
+  },
+};
+
+console.log(car.brand); // Output: Tesla
+car.drive();            // Output: Tesla is driving at 200 km/h.
+Objects group related data and behavior together in JavaScript.
+
+//WHY USE OOPS
+OOP helps in structuring code efficiently by organizing data and behavior into objects.
+
+//PARTS OF OOPS
+object literal
+-constructor function
+-prototypes
+-classes
+-instances (new,this)
+
+
+The new keyword in JavaScript is used to create an instance of an object
+from a constructor function. It sets up a new object, links it to the prototype, and returns it.
