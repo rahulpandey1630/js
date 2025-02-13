@@ -57,3 +57,4 @@ console.log(Teacher.createId()); // ✅ Output: 123 (inherited from User)
 - **super()**: Calls the parent class constructor inside a child class.
 
 */
+ 

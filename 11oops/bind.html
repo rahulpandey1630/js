@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Simulation</title>
+</head>
+<body>
+    <button>Click Me</button>
+</body>
+<script>
+    // ---------------------- JavaScript Class Implementation ----------------------
+/*What is bind in JavaScript?
+bind is a method in JavaScript that allows you to explicitly set the value of this for a function. It returns 
+a new function with this permanently bound to the specified value.
+
+Why is bind needed?
+By default, this in JavaScript depends on how a function is called, not where it is defined. In event handlers 
+or callbacks, this may refer to a different object than expected. To fix this, we use bind() to force this to always refer to a specific object.*/
+    class Framework {
+        constructor() {
+            this.name = "React"; // Setting framework name
+            this.server = "https://localhost:3000"; // Setting server URL
+
+            // Event listener for button click
+            document
+                .querySelector('button')
+                .addEventListener('click', this.handleClick.bind(this)); 
+                // 'bind(this)' ensures the correct context for 'this'
+                //Without bind(this), this inside event listeners will point to the DOM element (button) instead of the class instance.
+                //Using bind(this), we make sure this correctly refers to the class instance so that we can access its properties and methods.
+        }
+
+        // Method to handle button click
+        handleClick() {
+            console.log("Button was clicked!");
+            console.log(`Server running at: ${this.server}`);
+        }
+    }
+
+    // Creating an instance of the class
+    const app = new Framework();
+</script>
+</html>
+
+
+/* --------------------------- SUMMARY ---------------------------
+
+1. **Class Implementation**: The `Framework` class represents a simple frontend framework.
+2. **Event Listener**: The constructor attaches a click event listener to the button.
+3. **bind(this)**: Ensures `this` inside `handleClick()` refers to the class instance.
+4. **Encapsulation**: Keeps related properties and methods within a class.
+5. **Reusability**: The class can be instantiated multiple times with different configurations.
+
+--------------------------- DEFINITIONS ---------------------------
+
+- **Class**: A blueprint for creating objects with properties and behaviors.
+- **Constructor**: A special method that initializes the object when instantiated.
+- **bind(this)**: Ensures the correct value of `this` when passing methods as callbacks.
+- **Event Listener**: Attaches a function to respond to user interactions.
+
+*/
