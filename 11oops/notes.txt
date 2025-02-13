@@ -7,9 +7,7 @@ JavaScript Classes
 JavaScript introduced classes in ES6 (ECMAScript 2015) as a syntactic sugar over prototype-based inheritance. However, under the hood, JavaScript still uses prototypes.
 
 Example of a Class in JavaScript
-javascript
-Copy
-Edit
+ 
 class Person {
   constructor(name) {
     this.name = name;
