@@ -38,6 +38,20 @@ let age = 25;
 Explanation:
 
 The variable age is hoisted, but it remains in the Temporal Dead Zone (TDZ) until the line let age = 25; is executed.
+What is the Temporal Dead Zone?
+The Temporal Dead Zone is the time between:
+
+The start of the block (where the variable is scoped), and
+
+The line where the variable is actually declared and initialized.
+
+During this time, the variable exists but cannot be accessed.
+Trying to access it results in a ReferenceError.
+The TDZ is the time when a let or const variable exists but cannot be used.
+
+It helps prevent bugs by ensuring variables are declared before use.
+
+
 Re-declaration
 var: Allows re-declaration within the same scope.
 let: Does not allow re-declaration within the same scope.cannot access outside the scope

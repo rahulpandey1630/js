@@ -1,0 +1,95 @@
+📘 JavaScript – Core Concepts & Properties
+🔹 1. Interpreted Language
+JavaScript is an interpreted language, meaning the code is executed line-by-line at runtime by the JavaScript engine (e.g., V8 in Chrome).
+
+c++ code is first compiled then run on your machine
+✅ Upsides:
+No compilation step required before running your code.
+
+Great for quick prototyping and debugging.
+
+❌ Downsides:
+Slower performance compared to compiled languages.(performance overhead)
+
+More prone to runtime errors, since many issues only appear when the code is executed.(thats why typescript came...)
+
+
+What is Just-In-Time (JIT) Compilation?
+JIT is a hybrid approach.
+
+JavaScript engines like V8 (used in Chrome and Node.js) and SpiderMonkey (Firefox) compile JavaScript into machine code at runtime, just before it's executed.
+
+This provides the flexibility of an interpreted language and the speed of a compiled one.
+
+✅ So, is JavaScript interpreted or compiled?
+Originally, JavaScript was interpreted.
+
+Modern JavaScript is JIT compiled, which means:
+
+It's not purely interpreted anymore.
+
+It's not compiled ahead-of-time (AOT) like C++.
+
+It's compiled at runtime for performance
+
+
+
+
+
+🔹 2. Dynamically Typed
+In JavaScript, variables are not tied to a specific data type. Their type is determined at runtime and can change during execution.
+
+Example:
+cpp
+Copy
+Edit 
+// ❌ C++ Code (will not compile)
+int a = 1;
+a = "hello";   // Error
+a = true;      // Error
+js
+Copy
+Edit
+// ✅ JavaScript Code (valid)
+var a = 1;
+a = "harkirat";
+a = true;
+
+console.log(a); // true
+⚠️ Implications:
+Flexibility while coding.
+
+But also more bugs due to unexpected type changes.
+
+🔹 3. Single-Threaded
+JavaScript runs in a single-threaded environment, which means it processes one task at a time.
+
+This design simplifies code execution but introduces challenges like:
+
+Blocking operations
+
+Need for asynchronous programming (e.g., promises, async/await)
+
+We will dive deeper into the Event Loop and async behavior later.
+
+🔹 4. Garbage Collected
+JavaScript includes automatic memory management via garbage collection.
+
+🔧 How it works:
+The engine tracks objects in memory.
+
+When no part of the code references an object, it is automatically freed.
+
+✅ Benefits: 
+No need to manually allocate/free memory.
+
+Helps prevent memory leaks in most cases.
+
+🧠 Conclusion: Is JavaScript a Good Language? 
+Pros	Cons
+Beginner friendly	Slower than compiled languages
+Widely used in web development	More runtime errors
+Flexible & dynamic	Difficult to debug large applications
+No need for manual memory mgmt	Weak typing can lead to bugs
+
+🔧 Newer runtimes like Bun are working to optimize JS performance, but C++ or Rust still outperform JS for system-level or compute-heavy tasks.
