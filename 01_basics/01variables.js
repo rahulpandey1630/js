@@ -5,6 +5,27 @@ accountCity = "Jaipur"; // Without `let`, `const`, or `var`, this creates a glob
 let accountState; // `let` allows declaration without initialization
 var id;
 let id2;
+
+cont pi=
+//CASE SENSITIVE 
+
+//RULES FOR VARIABLE NAMING
+
+// Variable names in JavaScript must start with a letter, underscore (_) or dollar sign ($).
+// They can contain letters, digits, underscores, and dollar signs but cannot start with a digit.
+// Variable names are case-sensitive and cannot be JavaScript reserved keywords like "var" or "if".
+
+// you cannot use spaces 
+// var first_name = "harshit"; // snake case writing 
+// var firstName = "harshit"; // camel case writing  PREFER // convention 
+// start with small letter and use camelCase 
+// first name (invalid)
+
+// 'use strict' enables strict mode, which catches common coding mistakes and makes JS safer.
+// It prevents usage of undeclared variables and reserved keywords, improving code quality.
+// Always place it at the top of a script or function to enforce stricter parsing rules.
+
+
 // The following line would throw an error because `accountId` is a constant
 // accountId = 2; // not allowed
 
@@ -16,6 +37,7 @@ because of issue in block scope and functional scope
 console.table([accountId, accountEmail, accountPassword, accountCity, accountState,id2,id])
 /*var vs let in JavaScript
 Scope
+                     
 var: Function-scoped.
 let: Block-scoped.
 Hoisting

@@ -13,7 +13,6 @@ Slower performance compared to compiled languages.(performance overhead)
 
 More prone to runtime errors, since many issues only appear when the code is executed.(thats why typescript came...)
 
-
 What is Just-In-Time (JIT) Compilation?
 JIT is a hybrid approach.
 

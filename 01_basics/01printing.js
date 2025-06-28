@@ -1,9 +1,17 @@
-console.log("hello")
+console.log("hello") //CAN USE SINGLE QUOTES BACKTICKS 
 process.stdout.write("hello")
 console.table([3,4])
 
-//brendan eich father of js
+// JavaScript was created by Brendan Eich at Netscape in 1995 in just 10 days, first called Mocha.
+// It was renamed to LiveScript, then JavaScript for marketing; Microsoft made JScript for Internet Explorer.
+// Due to differences, both were standardized by ECMA in 1997 as ECMAScript.
+//1997-ES1 ES5(2009 BIG CHANGES) ES6(KNOWN MODERN JS CAME IN 2015 HAD BIGGEST CHANGES)
 
+
+// JavaScript is backward compatible, meaning old code works in modern browsers.
+// It is not forward compatible, so new features may not work in older browsers like Internet Explorer.
+// Browsers support older syntax but cannot run future features they don't recognize.
+//BABEL TOOL CAN TRANSPILE ES6 CODE TO ES5 SO THAT THEY CAN WORK ON OLD BROWSERS
 /*
  Web Development – Key Concepts
 🔹 What Do Browsers Understand?
