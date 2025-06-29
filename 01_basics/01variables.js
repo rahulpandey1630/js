@@ -6,7 +6,8 @@ let accountState; // `let` allows declaration without initialization
 var id;
 let id2;
 
-cont pi=
+const pi = 3.14;
+console.log(pi);
 //CASE SENSITIVE 
 
 //RULES FOR VARIABLE NAMING

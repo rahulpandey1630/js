@@ -1,4 +1,4 @@
-// ✅ FALSY VALUES & TRUTHY VALUES IN JAVASCRIPT
+ // ✅ FALSY VALUES & TRUTHY VALUES IN JAVASCRIPT
 
 // 🔹 **Falsy Values:**  
 // These are values that are considered "false" when evaluated in a conditional statement.

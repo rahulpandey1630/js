@@ -1,9 +1,26 @@
 const name = "Rahul";
 const repoCount = 50;
 
+//String Are immutAble
 // Using template literals for string interpolation
 console.log(`Hello my name is ${name} and my repo count is ${repoCount}`);
 
+// String indexing 
+
+let firstName = "harshitdfjakldsfdf";
+
+//  h    a   r   s   h   i   t 
+//  0    1   2   3   4   5   6
+
+// console.log(firstName[0]);
+// length of string 
+// firstName.length 
+
+console.log(firstName.length);
+
+console.log(firstName[firstName.length-2]);
+
+// last Index : length - 1 
 const gameName = new String('rahul-hc-com');
  
 // Accessing characters and properties of a string object
@@ -27,7 +44,7 @@ const newString = gameName.substring(0, 4); //last value not include . if given 
 console.log(newString);             // Outputs: 'rahu'
 
 // Using slice with negative index
-const anotherString = gameName.slice(-8, 4);
+const anotherString = gameName.slice(-8, 4); //START INDEX,END INDEX , EXCLUDE END INDEX
 console.log(anotherString);         // Outputs: '' (incorrect usage)
 
 // Removing whitespace from both ends of the string
@@ -95,7 +112,7 @@ console.log(word.split(" "));
 // Concatenating strings
 name = "Shanaya";
 console.log(name.concat(" Gupta"));   // Outputs: "Shanaya Gupta"
-
+//console.log(string1+string2)
 // Removing whitespace from both ends
 let remSpace = "  good bye guys  ";
 console.log(remSpace.trim());         // Outputs: "good bye guys"

@@ -1,11 +1,15 @@
-// Arrays enables storing a collection of multiple items under a single variable name,
-// resizable,diff dataypes,shallow copy(same reference),zero-indexed,mix of different datatypes
-//Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays.
+// Arrays allow storing a collection of multiple values under a single variable name.
+// They are resizable, zero-indexed, and can hold a mix of different data types (numbers, strings, etc.).
+// Arrays are a special type of object; typeof returns "object" because arrays are built on top of objects.
+
 const myArr = [0, 1, 2, 3, 4, 5];            // Define an array with numbers 0 to 5
 const myHeroes = ["shaktiman", "naagraj"];   // Define an array with hero names
+// let mixed = [1,2,2.3, "string", null, undefined];
 
 const myArr2 = new Array(1, 2, 3, 4);        // Create a new array using the Array constructor
 // console.log(myArr[1]);                       // Access and print the second element (1) of myArr
+
+//console.log(Array.isArray(fruits)); TO CHECK IF IT IS ARRAY
 
 // Array methods
 
