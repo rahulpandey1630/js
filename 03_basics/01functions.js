@@ -1,4 +1,4 @@
-// Function to print letters of a name
+  // Function to print letters of a name
 function sayMyName() {
     console.log("H");
     console.log("I");
@@ -53,6 +53,54 @@ const multiplyTwoNumbers = (number1, number2) => number1 * number2;
 const resultMultiplication = multiplyTwoNumbers(4, 5);
 console.log("Multiplication Result: ", resultMultiplication);
 // Output: Multiplication Result: 20
+
+
+// -------------------- Arrow Functions in JavaScript --------------------
+
+// 🔹 What is an Arrow Function?
+// Arrow functions provide a shorter syntax for writing functions.
+// Best used for small, anonymous functions.
+
+// 🔹 Syntax Comparison:
+
+// Normal function
+function add(a, b) {
+  return a + b;
+}
+
+// Arrow function
+const addArrow = (a, b) => {
+  return a + b;
+};
+
+// 🔹 One-liner Arrow Function (with implicit return)
+const multiply = (a, b) => a * b;
+console.log(multiply(3, 4)); // ✅ Output: 12
+
+// 🔹 Arrow Function with One Parameter
+const square = x => x * x;
+console.log(square(5)); // ✅ Output: 25
+
+// 🔹 Arrow Function with No Parameters
+const greet = () => "Hello!";
+console.log(greet()); // ✅ Output: "Hello!"
+
+// 🔹 Arrow Function inside forEach (commonly used in array methods)
+const nums = [1, 2, 3];
+nums.forEach(num => {
+  console.log(num * 2);
+});
+// ✅ Output:
+// 2
+// 4
+// 6
+
+// ⚠️ Note:
+// Arrow functions DO NOT have their own 'this' context.
+// They inherit 'this' from the surrounding (lexical) scope.
+// So avoid arrow functions as methods inside objects if 'this' is needed.
+
+
 
 /*
 Key Points on Functions:

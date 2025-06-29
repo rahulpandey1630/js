@@ -2,7 +2,7 @@
 
 // 🔹 **Definition:**  
 // The `for...in` loop iterates over the enumerable properties (keys) of an object.  
-// It is typically used for looping through the properties of objects or indices of arrays.
+// It is typically used for looping through the properties of objects or indices of arrays(give inDEx).
 
 // ---------------------------------------------
 

@@ -35,3 +35,21 @@ let score1 = 100;
 let score2 = 200;
 let score3 = 300;
 console.log(Array.of(score1, score2, score3)); // Outputs: [100, 200, 300]
+
+
+
+
+// ----------- Spread Operator with Arrays -----------
+
+const array1 = [1, 2, 3];
+const array2 = [5, 6, 7];
+
+// Combine array1 and array2 with extra values using spread
+// const newArray = [...array1, ...array2, 89, 69];
+// console.log(newArray);
+// Output: [1, 2, 3, 5, 6, 7, 89, 69]
+
+// Spread a string into individual characters (each becomes an element in array)
+const newArray = [..."123456789"];
+console.log(newArray);
+// Output: ['1', '2', '3', '4', '5', '6', '7', '8', '9']

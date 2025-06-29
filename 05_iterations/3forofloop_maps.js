@@ -15,6 +15,17 @@ for (const num of arr) {
 // 🔹 **Explanation:**  
 // The `for...of` loop directly gives you the element value in each iteration, unlike the traditional `for` loop that uses an index.
 
+
+// for of loop in array
+const fruits = ["apple", "mango", "grapes", "fruit4", "fruit5"];
+const fruits2 = [];
+
+// for(let fruit of fruits){
+//     fruits2.push(fruit.toUpperCase());
+// }
+// console.log(fruits2);
+
+
 // ✅ Example 2: Iterating Through a String
 const greetings = "Hello world!";
 for (const greet of greetings) {

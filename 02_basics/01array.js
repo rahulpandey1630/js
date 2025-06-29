@@ -11,6 +11,17 @@ const myArr2 = new Array(1, 2, 3, 4);        // Create a new array using the Arr
 
 //console.log(Array.isArray(fruits)); TO CHECK IF IT IS ARRAY
 
+
+// Use const for creating array
+const fruits = ["apple", "mango"]; // The variable 'fruits' holds a reference to heap memory (e.g., 0x11)
+
+// Modifying the contents of the array is allowed
+fruits.push("banana");
+
+// Output: ["apple", "mango", "banana"]
+console.log(fruits);
+
+
 // Array methods
 
 // Add elements to the end of the array
