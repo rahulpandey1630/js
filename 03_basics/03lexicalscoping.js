@@ -82,3 +82,68 @@ userNormal.arrowFunc();
 // - Does NOT have its own `this`.
 // - Not suitable for object methods.
 
+
+
+// =================== LEXICAL SCOPE EXAMPLE ===================
+
+// Lexical scope means that a function can access variables defined in its **outer scope**
+// (i.e., where the function was physically written in the code)
+
+// This variable is declared in the global scope
+const myVar = "value1";
+
+// This function is defined in the global scope
+function myApp() {
+    
+    // Inner function inside myApp
+    function myFunc() {
+
+        // Uncommenting the next line would shadow the outer myVar
+        // const myVar = "value59";
+
+        // A function defined using arrow function syntax
+        const myFunc2 = () => {
+            // Lexical scope allows access to `myVar` from its parent scopes
+            console.log("inside myFunc", myVar);
+        }
+
+        // Calling inner function
+        myFunc2();
+    }
+
+    // Accessing the outer variable directly inside the function
+    console.log(myVar);   // ✅ Output: "value1"
+    
+    // Call inner function
+    myFunc();
+}
+
+// Call the top-level function
+myApp();
+
+/* =================== OUTPUT ===================
+value1
+inside myFunc value1
+================================================= */
+
+/* ============== HOW LEXICAL SCOPE WORKS ==============
+
+1. The function `myFunc2` is defined inside `myFunc`, which is inside `myApp`.
+
+2. JavaScript uses lexical (static) scoping, which means:
+   - The scope of a variable is determined by its **position in the code** (i.e., where it's written).
+   - Inner functions have access to variables from outer functions where they were defined, not where they were called.
+
+3. `myFunc2` looks for `myVar`:
+   - First inside its own function → not found
+   - Then in `myFunc` → not found (unless the commented line is uncommented)
+   - Then in `myApp` → not found
+   - Then in the global scope → ✅ found `myVar = "value1"`
+
+If the line `const myVar = "value59";` is uncommented in `myFunc`, that will shadow the global `myVar` and output will change:
+
+=========== NEW OUTPUT ===========
+value1
+inside myFunc value59
+==================================
+*/
