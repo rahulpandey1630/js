@@ -75,3 +75,34 @@ switch (month) {
 // 3️⃣ The `default` block executes if no cases match.  
 // 4️⃣ Switch statements are case-sensitive.  
 // 5️⃣ Using `break` is crucial to avoid fall-through behavior.
+
+
+
+// ✅ switch can use:
+// - number
+// - string
+// - boolean
+// - expressions (like variables or function returns)
+// - even objects or arrays (but compared using strict ===)
+
+// ✅ Example with string
+let fruit = "apple";
+switch (fruit) {
+  case "apple": console.log("It's an apple"); break;
+  case "banana": console.log("It's a banana"); break;
+}
+
+// ✅ Example with number
+let num = 2;
+switch (num) {
+  case 1: console.log("One"); break;
+  case 2: console.log("Two"); break;
+}
+
+// ❌ Avoid using objects or arrays as case values (won’t match unless same reference)
+
+let obj = { x: 1 };
+switch (obj) {
+  case { x: 1 }: console.log("Matched"); break; // ❌ won't match (different object reference)
+  default: console.log("No match");
+}

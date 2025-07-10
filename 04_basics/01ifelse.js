@@ -100,3 +100,19 @@ if (loggedInFromGoogle || loggedInFromEmail) {
 // 3️⃣ `&&` (AND) and `||` (OR) are logical operators used to combine conditions.  
 // 4️⃣ `let` and `const` variables are block-scoped and not accessible outside the block.  
 // 5️⃣ If there is only one statement in the `if` block, curly braces are optional.
+ 
+
+
+function checkAge(age) {
+  if (age < 18) return "Too young"; // 🔁  bearly return if condition is met
+
+  // ✅ Code below runs only if age ≥ 18
+  return "You can vote";
+}
+
+console.log(checkAge(16)); // "Too young"
+console.log(checkAge(20)); // "You can vote"
+
+// 🔁 Summary:
+// - Early return exits the function as soon as a condition is met
+// - Makes code cleaner, avoids unnecessary else blocks
