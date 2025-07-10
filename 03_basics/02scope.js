@@ -82,3 +82,26 @@ const addTwo = function(num) {
 // Global Scope: Variables outside any function/block are globally scoped.
 // Hoisting: Function declarations are hoisted. Function expressions and 'let'/'const' are not hoisted the same way.
 // Shadowing: Inner scope variables can shadow outer scope variables.
+
+
+
+// ✅ This function returns another function (function returning function)
+function myFunc(){
+    
+    // This is the inner function which just returns a string
+    function hello(){
+        return "hello world";
+    }
+
+    // Instead of returning a value, we're returning the entire function 'hello'
+    return hello;
+}
+
+// Now we call 'myFunc', which returns the 'hello' function
+// So 'ans' will now hold a reference to the 'hello' function
+const ans = myFunc();
+
+// Now we call the function stored in 'ans', which executes 'hello' and returns the string
+console.log(ans());  // Output: "hello world"
+
+//thi AND cAll BACK ARE HIGHER ORDER FUNCTIONS 

@@ -37,10 +37,10 @@ because of issue in block scope and functional scope
 
 console.table([accountId, accountEmail, accountPassword, accountCity, accountState,id2,id])
 /*var vs let in JavaScript
-Scope
+Scope 
                      
-var: Function-scoped.
-let: Block-scoped.
+var: Function-scoped.(will be SAme throughout program).Allows re-declaration
+let: Block-scoped. ALLOW REASSIGNMENT BUT NOT REDECLARATION
 Hoisting
 var: Hoisted and initialized with undefined.
 let: Hoisted but not initialized (temporal dead zone). intialized with undefined
@@ -56,6 +56,11 @@ let: Hoisted but not initialized (temporal dead zone). intialized with undefined
 // 'var' is FUNCTION SCOPED:
 // - It is accessible anywhere inside the entire function where it is declared,
 //   even if declared inside a smaller block like an if/for block.
+
+The window object is the global object.
+Variables declared with var at the global level are added as properties to the window object.
+However, variables declared with let or const at the global level are not added to window.
+
 
 // ======================== CODE EXAMPLE ========================
 
@@ -122,7 +127,64 @@ function myApp() {
 */
 
 
+// 🔁 Hoisting means JavaScript moves declarations to the top of their scope
+// 🟡 Only declarations are hoisted, not initializations
 
+// hoisting -> jab hum JS mein koi variable banate hain to wo do parts mein toot jaata hai:
+// 1. declaration part -> upar chala jaata hai (hoist hota hai)
+// 2. initialization part -> wahi reh jaata hai jahan likha gaya hai
+console.log(a); // undefined
+var a = 10;
+// JavaScript internally does:
+// var a;
+// console.log(a); // undefined
+// a = 10;
+
+
+
+// console.log(nm);    // Output: undefined (not error)
+// var nm = "Harsh";
+// var nm;             // declaration hoisted to the top
+// console.log(nm);    // undefined (because initialization hasn't happened yet)
+// nm = "Harsh";       // initialization happens here
+
+
+
+// var x = 1;   // global
+
+// {
+//    var x = 2; // still global
+// }
+
+// console.log(x); // Output: 2 ✅
+
+
+
+
+// let a = 10; // 'a' declared in the outer (global) scope
+
+// {
+//   // This 'a' is a new variable, scoped only to this block
+//   let a = 20; 
+//   console.log("Inside:", a); // Output: 20 => refers to block-scoped 'a'
+// }
+
+// console.log("Outside:", a); // Output: 10 => refers to outer 'a', unaffected by block
+
+
+
+// const person = { name: "Harsh" };
+
+// person.name = "Sharma"; // ✅ allowed
+// person = {};            // ❌ Not allowed (TypeError)
+// // 'const' means the variable binding (reference) cannot change
+// // BUT if it's an object or array, you can still modify its contents
+
+// const person = { name: "Harsh" }; // person holds reference to the object
+
+// person.name = "Sharma"; // ✅ Allowed: we're changing a property of the object
+
+// person = {}; // ❌ Not allowed: we're trying to reassign the 'person' variable itself
 
 
 
@@ -210,6 +272,7 @@ let age = 25;
 // - GEC is created when the script starts and contains global variables, functions, and the 'this' keyword.
 // - TDZ is a safeguard to ensure variables are not accessed before proper initialization.
 
+
 // Re-declaration
 // var: Allows re-declaration within the same scope.
 // let: Does not allow re-declaration within the same scope.cannot access outside the scope
@@ -219,3 +282,30 @@ let age = 25;
 // Summary
 // Use let for block-scoped variables.
 // Use var for function-scoped variables or older code compatibility.*/
+
+
+
+// // ✅ Global Scope - accessible everywhere
+// var globalVar = 10;
+
+// function funcScopeExample() {
+//   // ✅ Function Scope - only inside this function
+//   var funcVar = 20;
+//   let funcLet = 30;
+//   const funcConst = 40;
+// }
+
+// // ❌ console.log(funcVar); // Error: not accessible outside
+
+// if (true) {
+//   // ✅ Block Scope - only inside this block
+//   let blockLet = 50;
+//   const blockConst = 60;
+
+//   // ❌ var is NOT block-scoped, it leaks out
+//   var blockVar = 70;
+// }
+
+// // ❌ console.log(blockLet); // Error
+// // ❌ console.log(blockConst); // Error
+// console.log(blockVar); // ✅ 70 (var is not block-scoped)

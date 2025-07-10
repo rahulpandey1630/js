@@ -7,6 +7,7 @@ console.table([3,4])
 // Due to differences, both were standardized by ECMA in 1997 as ECMAScript.
 //1997-ES1 ES5(2009 BIG CHANGES) ES6(KNOWN MODERN JS CAME IN 2015 HAD BIGGEST CHANGES)
 
+// Scripting lANGUAGE
 
 // JavaScript is backward compatible, meaning old code works in modern browsers.
 // It is not forward compatible, so new features may not work in older browsers like Internet Explorer.

@@ -53,3 +53,31 @@ i)               Object                                object
 ii)              Array                                  object
 iii)             Function                            function(object)
 */
+
+
+
+
+// 🔹 JavaScript is a dynamically typed language
+// This means variable types are determined at runtime, not during declaration
+// You don't need to specify types (like int, float, string)
+
+// ✅ Example of dynamic typing:
+
+// let score = 100;           // score is a number
+// console.log(typeof score); // Output: "number"
+
+// score = "One Hundred";     // reassigned to a string
+// console.log(typeof score); // Output: "string"
+
+// score = true;              // reassigned to a boolean
+// console.log(typeof score); // Output: "boolean"
+
+// 🔁 Summary:
+// - JavaScript allows changing the type of a variable at any point
+// - This is called dynamic typing
+// - No type enforcement like in statically typed languages (e.g., Java, C++)
+
+// ✔ Static Typing is better for:
+// - Large-scale applications
+// - Team collaboration
+// - Code that needs to be reliable and maintainable long-term

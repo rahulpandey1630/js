@@ -149,11 +149,66 @@ function calculateCartPrice(val1, val2, ...num1) {
 console.log(calculateCartPrice(200, 400, 500, 2000));
 // Output: [500, 2000] as 200 and 400 are val 1 and 2
 
+
+// Define a function 'addAll' using rest parameters (...numbers)
+// This allows us to pass any number of arguments to the function
+function addAll(...numbers){
+    // Initialize a variable 'total' to store the sum
+    let total = 0;
+
+    // Loop through each 'number' in the 'numbers' array
+    for(let number of numbers){
+        // Add each number to the total
+        total = total + number;
+    }
+
+    // Return the final total
+    return total;
+}
+
+// Call the function 'addAll' with arguments 4, 5, 4, 2, 10
+const ans = addAll(4,5,4,2,10);
+
+// Print the result to the console
+console.log(ans);  // Output: 25
+
 /*
 Key Points on Rest Parameters:
 1. **Rest Parameters** allow a function to accept an indefinite number of arguments as an array.
 2. `val1` and `val2` are handled separately, and the rest of the values go into `num1`.
 */
+
+
+// ✅ PARAMETER DESTRUCTURING IN JAVASCRIPT
+// This is especially useful when working with objects, such as in React props.
+
+// Defining an object named 'person'
+const person = {
+    firstName: "harshit",  // key-value pair: firstName
+    gender: "male",        // key-value pair: gender
+    age: 500               // key-value pair: age
+}
+
+// ❌ Traditional way of accessing object properties inside a function
+// function printDetails(obj){
+//     console.log(obj.firstName);
+//     console.log(obj.gender);
+// }
+
+// ✅ Parameter destructuring method
+function printDetails({firstName, gender, age}) {
+    // The object is destructured directly in the function parameter
+    // So, 'firstName', 'gender', and 'age' are extracted from the 'person' object
+
+    console.log(firstName); // Output: "harshit"
+    console.log(gender);    // Output: "male"
+    console.log(age);       // Output: 500
+}
+
+// Calling the function with the 'person' object
+printDetails(person);
+
+
 
 // Handling Objects as Function Parameters
 const user = {
@@ -200,3 +255,29 @@ Key Points on Arrays as Function Parameters:
 1. Functions can accept arrays and access their elements using index notation.
 2. Arrays can be passed directly in the function call or via a variable.
 */
+
+
+
+
+// ✅ A **callback function** is a function that is **passed as an argument** to another function,
+//    and is then **executed inside that function**.
+//    It's commonly used when you want one function to "call back" another function after it finishes some work.
+//    This is especially useful in asynchronous programming (e.g., in setTimeout, fetch, etc.)
+
+// This is a simple function that takes a `name` and logs some messages.
+// We'll use this as our callback function.
+function myFunc2(name){
+    console.log("inside my func 2");                 // This line runs when the callback is executed
+    console.log(`your name is ${name}`);             // Prints the name passed by the caller
+}
+
+// This function accepts another function as its argument — this is how we accept a callback.
+// The `callback` parameter is expected to be a function.
+function myFunc(callback){
+    console.log("hello there I am a func and I can.."); // A message before calling the callback
+    callback("harshit");                                  // We call the passed-in function (callback) and pass "harshit" as argument
+}
+
+// Now we call `myFunc` and pass `myFunc2` as an argument.
+// This means: inside `myFunc`, it will run `myFunc2("harshit")`
+myFunc(myFunc2);

@@ -29,6 +29,12 @@ coding.forEach(function (val) {
 // python
 // cpp
 
+
+//Behind the scenes, it’s like doing this:
+
+for(let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}
 // -------------------------------------------
 
 // ✅ Example 2: Using forEach with Arrow Function
