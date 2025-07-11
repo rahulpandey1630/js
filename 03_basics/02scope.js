@@ -34,6 +34,8 @@ console.log(global.myVarNode); // Output: undefined
 // - Browser: Global `var` variables are part of `window`.
 // - Node.js: Global `var` variables are not part of `global`; they are scoped to the module.
 
+
+
 // closure is a function that retains access to variables from its outer scope, even after the outer function has finished executing.
 // nested scope 
 function one() {
@@ -104,4 +106,147 @@ const ans = myFunc();
 // Now we call the function stored in 'ans', which executes 'hello' and returns the string
 console.log(ans());  // Output: "hello world"
 
-//thi AND cAll BACK ARE HIGHER ORDER FUNCTIONS 
+//this AND cAll BACK ARE HIGHER ORDER FUNCTIONS 
+
+
+
+
+// ✅ What is a Callback Function?
+// A callback is a function passed as an argument to another function.
+// It is called (or "called back") after the main function finishes its task.
+//Functions that take other functions as arguments or return functions.
+
+// ✅ Example 1: Basic callback
+function greetUser(name, callback) {
+  console.log("Hi " + name);
+  callback(); // calling the passed function
+}
+
+function sayBye() {
+  console.log("Goodbye!");
+}
+
+// Passing 'sayBye' as a callback to 'greetUser'
+greetUser("Rahul", sayBye);
+//or
+// Passing the callback directly inside the function call
+greetUser("Rahul", function sayBye() {
+  console.log("Bye!");
+});
+
+// Output:
+// Hi Rahul
+// Goodbye!
+
+// ✅ Example 2: Callback in asynchronous function (real-world usage)
+setTimeout(function () {
+  console.log("This runs after 2 seconds");
+}, 2000);
+
+// The anonymous function passed to setTimeout is also a callback.
+
+// 💡 Why use callback functions?
+// - To execute code after something finishes (like loading data)
+// - Helps handle asynchronous operations
+// - Allows customizing or reusing code behavior
+
+
+
+// First-Order Function:
+// A function that does NOT accept or return another function.
+
+// It's just a normal function.
+
+
+// function add(a, b) {
+//   return a + b; // First-order function (no function input or output)
+// }
+
+
+
+// ✅ Pure Function:
+// - Always returns the same output for the same input
+// - Has no side effects (does not modify external state)
+
+function add(a, b) {
+  return a + b; // Pure: no external dependency, no side effect
+}
+
+// Calling add(2, 3) will always return 5
+// It doesn't affect or rely on anything outside the function
+
+
+// ❌ Impure Function:
+// - May return different output for the same input
+// - Has side effects (e.g., modifies a global variable)
+
+let count = 0;
+
+function increment() {
+  count++; // Impure: modifies external variable
+  return count;
+}
+
+// Every time increment() is called, the result changes
+// Also, it affects the external variable 'count'
+
+
+// 🔁 Summary:
+// Pure Function:
+//   ✅ Same input → same output
+//   ✅ No side effects
+//   ✅ Easy to test and debug
+
+// Impure Function:
+//   ❌ Output can vary for same input
+//   ❌ Has side effects (e.g., logs, DOM changes, global vars)
+//   ❌ Harder to predict and test
+
+
+
+
+
+// ✅ Lexical Scoping:
+// - A function's scope is determined by its position in the source code (where it was written).
+// - Inner functions have access to variables of their outer functions.
+
+// Example:
+function outer() {
+  let name = "Rahul"; // 'name' is defined in outer scope
+
+  function inner() {
+    console.log(name); // Inner function can access 'name' due to lexical scope
+  }
+
+  inner(); // Output: Rahul
+}
+
+// Lexical scope: inner() can access variables where it was defined (inside outer())
+
+
+// ✅ Closures:
+// - A closure is created when an inner function "remembers" variables from its outer function, even after the outer function has finished executing.
+
+// Example:
+function greetUser() {
+  let greeting = "Hello";
+
+  return function(name) {
+    console.log(greeting + " " + name); // uses 'greeting' from outer scope
+  };
+}
+
+let greeter = greetUser(); // greetUser() has finished, but 'greeting' is remembered
+greeter("Rahul"); // Output: Hello Rahul
+
+// Here, the inner function forms a closure over 'greeting'
+
+
+// 🔁 Summary:
+// ✅ Lexical Scoping:
+//   - Scope is based on where functions are written
+//   - Inner functions can access variables from outer functions
+
+// ✅ Closures:
+//   - Functions "remember" their lexical scope
+//   - Allow access to outer variables even after the outer function has returned

@@ -87,7 +87,7 @@ console.log(greet()); // ✅ Output: "Hello!"
 
 // 🔹 Arrow Function inside forEach (commonly used in array methods)
 const nums = [1, 2, 3];
-nums.forEach(num => {
+nums.forEach(num => { 
   console.log(num * 2);
 });
 // ✅ Output:
@@ -118,9 +118,11 @@ const result = addTwoNumbers(3, 5);
 console.log("Result: ", result);
 // Output: Result: 8
 
+
+
 // Function with Default Parameters
  // if no parameters provide then  sam used. even no default parameter provided then undefined printed at username
-function loginUserMessage(username = "sam") {
+function loginUserMessage(username = "sam") { //undefined when no values provided.    undefined+undefined=NaN
     if (!username) {
         console.log("Please enter a username");
         return;
@@ -150,8 +152,35 @@ console.log(calculateCartPrice(200, 400, 500, 2000));
 // Output: [500, 2000] as 200 and 400 are val 1 and 2
 
 
+
+// The '...' operator in JavaScript has two meanings based on where it is used:
+
+// ✅ Rest Operator:
+// When used in function parameters, it gathers multiple arguments into a single array.stores in the array
+// Example:
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b, 0);
+}
+// sum(1, 2, 3) → nums = [1, 2, 3]
+
+// ✅ Spread Operator:
+// When used in arrays or objects, it expands or unpacks elements from them.
+// Example with array:
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3, 4]; // arr2 = [1, 2, 3, 4]
+
+// Example with object:
+const obj1 = { a: 1 };
+const obj2 = { ...obj1, b: 2 }; // obj2 = { a: 1, b: 2 }
+
+
+
+
+
 // Define a function 'addAll' using rest parameters (...numbers)
 // This allows us to pass any number of arguments to the function
+
+
 function addAll(...numbers){
     // Initialize a variable 'total' to store the sum
     let total = 0;
@@ -167,7 +196,7 @@ function addAll(...numbers){
 }
 
 // Call the function 'addAll' with arguments 4, 5, 4, 2, 10
-const ans = addAll(4,5,4,2,10);
+const ans = addAll(4,5,4,2,10); 
 
 // Print the result to the console
 console.log(ans);  // Output: 25

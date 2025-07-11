@@ -147,3 +147,32 @@ value1
 inside myFunc value59
 ==================================
 */
+
+
+
+
+// ✅ Early Return in JavaScript:
+// It's when you exit a function early using 'return' to avoid extra processing.
+
+// 🆚 Without Early Return:
+function checkAge(age) {
+  if (age < 18) {
+    console.log("You are underage.");
+  } else {
+    console.log("You are an adult.");
+  }
+}
+
+// ✅ With Early Return (cleaner and avoids nesting):
+function checkAge(age) {
+  if (age < 18) {
+    console.log("You are underage.");
+    return; // early return here
+  }
+  console.log("You are an adult.");
+}
+
+// 💡 Why use early return?
+// - Improves readability
+// - Avoids deep nesting (like multiple if-else blocks)
+// - Makes code cleaner and easier to maintain
