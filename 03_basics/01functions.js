@@ -310,3 +310,8 @@ function myFunc(callback){
 // Now we call `myFunc` and pass `myFunc2` as an argument.
 // This means: inside `myFunc`, it will run `myFunc2("harshit")`
 myFunc(myFunc2);
+
+
+
+
+
