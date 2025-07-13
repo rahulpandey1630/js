@@ -119,3 +119,40 @@ myCoding.forEach((item) => {
 
 // ✅ **Callback Functions:**
 // - Functions passed as arguments to other functions, which are then executed inside the function.
+
+
+
+
+
+
+// ✅ map() vs forEach() — When to Use
+
+const numbers = [1, 2, 3, 4];
+
+// 🔹 map():
+// - Use when you want to transform the array
+// - Returns a NEW array (doesn't change original)
+const doubled = numbers.map(num => num * 2);
+console.log("Mapped (doubled):", doubled); // [2, 4, 6, 8]
+
+// 🔹 forEach():
+// - Use when you want to perform an action (side effects) on each element
+// - Does NOT return anything useful (returns undefined)
+numbers.forEach(num => {
+  console.log("ForEach log:", num); // prints each number
+});
+
+// ✅ Summary:
+// map()     → Use when you need a transformed new array
+// forEach() → Use when you just want to do something with each element (like logging, DOM updates, API calls)
+
+
+// 🔁 Table Summary:
+/*
+| Feature         | map()                          | forEach()                     |
+|-----------------|--------------------------------|-------------------------------|
+| Returns         | ✅ New array                   | ❌ undefined                  |
+| Purpose         | Transform / return values      | Perform side effects          |
+| Chainable       | ✅ Yes (e.g., .filter().reduce()) | ❌ No                         |
+| Mutates Original| ❌ No                           | ❌ No                         |
+*/

@@ -1,207 +1,98 @@
-<!--  DOM (Document Object Model)
-The DOM is a programming interface that represents the structure of an HTML or XML document 
-as a tree of objects, allowing JavaScript to manipulate content, styles, and structure dynamically.
+<!-- ✅ DOM (Document Object Model) - Full Notes -->
 
-The DOM represents a webpage as a tree of nodes, where each element (like <div>, <h1>, etc.) is a node 
-in the tree.
+<!-- What is DOM?
+The DOM is a programming interface that represents the structure of an HTML or XML document as a tree of objects (nodes).
+JavaScript uses the DOM to dynamically access and manipulate content, structure, and style.
 
-Think of the DOM as a bridge between HTML and JavaScript. It allows you to:
+🧠 Think of DOM as a bridge between HTML and JavaScript.
 
-✅ Access HTML elements
-✅ Modify content or styles dynamically
-✅ Add or remove elements
-✅ Handle events like clicks or form submissions
+🌳 DOM Tree Structure:
+- window                      → The global object in the browser
+  └── document               → Represents the entire HTML document
+      └── html               → The root of the document
+          ├── head           → Contains metadata, title, links
+          │   ├── title      → Page title (text node inside)
+          │   └── meta       → Attribute node (e.g., charset, viewport)
+          └── body           → Main content shown on page
+              └── div        → HTML containers
+                  ├── attributes     → class, id, etc.
+                  └── h1             → heading with children (text, span)
+                      └── span       → span is hidden via style
 
-Types of Nodes:
-Element Node: Represents HTML tags (e.g., <div>, <p>)
-Text Node: Represents the text inside an element
-Attribute Node: Represents attributes like class, id, etc.
- 
-Key DOM Methods:
+✅ Use Cases of DOM:
+- Accessing and modifying HTML elements using JS
+- Changing styles dynamically via JavaScript
+- Creating, removing, or updating DOM elements
+- Handling events (e.g., click, input, submit)
 
-getElementById(): Selects an element by its ID
-querySelector(): Selects the first matching element
-innerHTML: Gets or sets the content of an element
-style: Changes the inline styles of an element
+🎯 Node Types:
+- Element Node       → Represents HTML tags (e.g., <div>, <h1>, <ul>)
+- Text Node          → Text inside elements (e.g., "Hello world")
+- Attribute Node     → Attributes like class="title", id="main"
+- Comment Node       → <!-- This is a comment -->
 
-Event Handling:
-The DOM allows you to respond to user interactions like clicks, input, hover, etc.
+🛠️ Key DOM Methods:
+- getElementById(id)         → Selects an element by its ID (returns 1 element)
+- getElementsByClassName()   → Selects all elements with a given class (HTMLCollection)
+- getElementsByTagName()     → Selects elements with a specific tag name
+- querySelector()            → Returns the first match (uses CSS selectors)
+- querySelectorAll()         → Returns all matches (NodeList)
 
-Real-Life Example:
-When you click a "Like" button on a social media post, the DOM updates the like count without reloading the page.
--->
+🔍 DOM Inspection via Console (in browser):
+console.log(document.URL);           // Full URL of current page
+console.log(document.title);         // Title of the page
+console.log(document.domain);        // Domain name (e.g., example.com)
+console.log(document.body);          // Logs entire body content
+console.log(document.head);          // Logs entire head content
+console.log(document.cookie);        // Access cookies of the page
+console.log(document.readyState);    // Returns 'loading', 'interactive' or 'complete'
+console.log(document.location);      // Returns protocol, host, pathname, etc.
+console.log(document.forms);         // Returns HTMLCollection of all <form> elements
+console.log(document.links);         // Returns all <a> tags on the page
 
-<!--window->document->html->(head and body) 
-head->title and meta. title further into text node(text). meto into attribute
-body->div->attribute,h1->attribute,text node , p->text node
+📌 console.log() vs console.dir():
+console.log(obj) → Outputs object as HTML-like view
+console.dir(obj) → Outputs object as JS object (expandable tree structure)
 
-//in inspect console
-// Prints the complete URL of the current webpage
-console.log(document.URL);
+🧪 DOM Element Access & Manipulation:
+const element = document.getElementById('div1');  // selects by ID
 
-// Prints the title of the current webpage
-console.log(document.title);
+// Get attribute value
+console.log(element.getAttribute('id'));          // Gets value of 'id'
 
-// Prints the domain name of the website
-console.log(document.domain);
+// Set attribute value
+element.setAttribute('class', 'new-class');       // Replaces or adds class
 
-// Prints the entire <body> element of the webpage
-console.log(document.body);
+// Get/set inner HTML content
+console.log(element.innerHTML);                   // Gets inner HTML including tags
+element.innerHTML = 'Updated content!';           // Sets HTML with tags
 
-// Prints the entire <head> element of the webpage
-console.log(document.head);
+// Get/set visible (rendered) text only
+console.log(element.innerText);                   // Ignores display: none elements
+element.innerText = 'Visible text only!';         // Only visible content is shown
 
-// Prints the cookies stored for the webpage
-console.log(document.cookie);
+// Get/set all raw text including hidden content
+console.log(element.textContent);                 // Includes hidden content
+element.textContent = 'Raw text content';         // Replaces all text (hidden or not)
 
-// Prints the current loading state of the document (loading, interactive, complete)
-console.log(document.readyState);
+// Style manipulation (inline styles)
+element.style.color = 'blue';                     // Set font color
+element.style.backgroundColor = 'yellow';         // Set background
+element.style.borderRadius = '5px';               // Rounded corners
 
-// Prints details about the location (URL, protocol, host, etc.)
-console.log(document.location);
+// Class manipulation (without touching inline styles)
+element.classList.add('new-class');               // Add a class
+element.classList.remove('old-class');            // Remove a class
 
-// Prints a collection of all forms on the webpage
-console.log(document.forms);
+🔎 innerHTML vs innerText vs textContent
+-----------------------------------------------------
+| Property     | Includes HTML Tags | Hidden Text | Speed |
+|--------------|--------------------|-------------|--------|
+| innerHTML    | ✅ Yes             | ✅ Yes       | ⚠️ Slower |
+| innerText    | ❌ No              | ❌ No        | ⚠️ Slower |
+| textContent  | ❌ No              | ✅ Yes       | ✅ Fast   |
 
-// Prints a collection of all links (<a> tags) on the webpage
-console.log(document.links); -->
-
-<!--Aspect	console.log()	                 console.dir()
-
-Output 
-Format	Shows a stringified version	    Shows a detailed, interactive tree
-
-Focus	Prints objects as-is	        Focuses on properties and prototype
-
-Use Case	For quick logs	            For inspecting deeply nested objects
---> 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>DOM learning</title>
-    <style>
-        /* CSS class definition to style background and text color */
-        .bg-black{
-            background-color: #212121; /* Dark background */
-            color: #fff; /* White text color */
-        }
-    </style>
-</head>
-<body class="bg-black">  <!-- The class bg-black is applied to body to style background and text -->
-
-    <div>
-        <!-- <h1> with id 'title' and class 'heading', which defines the main title of the page -->
-        <h1 id="title" class="heading">DOM learning on Chai aur code 
-            <!-- <span> with style display:none is hidden initially -->
-            <span style="display: none;">test text</span>
-        </h1>
-
-        <!-- Heading elements, displaying subheadings -->
-        <h2>Lorem ipsum dolor sit.</h2>
-        <h2>Lorem ipsum dolor sit.</h2>
-        <h2>Lorem ipsum dolor sit.</h2>
-
-        <!-- Paragraph element with some text -->
-        <p>Lorem ipsum dolor sit amet.</p>
-
-        <!-- Input field of type 'password' -->
-        <input type="password" name="" id="">
-
-        <!-- Unordered list with class 'list-item' for each list item -->
-        <ul>
-            <li class="list-item">one</li>
-            <li class="list-item">two</li>
-            <li class="list-item">three</li>
-            <li class="list-item">four</li>
-        </ul>
-    </div>
-
-</body>
-</html>
- 
-
-<!-- <html>
-    <body>
-    
-    <p id="demo"></p>
-    
-    <script>
-    document.getElementById("demo").innerHTML = "Hello World!";
-    </script>
-    
-    </body>
-    </html>
-
-document.getElementById(id)          	Find an element by element id
-document.getElementsByTagName(name) 	Find elements by tag name
-document.getElementsByClassName(name)	Find elements by class name //similar like id
-
-const element = document.getElementById('div1');
-
-// Get and log attribute value
-console.log(element.getAttribute('id'));
-
-// Set an attribute value
-element.setAttribute('class', 'new-class'); //overwrite
-
-// Get and log inner HTML
-console.log(element.innerHTML);
-
-// Set inner HTML
-element.innerHTML = 'Updated content!';
-
-//get inner text
-const text = document.getElementById('div1').innerText;
-console.log(text);
-
-//set inner text
-document.getElementById('div1').innerText = 'This is new visible text!';
-
-// Get and log text content
-console.log(element.textContent);
-
-// Set text content
-element.textContent = 'New text!';
-
-// Change CSS style
-element.style.color = 'blue'; // .color,.backgroundcolor ,borderRaduis similarly other
-
-// Add a new class
-element.classList.add('additional-class');
-
-// Remove an existing class
-element.classList.remove('old-class');
-
-// Log final state of the element
-console.log(element);
-
-// Difference between innerHTML, innerText, and textContent: as they give same content on getting 
-
-// Difference between innerHTML, innerText, and textContent:
-
-// 1. innerHTML:
-//    - Retrieves or sets the HTML content of an element, including tags.
-//    - Parses the string as HTML when setting, allowing you to inject HTML elements.
-//    - Example:
-element.innerHTML = "<b>Bold Text</b>"; // Renders: Bold Text (in bold)
-
-// 2. innerText:
-//    - Retrieves or sets only the visible text, as rendered on the page.
-//    - Considers CSS styles like 'display: none;' or 'visibility: hidden'.
-//    - Slower because it accounts for layout/rendering.
-//    - Example:
-element.innerText = "Visible Text"; // Renders only visible text.
-
-// 3. textContent:
-//    - Retrieves or sets all the text content of an element, including hidden text.
-//    - Ignores styles like 'display: none;'.
-//    - Faster because it does not consider rendering or layout.
-//    - Example:
-element.textContent = "Raw Text Content"; // Outputs all text in the DOM, hidden or visible.
-
-
+Example:
 <div id="example" style="display: none;">
   <b>Hidden Text</b>
 </div>
@@ -209,27 +100,66 @@ element.textContent = "Raw Text Content"; // Outputs all text in the DOM, hidden
 <script>
   const element = document.getElementById("example");
 
-  console.log(element.innerHTML);    // Output: "<b>Hidden Text</b>" (HTML + tags)
-  console.log(element.innerText);    // Output: "" (because it's hidden)
-  console.log(element.textContent);  // Output: "Hidden Text" (all raw text, including hidden)
+  console.log(element.innerHTML);    // "<b>Hidden Text</b>" (tags included)
+  console.log(element.innerText);    // "" (empty string — display:none)
+  console.log(element.textContent);  // "Hidden Text" (includes hidden)
 </script>
 
+🛠️ Changing HTML Elements
 
-Changing HTML Elements
+// Change inner content of an element
+element.innerHTML = "<b>Hello</b>";
 
-Property	Description
-element.innerHTML =  new html content	Change the inner HTML of an element
-element.attribute = new value	Change the attribute value of an HTML element
-element.style.property = new style	Change the style of an HTML element
+// Change an attribute (e.g., id or class)
+element.setAttribute("id", "newId");
 
-Method	Description
-element.setAttribute(attribute, value)	Change the attribute value of an HTML element
+// Change style using JS
+element.style.color = "red";
 
-Adding and Deleting Elements
-Method	Description
-document.createElement(element)	Create an HTML element
-document.removeChild(element)	Remove an HTML element
-document.appendChild(element)	Add an HTML element
-document.replaceChild(new, old)	Replace an HTML element
-document.write(text)	Write into the HTML output stream
+📦 Adding / Removing Elements:
+
+document.createElement("p")         // Create a new element node
+parent.appendChild(newElement)      // Append to parent
+parent.removeChild(childElement)    // Remove from parent
+parent.replaceChild(newEl, oldEl)   // Replace old with new
+document.write("Hello")             // Avoid using in real apps (overwrites)
+
+🎯 Example: Set content dynamically
+<p id="demo"></p>
+<script>
+  document.getElementById("demo").innerHTML = "Hello World!";
+</script>
+
+🎯 Example HTML:
+<body class="bg-black">
+  <div>
+    <h1 id="title" class="heading">
+      DOM learning on Chai aur Code
+      <span style="display:none;">test text</span>
+    </h1>
+
+    <h2>Subheading 1</h2>
+    <h2>Subheading 2</h2>
+    <h2>Subheading 3</h2>
+    
+    <p>This is a paragraph</p>
+    <input type="password" />
+
+    <ul>
+      <li class="list-item">One</li>
+      <li class="list-item">Two</li>
+      <li class="list-item">Three</li>
+      <li class="list-item">Four</li>
+    </ul>
+  </div>
+</body>
+
+✅ Summary:
+- DOM lets JavaScript manipulate HTML content and structure
+- DOM is essential for dynamic and interactive web pages
+- Elements can be selected using ID, class, tag, or CSS selectors
+- Use `.innerHTML`, `.innerText`, `.textContent` carefully depending on needs
+- Classes and styles can be updated dynamically
+- Elements can be added, removed, or modified using DOM methods
+- Events can be handled via addEventListener (explored next)
 -->
