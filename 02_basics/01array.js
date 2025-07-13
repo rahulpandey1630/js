@@ -4,11 +4,11 @@
 
 const myArr = [0, 1, 2, 3, 4, 5];            // Define an array with numbers 0 to 5
 const myHeroes = ["shaktiman", "naagraj"];   // Define an array with hero names
-// let mixed = [1,2,2.3, "string", null, undefined];
-
+// let mixed = [1,2,2.3, "string", null, undefined]; // in js array can hold different types of values
+ //modifying   myArr[2]=6;
 const myArr2 = new Array(1, 2, 3, 4);        // Create a new array using the Array constructor
 // console.log(myArr[1]);                       // Access and print the second element (1) of myArr
-
+                                             //undefined when no element at that index
 //console.log(Array.isArray(fruits)); TO CHECK IF IT IS ARRAY
 
 
@@ -74,3 +74,54 @@ console.log(myn2);                           // Outputs the removed elements [1,
 // - `slice()` returns a shallow copy of a portion of an array into a new array, without modifying the original array.
 // - `splice()` changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.and last ranges is also included in splice.
 // splice make changes in original array
+
+
+
+
+
+// ✅ 1. Reverse an Array
+let arr = [10, 20, 30, 40];
+
+arr.reverse(); // Modifies the original array
+console.log("Reversed:", arr); // [40, 30, 20, 10]
+
+
+// ✅ 2. Sort an Array (Ascending / Descending)
+
+// 🔹 Default Sort (Lexicographic / ASCII based)
+let nums = [5, 100, 20];
+nums.sort();
+console.log("Default sort:", nums); // [100, 20, 5] — ❌ incorrect for numbers
+
+// 🔹 Proper Numeric Sort (Ascending)
+let numsAsc = [5, 100, 20];
+numsAsc.sort((a, b) => a - b); // ascending
+console.log("Ascending:", numsAsc); // [5, 20, 100]
+
+// 🔹 Numeric Sort (Descending)
+let numsDesc = [5, 100, 20];
+numsDesc.sort((a, b) => b - a); // descending
+console.log("Descending:", numsDesc); // [100, 20, 5]
+
+
+// 🔁 Combined Example: Sort ascending then reverse
+let mixArr = [4, 1, 7, 3];
+
+// Sort ascending
+mixArr.sort((a, b) => a - b); // [1, 3, 4, 7]
+
+// Reverse the sorted array
+mixArr.reverse();             // [7, 4, 3, 1]
+
+console.log("Sorted then reversed:", mixArr);
+
+
+
+
+
+let colors = ["green", "yellow", "black"];
+
+// 🔹 splice(index, deleteCount, item1, item2, ...)
+colors.splice(1, 0, "red", "blue");
+
+console.log(colors); // ["green", "red", "blue", "yellow", "black"]

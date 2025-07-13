@@ -1,4 +1,4 @@
-// ✅ USING forEach METHOD IN JAVASCRIPT
+ // ✅ USING forEach METHOD IN JAVASCRIPT
 
 // 🔹 **Definition of Important Concepts:**
 // 1️⃣ **forEach() Method:**

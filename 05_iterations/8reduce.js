@@ -78,3 +78,127 @@ console.log(priceToPay); // Output: 22996
 // - Reduce is useful for operations like summing values, finding products, or combining results.
 // - It can handle both numbers and objects within an array.
 // - Initial value is important to set for consistent results.
+
+
+
+
+// ✅ 3. reduce()
+// - Reduces the array to a single value
+// - Takes a callback with accumulator and current value
+
+const values = [1, 2, 3, 4];
+
+const sum = values.reduce((acc, curr) => acc + curr, 0);
+console.log("Reduced (sum):", sum); // 10
+
+
+
+
+// ✅ 3. every()
+// - Returns true only if **all** elements satisfy the condition
+
+
+
+const allAbove5 = numbers.every(num => num > 5);
+console.log("Every (>5):", allAbove5); // true
+
+const allAbove20 = numbers.every(num => num > 20);
+console.log("Every (>20):", allAbove20); // false (10 is not > 20)
+
+
+
+// ✅ 2. some()
+// - Returns true if **at least one** element satisfies the condition
+
+const hasLarge = numbers.some(num => num > 40);
+
+
+console.log("Some (>40):", hasLarge); // true (because 45 is > 40)
+
+
+
+// ✅ 1. find()
+// - Returns the first element that satisfies the condition
+// - Returns undefined if not found
+
+const numbers = [10, 25, 30, 45];
+
+const found = numbers.find(num => num > 20);
+console.log("Found (>20):", found); // 25 (first match)
+
+
+
+
+
+// ⚠️ Common Confusions Explained:
+
+// 1️⃣ splice vs slice
+
+// 🔹 slice(start, end) → Returns a shallow copy of a portion of the array
+// ✅ Non-destructive (original array not changed)
+let arr1 = [1, 2, 3, 4, 5];
+let sliced = arr1.slice(1, 4); // [2, 3, 4]
+console.log("Original after slice:", arr1); // [1, 2, 3, 4, 5]
+
+// 🔹 splice(start, deleteCount, ...items) → Changes the array in place
+// ✅ Destructive (modifies original array)
+let arr2 = [1, 2, 3, 4, 5];
+let spliced = arr2.splice(1, 2); // removes 2 elements from index 1 → [2, 3]
+console.log("Original after splice:", arr2); // [1, 4, 5]
+
+
+// 2️⃣ map vs forEach
+
+// 🔹 map() → Transforms array and returns a **new array**
+let nums = [1, 2, 3];
+let doubled = nums.map(x => x * 2); // [2, 4, 6]
+
+// 🔹 forEach() → Just iterates, does **not return** anything
+let output = [];
+nums.forEach(x => output.push(x * 2)); // [2, 4, 6]
+console.log("Mapped:", doubled);     // [2, 4, 6]
+console.log("ForEach Output:", output); // [2, 4, 6]
+
+
+// 3️⃣ sort behavior without compareFn
+
+// 🔹 sort() by default sorts as strings (lexicographically)
+let mixed = [5, 100, 1, 20];
+mixed.sort(); // incorrect: [1, 100, 20, 5]
+console.log("Default sort:", mixed);
+
+// 🔹 To fix numeric sorting, use compareFn
+mixed.sort((a, b) => a - b); // correct: [1, 5, 20, 100]
+console.log("Numeric sort:", mixed);
+
+
+
+
+// ✅ 1️⃣ Destructuring
+// 👉 Extract values from arrays or objects and assign them to variables
+
+// Array destructuring
+const arr = [1, 2, 3];
+const [a, b, c] = arr;
+console.log(a, b, c); // 1 2 3
+
+// Object destructuring
+const user = { name: "Rahul", age: 22 };
+const { name, age } = user;
+console.log(name, age); // Rahul 22
+
+
+
+// ✅ 2️⃣ Spread Operator (...)
+// 👉 Spreads elements of an array or properties of an object
+
+// Array spread
+const nums1 = [1, 2];
+const nums2 = [3, 4];
+const combined = [...nums1, ...nums2];
+console.log("Combined:", combined); // [1, 2, 3, 4]
+
+// Object spread
+const user1 = { name: "Rahul", age: 22 };
+const user2 = { ...user1, city: "Delhi" };
+console.log(user2); // { name: "Rahul", age: 22, city: "Delhi" }

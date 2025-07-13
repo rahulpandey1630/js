@@ -138,3 +138,44 @@ console.log(typeof secret); // undefined
 //     console.log("Fixed:", j); // prints 0, 1, 2
 //   }, 100);
 // }
+
+
+
+
+// // 🔹 Closure:
+// // A closure is formed when a function "remembers" the variables from its outer scope,
+// // even after the outer function has finished execution.
+
+// function outer() {
+//   let count = 0;
+
+//   return function () {
+//     count++;
+//     console.log("Count:", count);
+//   };
+// }
+
+// const counter = outer(); // closure is formed here
+// counter(); // Count: 1
+// counter(); // Count: 2
+
+// // ✅ Closure remembers 'count' even though 'outer' has already returned
+
+
+
+// // 🔹 Higher-Order Function (HOF):
+// // A function that either:
+// // 1. Takes another function as an argument
+// // OR
+// // 2. Returns a function
+
+// function greetUser(name, callback) {
+//   console.log("Hello", name);
+//   callback(); // function passed as argument (callback)
+// }
+
+// function sayBye() {
+//   console.log("Goodbye!");
+// }
+
+// greetUser("Rahul", sayBye); // greetUser is a HOF
