@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>document.querySelector Examples</title>
 </head>
 <body>
-  <!-- HTML Content: Three div elements with class 'example' and one div with id 'unique' -->
+  <!-- ✅ HTML Content: Multiple divs and paragraphs -->
   <div class="example">Div 1</div>
   <div class="example">Div 2</div>
   <div class="example">Div 3</div>
@@ -15,131 +15,116 @@
   <p>This is a paragraph.</p>
   <p>This is another paragraph.</p>
 
-  <script>
-    // Example 1: Select the first element by Class Name
-    const elementByClass = document.querySelector(".example");
-    // Using the CSS selector ".example" to select the first element with the class 'example'.
-    console.log("First element with class 'example':", elementByClass.textContent);
-    // Output will be the text of the first matching element: "Div 1"
-    
-    // Example 2: Select an element by its ID
-    const elementById = document.querySelector("#unique");
-    // Using the CSS selector "#unique" to select the element with id 'unique'.
-    console.log("Element with ID 'unique':", elementById.textContent);
-    // Output will be the text content: "This is unique"
-    
-    // Example 3: Select the first element by Tag Name
-    const elementByTag = document.querySelector("p");
-    // Using the CSS selector "p" to select the first <p> tag in the document.
-    console.log("First <p> tag content:", elementByTag.textContent);
-    // Output will be: "This is a paragraph."
-    
-    // Example 4: Select using a combination of Tag Name and Class Name
-    const elementByCSS = document.querySelector("div.example");
-    // Using the CSS selector "div.example" to select the first <div> element with class 'example'.
-    console.log("First <div> with class 'example':", elementByCSS.textContent);
-    // Output will be: "Div 1"
-  </script>
-
-
-<!--
-// Explanation of document.querySelector
-
-// What is happening?
-// document.querySelector(selector) is used to select the first element 
-// in the document that matches the specified CSS selector.
-// It returns the first matching element or null if no element matches.
-// Selectors can include class names, IDs, tag names, and other CSS selectors.
-
-// Key Points to Remember:
-// - document.querySelector will only return the **first** matching element in the document.
-// - To select all matching elements, use document.querySelectorAll.
-// - It will return null if no matching element is found.
-// - Unlike document.getElementsByClassName, querySelector is **not live**; 
-//   it doesn’t update automatically when the DOM changes.
-
-// What are CSS Selectors?
-// CSS Selectors are patterns used to select and manipulate elements in the DOM.
-// They are used in methods like document.querySelector to target elements 
-// based on class, ID, tag name, or other attributes.
-
-// Example CSS Selectors:
-// - .example: Targets elements with the class 'example'.
-// - #unique: Targets the element with ID 'unique'.
-
-
-<ul>
+  <ul>
     <li class="list-item">one</li>
     <li class="list-item">two</li>
     <li class="list-item">three</li>
     <li class="list-item">four</li>
-</ul>
+  </ul>
 
+  <script>
+    // ✅ Example 1: Select the first element by Class Name
+    const elementByClass = document.querySelector(".example");
+    console.log("First element with class 'example':", elementByClass.textContent); 
+    // Output: "Div 1"
 
-// Select the first <li> element with the class 'list-item'
+    // ✅ Example 2: Select an element by its ID
+    const elementById = document.querySelector("#unique");
+    console.log("Element with ID 'unique':", elementById.textContent); 
+    // Output: "This is unique"
+
+    // ✅ Example 3: Select the first element by Tag Name
+    const elementByTag = document.querySelector("p");
+    console.log("First <p> tag content:", elementByTag.textContent); 
+    // Output: "This is a paragraph."
+
+    // ✅ Example 4: Select using Tag + Class Name
+    const elementByCSS = document.querySelector("div.example");
+    console.log("First <div> with class 'example':", elementByCSS.textContent); 
+    // Output: "Div 1"
+
+    // ✅ Example 5: Select a list item by class
     const firstItem = document.querySelector(".list-item");
-    console.log(firstItem.textContent); // Output: "one"
-    
-    // Select the <li> element with text "three"
-    const specificItem = document.querySelector("li.list-item:nth-child(3)");
-    console.log(specificItem.textContent); // Output: "three"
-    
-    // Select the first <li> element using a general tag selector
+    console.log("First <li> with class 'list-item':", firstItem.textContent); 
+    // Output: "one"
+
+    // ✅ Example 6: Select a specific nth-child list item
+    const thirdItem = document.querySelector("li.list-item:nth-child(3)");
+    console.log("Third <li> with class 'list-item':", thirdItem.textContent); 
+    // Output: "three"
+
+    // ✅ Example 7: Select first <li> generally
     const firstLi = document.querySelector("li");
-    console.log(firstLi.textContent); // Output: "one"
-    -->
-    
+    console.log("First <li> tag:", firstLi.textContent); 
+    // Output: "one"
+  </script>
 
-    <!--queryselectorall
+  <!-- ✅ Explanation of document.querySelector:
+  - `document.querySelector(selector)` returns the FIRST element in the document 
+    that matches the given CSS selector.
+  - If no matching element is found, it returns `null`.
+  - You can use any valid CSS selector: ID (#id), class (.class), tag (div), combination (div.class)
 
-    The querySelectorAll() method returns all elements that matches a CSS selector(s).
+  🔹 Examples:
+  - ".example"     → selects first element with class 'example'
+  - "#unique"      → selects element with ID 'unique'
+  - "div.example"  → selects first <div> with class 'example'
+  - "p"            → selects first <p> tag
+  - "li.list-item:nth-child(3)" → selects 3rd <li> with class 'list-item'
 
-    The querySelectorAll() method returns a NodeList.
+  ⚠️ querySelector returns only ONE element.
+  ✅ Use querySelectorAll() to select multiple matching elements.
+  -->
 
-    The querySelectorAll() method throws a SYNTAX_ERR exception if the selector(s) is invalid
+  <!-- ✅ querySelectorAll(): Selects ALL elements matching a CSS selector(s)
+  - Returns a static NodeList (not live)
+  - Supports forEach() and other iterable techniques
+  - Use it when you want to perform actions on multiple matched elements
+  -->
 
-<body>
+  <script>
+    // ✅ Example 1: All elements with class 'item'
+    const items = document.querySelectorAll('.example');
+    console.log("All elements with class 'example':", items); // NodeList of 3 divs
 
-    <!-- Example 1: Selecting all elements with a specific class
-    <div class="item">Item 1</div>
-    <div class="item">Item 2</div>
-    <div class="item">Item 3</div>
+    // ✅ Loop using forEach (because NodeList supports it)
+    items.forEach((el, index) => {
+      console.log(`Example ${index + 1}:`, el.textContent);
+    });
 
-    <h2>Example 1: Selecting all elements with class "item"</h2>
-    <p class="output">Output will be logged in the console.</p>
+    // ✅ Example 2: All <p> tags
+    const paragraphs = document.querySelectorAll('p');
+    paragraphs.forEach((para, idx) => {
+      console.log(`Paragraph ${idx + 1}:`, para.textContent);
+    });
 
-    <!-- Example 2: Selecting all <p> tags 
-    <p>This is paragraph 1.</p>
-    <p>This is paragraph 2.</p>
-    <p>This is paragraph 3.</p>
+    // ✅ Example 3: Multiple selectors (.header, .footer)
+    const multiSelect = document.querySelectorAll('.example, #unique');
+    multiSelect.forEach((el, idx) => {
+      console.log(`Matched Element ${idx + 1}:`, el.textContent);
+    });
+  </script>
 
-    <h2>Example 2: Selecting all &lt;p&gt; tags</h2>
-    <p class="output">Output will be logged in the console.</p>
-    -->
-    <!-- Example 3: Selecting elements using multiple selectors
-    <div class="header">Header</div>
-    <p class="footer">Footer</p>
+  <!-- Summary Notes:
 
-    <h2>Example 3: Selecting elements using multiple selectors</h2>
-    <p class="output">Output will be logged in the console.</p>
+  📌 querySelector():
+  - Returns first matching element only
+  - Useful for accessing one specific element
+  - Returns null if nothing matches
+  - Not live (doesn't update when DOM changes)
 
-    <script>
-        // Example 1: Selecting all elements with a specific class
-        const items = document.querySelectorAll('.item');
-        console.log("Example 1: All elements with class 'item'");
-        console.log(items);  // NodeList of all elements with class 'item'
+  📌 querySelectorAll():
+  - Returns ALL matching elements
+  - Returns a NodeList (supports forEach, can be spread into an array)
+  - Also not live
+  - Good for applying changes or getting data from multiple elements
 
-        // Example 2: Selecting all <p> tags
-        const paragraphs = document.querySelectorAll('p');
-        console.log("\nExample 2: All <p> tags");
-        paragraphs.forEach((para) => {
-            console.log(para.innerText);  // Logs the text of each paragraph
-        });
+  📌 NodeList vs HTMLCollection:
+  - Both are array-like collections of nodes.
+  - HTMLCollection is live; NodeList (from querySelectorAll) is static.
+  - NodeList supports forEach, HTMLCollection does not (convert to array if needed).
 
-        // Example 3: Selecting elements using multiple selectors
-        const elements = document.querySelectorAll('.header, .footer');
-        console.log("\nExample 3: All elements with class 'header' and 'footer'");
-        console.log(elements);  // NodeList of elements with class 'header' and 'footer'
-    </script>
--->
-    
+  ✅ Always use querySelector/querySelectorAll when you want flexible CSS-style selection.
+  -->
+</body>
+</html>
