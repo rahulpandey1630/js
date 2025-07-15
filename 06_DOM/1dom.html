@@ -63,6 +63,76 @@ console.log(element.getAttribute('id'));          // Gets value of 'id'
 // Set attribute value
 element.setAttribute('class', 'new-class');       // Replaces or adds class
 
+
+
+
+<!-- ✅ DOM Attribute Manipulation: getAttribute(), setAttribute(), removeAttribute() -->
+
+<!--
+🎯 1. getAttribute(attrName)
+- Retrieves the value of the specified attribute from an element.
+- Returns `null` if the attribute does not exist.
+
+Example:
+const el = document.getElementById("myDiv");
+console.log(el.getAttribute("id"));        // "myDiv"
+console.log(el.getAttribute("class"));     // e.g., "container"
+console.log(el.getAttribute("href"));      // null (if it doesn't exist)
+-->
+
+<!--
+🎯 2. setAttribute(attrName, value)
+- Adds a new attribute or updates the value of an existing attribute.
+
+Example:
+const el = document.getElementById("myDiv");
+
+el.setAttribute("class", "highlight");     // Sets or overwrites the class
+el.setAttribute("data-user", "rahul123");  // Adds custom data attribute
+el.setAttribute("title", "Tooltip text");  // Adds a title (hover tooltip)
+-->
+
+<!--
+🎯 3. removeAttribute(attrName)
+- Removes the specified attribute from the element (if it exists).
+
+Example:
+const el = document.getElementById("myDiv");
+
+el.removeAttribute("class");      // Removes the class attribute
+el.removeAttribute("title");      // Removes the tooltip/title
+-->
+
+<!--
+✅ Example HTML:
+<div id="myDiv" class="box" title="original title"></div>
+
+✅ Example JavaScript:
+const el = document.getElementById("myDiv");
+
+console.log(el.getAttribute("class"));        // Output: "box"
+
+el.setAttribute("class", "box highlighted");  // Updates class
+el.setAttribute("data-status", "active");     // Adds new custom attribute
+
+el.removeAttribute("title");                  // Removes title from element
+-->
+
+<!--
+📌 Additional Notes:
+- Use setAttribute to work with custom attributes like `data-*`, `role`, etc.
+- `el.className` and `el.id` can also be used for common attributes, but setAttribute is more flexible.
+- Attribute names are case-insensitive, but HTML convention prefers lowercase.
+
+✅ Use getAttribute/setAttribute/removeAttribute when:
+- You need fine control over dynamic attributes in JavaScript
+- Working with custom attributes or SVG elements
+-->
+
+
+
+
+
 // Get/set inner HTML content
 console.log(element.innerHTML);                   // Gets inner HTML including tags
 element.innerHTML = 'Updated content!';           // Sets HTML with tags
@@ -163,3 +233,84 @@ document.write("Hello")             // Avoid using in real apps (overwrites)
 - Elements can be added, removed, or modified using DOM methods
 - Events can be handled via addEventListener (explored next)
 -->
+
+
+<!-- ✅ DOM Text Content Properties: innerHTML vs innerText vs textContent -->
+
+<!--
+1️⃣ innerHTML:
+- Returns or sets the HTML content of an element, including tags.
+- Parses and renders any HTML you assign.
+- Allows you to inject elements like <b>, <span>, etc.
+
+Example:
+element.innerHTML = "<b>Hello</b>"; 
+// Displays "Hello" in bold
+
+✅ Use When:
+- You need to insert or read structured HTML inside an element.
+
+❌ Avoid When:
+- Dealing with user-generated input → high risk of XSS attacks.
+-->
+
+<!--
+2️⃣ innerText:
+- Returns or sets the visible text content only.
+- Ignores hidden text (like display: none or visibility: hidden).
+- Triggers layout reflow/rendering when accessed (⚠️ slightly slower).
+
+Example:
+element.innerText = "Visible Text Only";
+// Only visible content is affected and rendered
+
+✅ Use When:
+- You need exactly what the user can visually see on the page.
+-->
+
+<!--
+3️⃣ textContent:
+- Returns or sets the entire text content of an element.
+- Includes hidden text and ignores formatting/HTML tags.
+- Does not trigger reflow, making it the fastest option.
+
+Example:
+element.textContent = "Raw text content";
+// Adds plain text including hidden parts
+
+✅ Use When:
+- You want all text without worrying about HTML structure or visibility.
+-->
+
+<!--
+📊 Comparison Table:
+
+| Feature         | innerHTML         | innerText           | textContent        |
+|----------------|-------------------|----------------------|--------------------|
+| Includes HTML? | ✅ Yes            | ❌ No                | ❌ No              |
+| Hidden Text?   | ✅ Yes            | ❌ No                | ✅ Yes             |
+| Performance    | ⚠️ Slower        | ⚠️ Slower           | ✅ Fast            |
+| Safe for Input | ❌ No (XSS risk)  | ✅ Yes               | ✅ Yes             |
+| Triggers Reflow| ❌ No             | ✅ Yes               | ❌ No              |
+-->
+
+<!--
+🧪 Practical Example:
+<div id="demo" style="display: none;"><b>Hidden</b> Content</div>
+
+<script>
+  const element = document.getElementById("demo");
+
+  console.log(element.innerHTML);    // "<b>Hidden</b> Content"
+  console.log(element.innerText);    // "" (hidden, so nothing appears)
+  console.log(element.textContent);  // "Hidden Content"
+</script>
+-->
+
+<!--
+✅ Best Practices Summary:
+- Use .innerHTML → when you want to manipulate or inject raw HTML (sanitize it!)
+- Use .innerText → when only visible rendered content matters
+- Use .textContent → for plain, complete text (even hidden), and better performance
+-->
+
