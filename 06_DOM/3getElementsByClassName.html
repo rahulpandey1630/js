@@ -10,7 +10,7 @@
   <div class="example">Div 1</div>
   <div class="example">Div 2</div>
   <div class="example">Div 3</div>
-
+ 
   <script>
     // ✅ Example 1: Get all elements with class "example"
     const elements = document.getElementsByClassName("example");
@@ -93,3 +93,39 @@
 -->
 
 </html>
+
+
+
+
+
+//how to attach a class to an HTML element using JavaScript
+
+
+<!-- ✅ HTML Element -->
+<div id="myDiv">Hello!</div>
+
+<script>
+// ✅ Select the element
+const el = document.getElementById("myDiv");
+
+/* ✅ Method 1: Using setAttribute()
+   - This replaces the entire class list with the new value
+*/
+el.setAttribute("class", "highlight");  // Adds class="highlight" to the div
+
+/* ✅ Method 2: Using classList API
+   - Safer and more flexible (doesn’t overwrite existing classes)
+*/
+
+// 🎯 Add a class
+el.classList.add("newClass");           // Adds 'newClass' to the element
+
+// 🎯 Remove a class
+el.classList.remove("highlight");       // Removes 'highlight' if it exists
+
+// 🎯 Toggle a class (adds it if not present, removes if present)
+el.classList.toggle("active");          // Toggles 'active' on/off
+
+// 🎯 Check if a class exists
+console.log(el.classList.contains("newClass"));  // true or false
+</script>

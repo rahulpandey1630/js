@@ -25,9 +25,11 @@ JavaScript uses the DOM to dynamically access and manipulate content, structure,
 - Creating, removing, or updating DOM elements
 - Handling events (e.g., click, input, submit)
 
-🎯 Node Types:
-- Element Node       → Represents HTML tags (e.g., <div>, <h1>, <ul>)
-- Text Node          → Text inside elements (e.g., "Hello world")
+
+
+🎯 Node Types: types of nodes
+- Element Node       → Represents HTML tags (e.g., <div>, <h1>, <ul>) element no de can have children in between
+- Text Node          → Text inside elements (e.g., "Hello world") it cant have any childrens
 - Attribute Node     → Attributes like class="title", id="main"
 - Comment Node       → <!-- This is a comment -->
 
@@ -37,6 +39,45 @@ JavaScript uses the DOM to dynamically access and manipulate content, structure,
 - getElementsByTagName()     → Selects elements with a specific tag name
 - querySelector()            → Returns the first match (uses CSS selectors)
 - querySelectorAll()         → Returns all matches (NodeList)
+
+
+
+// ✅ getElementById vs querySelector
+
+// 🔹 getElementById()
+// - Selects by unique ID only
+// - Syntax: document.getElementById("id")
+// - No class/tag support
+// - Returns element or null
+// - Fast & efficient for IDs
+
+// 🔹 querySelector()
+// - Selects first match using CSS selector
+// - Syntax: document.querySelector("selector")
+// - Supports ID (#), class (.), tag, etc.
+// - More flexible, slightly slower
+// - Returns first match or null
+
+
+
+
+
+what does getElementsByClassName() return
+
+// 🔹 getElementsByClassName()
+// - Selects all elements with the given class name
+// - Syntax: document.getElementsByClassName("className")
+// - Returns an HTMLCollection (live list, not array)
+// - Can access items using index: [0], [1], etc.
+// - If no match, returns empty collection (not null)
+
+// 🔸 Example:
+const items = document.getElementsByClassName("box");
+console.log(items[0]); // First element with class "box"
+
+
+
+
 
 🔍 DOM Inspection via Console (in browser):
 console.log(document.URL);           // Full URL of current page
@@ -72,6 +113,9 @@ element.setAttribute('class', 'new-class');       // Replaces or adds class
 🎯 1. getAttribute(attrName)
 - Retrieves the value of the specified attribute from an element.
 - Returns `null` if the attribute does not exist.
+
+
+<div id="myDiv" class="box" title="original title">Hello!</div>
 
 Example:
 const el = document.getElementById("myDiv");
@@ -274,6 +318,10 @@ element.innerText = "Visible Text Only";
 - Includes hidden text and ignores formatting/HTML tags.
 - Does not trigger reflow, making it the fastest option.
 
+
+ so textcontent is new faster and also changes hidden text
+
+ 
 Example:
 element.textContent = "Raw text content";
 // Adds plain text including hidden parts
@@ -314,3 +362,4 @@ element.textContent = "Raw text content";
 - Use .textContent → for plain, complete text (even hidden), and better performance
 -->
 
+ 
