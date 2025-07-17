@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Specifies character encoding for the webpage -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ensures responsive design for mobile and desktop views -->
+    <title>HTML Events</title> <!-- The title of the webpage -->
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <!-- Background color set to dark, with white text for contrast -->
+    <h2>Amazing Image</h2> <!-- Page heading -->
+    <div>
+        <ul id="images">
+            <!-- An unordered list that serves as a container for images and links -->
+            <li>
+                <img width="200px" id="photoshop" 
+                src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="photoshop">
+            </li>
+            <li>
+                <img width="200px" id="japan" 
+                src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="">
+            </li>
+            <li>
+                <img width="200px" id="river" 
+                src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="">
+            </li>
+            <li>
+                <img width="200px" id="owl" 
+                src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="">
+            </li>
+            <li>
+                <img width="200px" id="prayer" 
+                src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" 
+                alt="">
+            </li>
+            <li>
+                <a style="color: aliceblue;" href="https://google.com" id="google">Google</a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    /***********************
+     * 🌟 WHAT IS AN EVENT?
+     ***********************
+     - An **event** is any interaction that occurs on a webpage. This could be a mouse click, a keyboard press, page load, resizing the browser, or even a scroll.
+     - Events allow JavaScript to "respond" to user interactions and make the page dynamic.
+
+     🧠 Think of an event as a **signal** that something happened on the page.
+    */
+
+    /*****************************************
+     * ✅ EVENT HANDLING IN JAVASCRIPT
+     *****************************************
+     - We can handle events in three ways:
+       1. Inline HTML (not recommended)
+       2. DOM property (e.g., `element.onclick`)
+       3. ✅ Best practice: `addEventListener()`
+    */
+
+    // ✅ Modern way: element.addEventListener(eventType, callback, useCapture);
+
+    /**********************************************
+     * 📌 COMMON EVENTS:
+     **********************************************
+     - Mouse: click, dblclick, mouseover, mouseout
+     - Keyboard: keydown, keyup, keypress
+     - Form: submit, change, input, focus, blur
+     - Document: load, DOMContentLoaded
+    */
+
+    /**************************************
+     * 📌 EVENT OBJECT PROPERTIES
+     **************************************
+     - `e.target`: Actual element clicked (source)
+     - `e.currentTarget`: The element the listener is attached to
+     - `e.type`: The event type (e.g., 'click')
+     - `e.timeStamp`: Time when the event was triggered
+     - `e.preventDefault()`: Prevents default action (like a link navigation)
+     - `e.stopPropagation()`: Stops event bubbling
+     - `e.stopImmediatePropagation()`: Stops all other handlers
+    */
+
+    /**************************************
+     * 🔄 BUBBLING vs CAPTURING
+     **************************************
+     - Bubbling: Event flows **bottom to top** (default behavior)
+     - Capturing: Event flows **top to bottom**
+     - Use the third parameter in addEventListener:
+         false → bubbling (default)
+         true  → capturing
+    */
+
+    /**************************************
+     * 🔀 EVENT DELEGATION
+     **************************************
+     - Attach a single event listener to a parent element
+     - It listens to events from its children using `e.target`
+     - Helps improve performance and manage dynamically added elements
+    */
+
+    /**************************************
+     * ⚠️ CONFUSION POINTS:
+     **************************************
+     - `e.target` vs `e.currentTarget`
+       → `target` = element clicked
+       → `currentTarget` = element listener attached to
+
+     - Bubbling vs Capturing
+       → Capturing listens from root down
+       → Bubbling listens from target up
+    */
+
+    // Example: Removing clicked image using delegation
+    document.querySelector('#images').addEventListener('click', function(e) {
+        console.log("Clicked tag:", e.target.tagName); // Logs what was clicked
+
+        if (e.target.tagName === 'IMG') {
+            console.log("Clicked image ID:", e.target.id); // Logs clicked image ID
+
+            let removeIt = e.target.parentNode; // <li> container of the image
+            removeIt.remove(); // Removes that <li> from the DOM
+        }
+    });
+
+    /**************************************
+     * 🧪 STOP PROPAGATION DEMO
+     **************************************/
+    // document.getElementById('owl').addEventListener('click', function(e) {
+    //     console.log("Owl clicked!");
+    //     e.stopPropagation(); // Stops bubbling to <ul>
+    // }, false);
+
+    /**************************************
+     * 🛑 PREVENT DEFAULT DEMO
+     **************************************/
+    // document.getElementById('google').addEventListener('click', function(e) {
+    //     e.preventDefault(); // Prevents redirection to Google
+    //     e.stopPropagation(); // Prevents bubbling
+    //     console.log("Google link clicked!");
+    // }, false);
+
+    /**************************************
+     * 🧠 MINDSET FOR EVENTS
+     **************************************
+     - Don't bind events to every element
+     - Delegate where possible for performance
+     - Use `addEventListener` not inline `onclick`
+    */
+
+    /**************************************
+     * 🧵 MOUSE EVENT PROPERTIES:
+     **************************************
+     - e.clientX / e.clientY → mouse position (viewport)
+     - e.screenX / e.screenY → position on screen
+     - e.altKey, e.ctrlKey, e.shiftKey → modifier keys
+    */
+
+    /**************************************
+     * ⌨️ KEYBOARD EVENT PROPERTIES:
+     **************************************
+     - e.key → value of the pressed key
+     - e.code → physical location of the key
+     - e.keyCode → (deprecated) numeric code
+    */
+
+    /**************************************
+     * 🧪 ADVANCED CONTROL:
+     **************************************
+     - `e.isTrusted`: true if event triggered by browser
+     - `e.timeStamp`: timestamp when event was triggered
+     - `e.eventPhase`: 1 = capturing, 2 = target, 3 = bubbling
+    */
+
+</script>
+</html>

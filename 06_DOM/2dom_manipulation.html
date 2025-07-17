@@ -126,3 +126,55 @@ for (let i = 0; i < items.length; i++) {
 const src = img.src;                           // Get the value of its src attribute
 console.log(src);                              // Print the src
 const src = img.getAttribute("src"); -->
+
+
+
+
+
+
+// Add a highlight class to every even item in a list.
+const listItems = document.querySelectorAll("li"); // Select all <li> elements
+
+for (let i = 0; i < listItems.length; i++) {
+  if (i % 2 === 1) { // Even items in human terms (2nd, 4th, ...)
+    listItems[i].classList.add("highlight"); // Add class
+  }
+}
+
+
+// Select all even <li> items and add "highlight" class
+// Add a highlight class to every even item in a list
+
+
+document.querySelectorAll("ul li:nth-child(2n)").forEach(item => {
+  item.classList.add("highlight");
+});
+
+
+
+
+
+
+
+
+// ✅ classList vs style property
+
+// 🔹 classList
+// - Used to add/remove/toggle CSS classes
+// - Does NOT directly set inline styles
+// - Affects styling via external or internal CSS
+
+element.classList.add("highlight");
+element.classList.remove("hidden");
+element.classList.toggle("active");
+
+// 🔹 style
+// - Directly sets inline CSS styles
+// - Overrides class-based styles unless overridden by !important
+
+element.style.color = "red";
+element.style.backgroundColor = "yellow";
+element.style.display = "none";
+
+
+//prefer class way

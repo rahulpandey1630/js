@@ -1,46 +1,48 @@
-// Get the element with the id 'clock' from the HTML document
+// ✅ Get the element with the id 'clock' from the HTML document
 const clock = document.getElementById('clock');
-// Alternatively, you can use querySelector to select the clock element
-// const clock = document.querySelector('#clock')
 
-// Set an interval that runs every 1000 milliseconds (1 second)
+// ⏲️ Update the clock every second using setInterval
 setInterval(function () {
-  // Create a new Date object to get the current date and time
+  // 📅 Create a new Date object to get the current time
   let date = new Date();
-  
-  // Update the content of the clock element with the current time in the locale format (HH:MM:SS)
+
+  // 🕒 Update the content of the clock element with the current time
+  // toLocaleTimeString() formats time based on user's locale (e.g., "10:45:23 AM")
   clock.innerHTML = date.toLocaleTimeString();
-}, 1000); // The callback function is executed every second
+}, 1000);  // 1000ms = 1 second → refreshes clock every second
 
-/*setInterval: This function is used to execute a callback function at regular intervals. In this case, every second (1000 milliseconds).
-Date(): The Date object is used to get the current date and time.
-toLocaleTimeString(): This method converts the date to a string based on the local time format, showing hours, minutes, and seconds.
-Updating innerHTML: The content of the clock element is updated every second to display the current time
-// setInterval Overview: 
-// setInterval is a built-in JavaScript function that repeatedly executes a block of code at specified intervals (in milliseconds).
+/* ------------------------------------------------------------------- */
 
-// Syntax:
-// setInterval(function(){}, delay);
+// 🔁 setInterval Overview:
+// setInterval repeatedly calls a function at specified intervals (in ms)
 
-// Parameters:
-// function: The function or code block you want to execute repeatedly.
-// delay: The time in milliseconds between each execution of the function. 
-//        For example, 1000 milliseconds equals 1 second.
+// 🧠 Syntax:
+// setInterval(function, delayInMilliseconds);
 
-// Example usage:
+// 📌 Example 1: Logging every 2 seconds
 setInterval(function() {
   console.log("This message will be logged every 2 seconds.");
-}, 2000);  // Logs the message every 2 seconds (2000 milliseconds).
+}, 2000); // ⏱️ Executes every 2000ms (2s)
 
-// setInterval returns an interval ID, which you can use to stop the interval using clearInterval()
+/* ------------------------------------------------------------------- */
 
+// 🔁 Example 2: Stopping a repeating interval
+
+// 🪝 Save the interval ID returned by setInterval
 let intervalId = setInterval(function() {
   console.log("This will run every 3 seconds.");
-}, 3000);
+}, 3000); // ⏱️ Repeats every 3 seconds
 
-// To stop the interval after 10 seconds
+// 🛑 Stop the interval after 10 seconds using clearInterval
 setTimeout(function() {
-  clearInterval(intervalId);  // Stops the interval by passing the interval ID.
+  clearInterval(intervalId); // 🔚 Stops the interval
   console.log("Interval stopped.");
-}, 10000);  // Clears the interval after 10 seconds.
-*/
+}, 10000); // ⏰ Stop after 10 seconds
+
+/* ------------------------------------------------------------------- */
+
+// 📘 Summary:
+// - `setInterval` is useful for repeated tasks (like a clock).
+// - `clearInterval` can stop it using the ID.
+// - `Date()` + `toLocaleTimeString()` gives formatted current time.
+// - `setTimeout` is a one-time delay function — perfect to stop intervals.
