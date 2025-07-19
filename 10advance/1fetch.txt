@@ -1,60 +1,159 @@
-Introduction
-The Fetch API is now available in Node.js, making network requests easier without external libraries. It was added to Node.js core on February 1, 2022.
+/**********************************************
+ * 📌 Fetch API in Node.js (Detailed Notes)
+ **********************************************/
 
-Why Is This Important?
+/*
+🔹 Introduction:
+- Fetch API is now natively available in Node.js (since Feb 1, 2022).
+- Makes network requests without needing external libraries (like `axios` or `node-fetch`).
+- Provides **one consistent API** for both browsers and Node.js.
 
-Previously, Node.js required third-party packages like node-fetch or axios for HTTP requests.
-Now, Fetch is built into Node.js, providing a consistent API across frontend and backend.
+---------------------------------------------------
 
-Evolution of Asynchronous Requests
-1998: Internet Explorer introduced XMLHttpRequest to enable web requests.
-jQuery Era: Simplified AJAX calls but relied on callbacks.
-2015: Fetch API introduced, using Promises to handle requests more cleanly.
-Before Fetch in Node.js: Developers relied on request, node-fetch, and axios.
-Undici (2018): A fast HTTP client that made Fetch possible in Node.js.
-How to Use Fetch in Node.js
+🔹 Why Is This Important?
+1. Before, Node.js relied on:
+   - `request` (deprecated)
+   - `node-fetch`
+   - `axios`
+2. Now, Fetch is built-in → no external dependencies.
+3. Developers can use **the same Fetch syntax in frontend and backend**, improving consistency.
 
-Basic Fetch request in Node.js:
+---------------------------------------------------
+
+🔹 Evolution of Asynchronous Requests:
+- 1998: Internet Explorer introduced `XMLHttpRequest` (XHR) for web requests.
+- 2006: jQuery made AJAX simpler (but callback-heavy).
+- 2015: **Fetch API introduced** → Promise-based, cleaner syntax.
+- Before Node.js Fetch: Used `axios`, `request`, `node-fetch`.
+- 2018: **Undici** (fast HTTP client) paved the way for Fetch in Node.js.
+
+---------------------------------------------------
+
+🔹 How to Use Fetch in Node.js (Basic Example):
+*/
 
 fetch("http://example.com/api/endpoint")
   .then(response => response.json())  // Convert response to JSON
-  .then(data => console.log(data))    // Log the data
-  .catch(error => console.log("Error:", error));  // Handle errors
+  .then(data => console.log(data))    // Use the data
+  .catch(error => console.log("Error:", error));  // Catch network errors
 
-Benefits of Fetch in Node.js
-🚀 No extra packages – No need for node-fetch or axios.
-🔄 Cross-platform familiarity – Works the same in browsers and Node.js.
-⚡ Faster & more efficient – Uses Undici for improved performance.
+/*
+---------------------------------------------------
 
-Limitations of Fetch
-❌ Error handling: Fetch doesn't reject HTTP errors (e.g., 404, 500).
-⏳ No built-in timeout: Requires additional logic to handle request timeouts.
-📶 No request progress tracking: Unlike Axios, Fetch doesn’t support monitoring upload/download progress.
+🔹 Benefits of Native Fetch:
+1. 🚀 **No extra packages** → Lightweight (no axios/node-fetch).
+2. 🔄 **Cross-platform** → Works the same in browsers and Node.js.
+3. ⚡ **Performance** → Uses Undici under the hood (optimized HTTP client).
 
+---------------------------------------------------
 
-The Fetch API provides a JavaScript interface for making HTTP requests and processing the responses.
+🔹 Limitations of Fetch:
+1. ❌ **Does not reject on HTTP error codes** (404, 500). Must check `response.ok` manually.
+2. ⏳ **No built-in timeout support** → Need custom logic with `AbortController`.
+3. 📶 **No upload/download progress tracking** (unlike Axios).
 
-Fetch is the modern replacement for XMLHttpRequest: unlike XMLHttpRequest, which uses callbacks, Fetch is promise-based
-and is integrated with features of the modern web such as service workers and Cross-Origin Resource Sharing (CORS).
+---------------------------------------------------
 
-With the Fetch API, you make a request by calling fetch(), which is available as a global function in both window and 
-worker contexts. You pass it a Request object or a string containing the URL to fetch, along with an optional argument to configure the request.
+🔹 Fetch API Core Behavior:
+- `fetch(url, options)` returns a `Promise`.
+- Resolves to a `Response` object (even for 404/500).
+- Rejected **only** on:
+  - Bad URL (syntax error)
+  - Network failure
+- Must use:
+  - `response.ok` (true if status 200–299)
+  - `response.status` for detailed codes.
 
-The fetch() function returns a Promise which is fulfilled with a Response object representing the server's response. You can then check the request 
-status and extract the body of the response in various formats, including text and JSON, by calling the appropriate method on the response.
+---------------------------------------------------
 
-2)
+🔹 Response Handling:
+The `Response` object has methods:
+- `.json()` – Parse JSON body
+- `.text()` – Get plain text
+- `.blob()`, `.arrayBuffer()` – For binary data
+- `.status` & `.ok` – Check for success
 
-The fetch() method of the Window interface starts the process of fetching a resource from the network, returning a promise that is fulfilled once the response is available.
+Example:
+*/
 
-The promise resolves to the Response object representing the response to your request.
+fetch("https://api.example.com/data")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => console.log("Data:", data))
+  .catch(err => console.error("Error:", err));
 
-A fetch() promise only rejects when the request fails, for example, because of a badly-formed request URL or a network error. A fetch() promise 
-does not reject if the server responds with HTTP status codes that indicate errors (404, 504, etc.). Instead, a then() handler must check the Response.ok and/or Response.status properties.
+/*
+---------------------------------------------------
 
-sending more data with fetch 
+🔹 Sending Data with Fetch (POST example):
+*/
+
 const headers = {
-  'C ontent-Type': 'text/xml',
-  'Breaking-Bad': '<3',
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer token123'
 };
-fetch('https://example.com/', { headers });
+
+fetch("https://example.com/api", {
+  method: "POST",
+  headers,
+  body: JSON.stringify({ name: "Rahul", age: 23 })
+})
+.then(res => res.json())
+.then(data => console.log("POST Response:", data))
+.catch(err => console.error("Error:", err));
+
+/*
+---------------------------------------------------
+
+🔹 Using Fetch with Timeout (AbortController):
+*/
+
+const controller = new AbortController();
+const timeout = setTimeout(() => controller.abort(), 5000);  // 5s timeout
+
+fetch("https://slowapi.com/data", { signal: controller.signal })
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => {
+    if (err.name === "AbortError") console.error("Request timed out");
+    else console.error(err);
+  })
+  .finally(() => clearTimeout(timeout));
+
+/*
+---------------------------------------------------
+
+🔹 Fetch vs XMLHttpRequest (Why Fetch is Better):
+1. Promise-based → cleaner, avoids callback hell.
+2. Stream support for large data.
+3. Integrated with:
+   - CORS (Cross-Origin Resource Sharing)
+   - Service Workers
+4. Easier JSON handling.
+
+---------------------------------------------------
+
+🔹 Interview Prep Questions:
+
+Q1: How is Fetch different from XMLHttpRequest (XHR)?
+A1: Fetch is Promise-based, supports streams, integrates with CORS and Service Workers, cleaner syntax (no callbacks).
+
+Q2: Does Fetch reject on HTTP 404/500 errors?
+A2: No. The Promise resolves. You must check `response.ok` or `response.status`.
+
+Q3: How do you implement a request timeout with Fetch?
+A3: Use `AbortController` with `setTimeout()` to abort the request.
+
+Q4: Why was Undici important for Fetch in Node.js?
+A4: Undici is a performant HTTP client that made native Fetch support feasible by handling low-level networking.
+
+Q5: Compare Axios vs Fetch in Node.js.
+A5:
+- Axios: Built-in timeout, progress tracking, auto JSON transform.
+- Fetch: Native, lightweight, Promise-based but lacks progress & built-in timeout.
+
+*/

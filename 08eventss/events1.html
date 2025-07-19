@@ -70,9 +70,31 @@ box.addEventListener("click", function() {
 3️⃣ keypress — When a key is pressed (deprecated)
 */
 
-document.addEventListener("keydown", function(e) {
-  console.log("Key pressed: ", e.key);
+
+
+//code  for detecting which key the user presses on the keyboard
+
+
+// Select the first <h1> element on the page
+let h1 = document.querySelector("h1");
+
+// Add an event listener for "keydown" events (fires whenever a key is pressed)
+window.addEventListener("keydown", function (dets) {
+    
+    // `dets.key` gives the key pressed by the user (like 'a', 'Enter', ' ' for space, etc.)
+    
+    // Check if the pressed key is the Spacebar (" ")
+    if (dets.key === " ") {
+        // If spacebar is pressed, set the <h1> text to "SPC"
+        h1.textContent = "SPC";
+    } else {
+        // Otherwise, display the actual key pressed
+        h1.textContent = dets.key;
+    }
 });
+
+
+
 
 // ✅ 4. FORM EVENTS
 
