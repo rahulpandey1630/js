@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Specifies the character encoding for the HTML document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the page is responsive on different screen sizes -->
+    <title>Document</title> <!-- Title of the webpage, displayed in the browser's title bar -->
+</head>
+<body>
+    <h1>Chai aur code</h1> <!-- Default heading text that can be dynamically changed -->
+    <button id="stop">Stop</button> <!-- A button to stop the scheduled timeout -->
+</body>
+<script>
+/**********************************************
+ * 📌 JavaScript Timers: setTimeout & clearTimeout (Detailed Notes)
+ **********************************************/
+
+/*
+🔹 setTimeout():
+- A built-in JavaScript function that schedules another function to execute **once** after a specified delay.
+- Syntax: 
+    const timerId = setTimeout(callback, delayInMs, param1, param2, ...);
+    - callback: The function to execute.
+    - delayInMs: Delay in milliseconds (1000 ms = 1 sec).
+    - param1, param2 (optional): Parameters passed to the callback.
+- Returns: A `timerId` (number) which can be used to cancel the timeout using `clearTimeout`.
+
+🔹 clearTimeout():
+- Cancels a timeout set by `setTimeout`.
+- Syntax: 
+    clearTimeout(timerId);
+- Useful for stopping an action that was scheduled but hasn’t run yet (e.g., cancel animations or alerts if a user acts).
+
+💡 Common Use Cases:
+1. Delaying content updates (e.g., show a message after 5 seconds).
+2. Cancelling popups or alerts if user interacts before the delay.
+3. Triggering animations or effects after a specific time.
+
+*/
+
+// Function to log "Hitesh" (Example of a callback function)
+const sayHitesh = function() {
+    console.log("Hitesh");
+};
+
+// Function to change <h1> text dynamically
+// After execution, it changes the heading to "best JS series"
+const changeText = function() {
+    document.querySelector('h1').innerHTML = "best JS series";
+};
+
+// Schedule `changeText` to run after 2000ms (2 seconds)
+// Returns a timer ID (used for cancellation)
+const changeMe = setTimeout(changeText, 2000);
+
+// Event listener on "Stop" button
+// If clicked before the timeout finishes, it cancels the scheduled changeText execution
+document.querySelector('#stop').addEventListener('click', function() {
+    clearTimeout(changeMe);  // Cancels the scheduled timeout
+    console.log("STOPPED");  // Confirms cancellation in the console
+});
+
+
+/***************************************************
+ * 📝 Interview-Focused Questions & Answers
+ ***************************************************/
+
+/*
+Q1: What is the difference between `setTimeout()` and `setInterval()`?
+A1:
+- `setTimeout()`: Executes a function **once** after a delay.
+- `setInterval()`: Executes a function **repeatedly** at specified intervals.
+- Both return an ID to cancel using `clearTimeout()` or `clearInterval()`.
+
+---------------------------------------------------
+
+Q2: How can you stop a scheduled timeout before it executes?
+A2:
+- Use `clearTimeout(timerId)`, where `timerId` is the value returned by `setTimeout`.
+Example:
+    const id = setTimeout(() => console.log("Hello"), 3000);
+    clearTimeout(id); // prevents "Hello" from logging.
+
+---------------------------------------------------
+
+Q3: Can `setTimeout()` delay be 0? What happens?
+A3:
+- Yes, `setTimeout(callback, 0)` doesn't run instantly but adds the callback to the **task queue**.
+- It executes after the current call stack is clear (event loop behavior).
+
+---------------------------------------------------
+
+Q4: Is JavaScript’s `setTimeout()` precise?
+A4:
+- No. It’s not exact due to:
+  1. Event loop delays
+  2. Minimum clamping (HTML spec ensures at least ~4ms delay after multiple nested timeouts)
+- Useful for scheduling but not for precise timing (like animations).
+
+---------------------------------------------------
+
+Q5: How is `setTimeout` handled in the Event Loop?
+A5:
+- The callback is placed in the **Task Queue** after the delay.
+- The event loop only executes it when the call stack is empty, ensuring non-blocking behavior.
+
+---------------------------------------------------
+
+Q6: What happens if the callback function in `setTimeout()` throws an error?
+A6:
+- The error will not prevent the rest of your script from executing.
+- It behaves like a standalone asynchronous task; you need a `try...catch` for error handling inside the callback.
+
+---------------------------------------------------
+
+Q7: Can we pass arguments to the function in `setTimeout()`?
+A7:
+- Yes. Example:
+    function greet(name) { console.log(`Hello, ${name}`); }
+    setTimeout(greet, 2000, "Rahul");  // "Hello, Rahul" after 2s
+*/
+
+</script>
+</html>

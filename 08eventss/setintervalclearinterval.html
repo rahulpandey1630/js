@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <!-- UTF-8 character encoding supports all major characters and symbols -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Ensures the layout scales correctly on mobile, tablet, and desktop -->
+
+    <title>setInterval and clearInterval Explained</title> 
+    <!-- Browser tab title -->
+</head>
+<body>
+
+    <h1>Chai aur Javascript</h1> 
+    <!-- Page title -->
+
+    <button id="start">Start</button> 
+    <!-- Starts the timer logging -->
+
+    <button id="stop">Stop</button> 
+    <!-- Stops the timer logging -->
+
+</body>
+<script>
+    /***********************************
+     * JavaScript Timing Functions
+     ***********************************
+     * 1. setInterval():
+     * ------------------
+     * - Repeatedly executes a function after a given time interval.
+     * - Syntax: 
+     *     let intervalId = setInterval(callback, delay, param1, param2, ...);
+     * - Parameters:
+     *     - callback: The function to run.
+     *     - delay: Interval in milliseconds between each call.
+     *     - Optional params passed to callback.
+     * - Returns an ID (intervalId) used to stop it using clearInterval.
+     *
+     * 2. clearInterval():
+     * ---------------------
+     * - Stops the repeated execution set by setInterval().
+     * - Syntax: clearInterval(intervalId);
+     * - intervalId is the identifier returned by setInterval().
+     */
+
+    let intervalId = null; // To store the ID for the active interval
+
+    // Function that logs a message and current timestamp
+    const sayDate = function(message) {
+        console.log(message, new Date().toLocaleTimeString()); 
+    }
+
+    // Event listener for the "Start" button
+    document.querySelector('#start').addEventListener('click', function() {
+        // Prevent multiple intervals from starting
+        if (intervalId !== null) {
+            console.log("Interval already running.");
+            return;
+        }
+
+        // Begin calling sayDate every 1 second
+        intervalId = setInterval(sayDate, 1000, "hi");
+        console.log("Interval started.");
+    });
+
+    // Event listener for the "Stop" button
+    document.querySelector('#stop').addEventListener('click', function() {
+        if (intervalId !== null) {
+            clearInterval(intervalId); // Stop the interval
+            intervalId = null; // Reset the ID
+            console.log("Interval stopped.");
+        } else {
+            console.log("No active interval to stop.");
+        }
+    });
+
+    /*******************************************
+     * Event Loop Insight:
+     * --------------------
+     * - JavaScript is single-threaded.
+     * - setInterval uses the Web API and the task queue.
+     * - Execution of each call is queued; if blocked, the interval may drift.
+     * - It is not 100% precise; better timing control requires requestAnimationFrame or other APIs.
+     *******************************************/
+</script>
+
+<!-- INTERVIEW Q&A (Inside HTML for Study Purpose) -->
+<!-- 
+    ===========================
+    Interview Question:
+    ===========================
+
+    Q. What is the difference between setTimeout() and setInterval()? 
+    How would you log the time every second but stop after 5 seconds?
+
+    ✅ Answer:
+    ----------------------------
+    let count = 0;
+    const intervalId = setInterval(() => {
+        console.log(new Date().toLocaleTimeString());
+        count++;
+        if (count === 5) {
+            clearInterval(intervalId);
+            console.log("Stopped after 5 seconds.");
+        }
+    }, 1000);
+
+    ✅ Explanation:
+    - setInterval is used to log the time every second.
+    - We use a counter to keep track of executions.
+    - After 5 executions (5 seconds), clearInterval is called to stop the interval.
+
+    ===========================
+    Common Interview Follow-up:
+    ===========================
+    1. What happens if you click "Start" multiple times?
+       -> Multiple intervals are created → logs overlap every second.
+
+    2. How can we prevent multiple intervals?
+       -> Use a check: only call setInterval if intervalId is null.
+
+    3. How is setInterval affected by long-running code?
+       -> It queues execution. If delay is shorter than function execution time, timing becomes inaccurate.
+
+    4. What alternatives exist for high-precision timing?
+       -> Use requestAnimationFrame() or Web Workers for better timing accuracy in animations or heavy tasks.
+-->
+</html>
