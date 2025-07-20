@@ -1,0 +1,152 @@
+// -------------------------
+// FORMS AND FORM VALIDATION
+// -------------------------
+
+// **1. Reading Values from <input>, <textarea>, <select>:**
+// - Use `element.value` to get the value entered by the user (for inputs, textarea, select).
+// - Example:
+const nameInput = document.querySelector("#name");  // Get <input id="name">
+console.log(nameInput.value);  // Logs the text entered
+
+// - For <select>, `value` gives the selected option’s value.
+const countrySelect = document.querySelector("#country");
+console.log(countrySelect.value);  // Logs the selected country
+
+// - For checkboxes/radios, use `element.checked` to know if selected.
+const agreeCheck = document.querySelector("#agree");
+console.log(agreeCheck.checked);  // true or false
+
+
+// **2. Prevent Default Submission:**
+// - Forms naturally reload/submit the page on submit.
+// - To stop this (for custom validation or AJAX), use:
+document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();  // Stops page refresh
+    console.log("Form submission prevented!");
+});
+
+
+// **3. Inline and JS-Based Validation:**
+// - Inline (HTML5 attributes): Use `required`, `type="email"`, `pattern` attributes.
+//   Example: <input type="email" required>
+// - JS-based: Manually check inputs using JavaScript before allowing submission.
+//   Example:
+document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const email = document.querySelector("#email").value;
+    if (!email.includes("@")) {
+        alert("Invalid email!");
+        return;
+    }
+    console.log("Form is valid!");
+});
+
+
+// **4. Showing Error Messages Conditionally:**
+// - Create a <span> or <p> element for errors and show/hide based on validation.
+const emailField = document.querySelector("#email");
+const errorMsg = document.querySelector("#error");
+
+document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    if (!emailField.value.includes("@")) {
+        errorMsg.textContent = "Please enter a valid email";
+        errorMsg.style.color = "red";
+    } else {
+        errorMsg.textContent = "";
+    }
+});
+
+
+// **5. Pattern Attribute vs Custom Regex:**
+// - Pattern attribute: Add `pattern="[0-9]{10}"` to <input> to enforce format automatically. //can use 0 to 9 and maxcharacter 10
+//   Example: <input type="text" pattern="[0-9]{10}" required>
+
+
+// - Custom Regex (JS): More control.
+const phone = document.querySelector("#phone");
+const phoneRegex = /^[0-9]{10}$/;  //can create any type of regex using gpt
+if (!phoneRegex.test(phone.value)) {
+    console.log("Invalid phone number");
+}
+
+
+// ----------------------
+// CONFUSION POINTS
+// ----------------------
+
+// **6. Difference between `value` and `textContent`:**
+// - `value`: Used for form elements (<input>, <textarea>, <select>) to get entered data.
+// - `textContent`: Used for general elements (like <p>, <div>, <span>) to get inner text.
+
+// **7. Form Submission vs Button Click:**
+// - `submit` event triggers when the form is submitted (via button or Enter key).
+// - `click` event only triggers when the button is specifically clicked.
+// - Always use `submit` for validation so it works for Enter key too.
+
+
+// ----------------------
+// MINDSET
+// ----------------------
+
+// **8. Forms are for Communication – Sanitize and Validate Deeply:**
+// - Always validate on **client-side (JS)** for user experience.
+// - Always validate again on **server-side** for security (users can bypass JS).
+// - Sanitize input (remove harmful scripts) to prevent XSS and SQL injection.
+
+
+// ----------------------
+// PRACTICE EXAMPLES
+// ----------------------
+
+// **9. Email/Password Validator Example:**
+
+// Select the input fields and the form
+let email = document.querySelector("#email");      // Email input field
+let password = document.querySelector("#password"); // Password input field
+let form = document.querySelector("form");          // The form element
+
+// Add an event listener for the form submit event
+form.addEventListener("submit", function (dets) {
+    dets.preventDefault(); // Prevents the default form submission (page reload)
+
+    // Regex for validating email (basic RFC 5322 style)
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    // Regex for validating a strong password:
+    // - Minimum 8 characters
+    // - At least 1 lowercase, 1 uppercase, 1 number, 1 special character
+    const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^])[A-Za-z\d@$!%*?&#^]{8,}$/;
+
+    // Validate email
+    if (!emailRegex.test(email.value)) {
+        alert("Invalid Email Address");
+        return;
+    }
+
+    // Validate password
+    if (!passwordRegex.test(password.value)) {
+        alert(
+            "Password must be at least 8 characters long, with at least 1 uppercase, 1 lowercase, 1 number, and 1 special character."
+        );
+        return;
+    }
+
+    // If all validations pass
+    alert("Form Submitted Successfully!");
+});
+
+
+// **10. Interactive Feedback Form with Error Highlights:**
+// - Highlight invalid fields dynamically:
+const fields = document.querySelectorAll("input[required]");
+fields.forEach(field => {
+    field.addEventListener("input", () => {
+        if (!field.value) {
+            field.style.border = "2px solid red";
+        } else {
+            field.style.border = "2px solid green";
+        }
+    });
+});
