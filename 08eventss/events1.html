@@ -54,6 +54,24 @@ always try to find the thing you want to changes in details
 4️⃣ mouseout — When mouse leaves the element
 5️⃣ mousedown — When mouse button is pressed
 6️⃣ mouseup — When mouse button is released
+The mousemove event triggers whenever the mouse pointer moves over an element (or the whole window).
+
+
+const cursor = document.querySelector(".cursor");
+    const coords = document.getElementById("coords");
+
+    // Track mouse movement
+    window.addEventListener("mousemove", (e) => {
+      // Move the custom cursor
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+
+      // Update coordinates text
+      coords.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
+    });
+
+
+      
 */
 
 // Example:
@@ -109,7 +127,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
   e.preventDefault(); // Prevents actual form submission
   alert("Form submitted!");
 });
-
+ 
 // ✅ 5. WINDOW EVENTS
 
 /*
@@ -151,6 +169,7 @@ Every event listener gets an event object as argument that contains information 
 - e.clientX / e.clientY → mouse coordinates
 */
 
+//this e is the event object
 document.addEventListener("click", function(e) {
   console.log("Clicked on:", e.target.tagName);
 }); 
@@ -172,6 +191,16 @@ para.addEventListener("click", function() {
 
 /*
 📌 Bubbling: Event goes from target up to ancestors.
+"If an event occurs on an element and that element doesn’t have an 
+event listener, the event will look for a listener on its parent, and 
+keep moving upward (towards ancestors) until it finds one."
+
+  <!-- <script>
+    // Event listener only on parent
+    document.getElementById("parent").addEventListener("click", () => {
+      alert("Parent Div Clicked (Bubbling)");
+    }); -->
+
 📌 Capturing: Event goes from top (root) down to the target.
 
 By default, JavaScript uses **bubbling**.
@@ -181,6 +210,58 @@ To use capturing, pass `true` in addEventListener.
 document.body.addEventListener("click", function() {
   console.log("Body clicked");
 }, true); // Capturing
+
+
+
+// Event Bubbling (Default):
+// - If an event (e.g., 'click') occurs on a child element and that element has no event listener,
+//   the event bubbles upward to its parent, then grandparent, and so on, 
+//   until it finds a listener or reaches the `document`/`window`.
+// - Flow: Target → Parent → Ancestors (upward).
+
+
+// Case: Child element has its own event listener
+// - The event triggers the child's listener first (because the event starts at the target).
+// - After executing the child's listener, the event *continues bubbling* up the DOM tree,
+//   triggering any listeners on parent elements (unless you stop it).
+
+// Example behavior:
+// 1. Child's event listener runs.
+// 2. Then, parent's listener runs (if it exists).
+// 3. Continues up to ancestors (grandparent, document, window).
+// 4. You can stop it using event.stopPropagation() to prevent further bubbling.
+
+
+
+
+
+// Event Capturing (Trickle Down):
+// - If you enable capturing (`addEventListener(event, handler, true)`),
+//   the event travels from the top (`window`/`document`) down through ancestors,
+//   checking for listeners before it reaches the target.
+// - Flow: Document/Window → Ancestors → Target (downward)
+
+
+
+//When you pass true as the third argument in:
+
+<!-- element.addEventListener("click", handler, true);
+The event listener is attached in the capturing phase (Phase 1).
+
+So, capturing listeners run first, as the event moves from the top (window/document) down to the target element.
+
+After capturing, the bubbling phase runs (Phase 2), where normal listeners (default false) trigger as the event travels upward. -->
+
+
+<!-- Example:
+
+document.body.addEventListener("click", () => console.log("Body Capturing"), true); // Capturing
+document.body.addEventListener("click", () => console.log("Body Bubbling"));       // Bubbling
+Clicking anywhere inside body will log:
+
+output
+Body Capturing
+Body Bubbling -->
 
 // ✅ 9. STOP PROPAGATION
 

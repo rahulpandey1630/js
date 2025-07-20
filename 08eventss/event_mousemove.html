@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mousemove Demo</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      cursor: none; /* Hide default cursor */
+    }
+
+    /* Circular custom cursor */
+    .cursor {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      border: 2px solid #00ffcc;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s ease-out;
+    }
+
+    /* Coordinates text */
+    #coords {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      font-size: 18px;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <!-- Display coordinates -->
+  <div id="coords">Move your mouse!</div>
+  
+  <!-- Custom cursor -->
+  <div class="cursor"></div>
+
+  <script>
+    const cursor = document.querySelector(".cursor");
+    const coords = document.getElementById("coords");
+
+    // Track mouse movement
+    window.addEventListener("mousemove", (e) => {
+      // Move the custom cursor
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+
+      // Update coordinates text
+      coords.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
+    });
+  </script>
+</body>
+</html>
