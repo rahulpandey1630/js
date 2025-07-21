@@ -1,0 +1,111 @@
+/*
+==========================
+4. TIMERS AND INTERVALS
+==========================
+
+Timers and intervals are used in JavaScript to schedule code execution 
+after a delay or at regular intervals. They make UI more interactive and 
+help create effects like animations, delays, and periodic updates.
+
+--------------------------------
+1. FUNCTIONS TO TEACH:
+--------------------------------
+
+// setTimeout() - Executes a function ONCE after a specified delay (in ms).
+// Syntax:
+setTimeout(() => {
+    console.log("Runs after 2 seconds");
+}, 2000);
+
+// clearTimeout() - Cancels a timeout if it hasn't executed yet.
+let timeoutID = setTimeout(() => console.log("Will not run"), 3000);
+clearTimeout(timeoutID); // Cancels execution
+
+// setInterval() - Executes a function REPEATEDLY at specified intervals.
+let intervalID = setInterval(() => {
+    console.log("Runs every 1 second");
+}, 1000);
+
+// clearInterval() - Stops a running interval.
+clearInterval(intervalID); // Stops the repeated execution
+
+--------------------------------
+2. REAL USE CASES:
+--------------------------------
+// - Delay UI actions (show/hide notifications).
+// - Auto-refresh data (fetch new data every few seconds).
+// - Animate or update a progress bar.
+// - Countdown timers or clocks.
+
+--------------------------------
+3. COMMON CONFUSION:
+--------------------------------
+
+// setInterval() vs setTimeout() recursion:
+
+// setInterval: Repeats a function on a fixed schedule (may cause overlap if the code inside takes long).
+setInterval(() => console.log("Fixed interval"), 1000);
+
+// setTimeout recursion: Safer alternative where each timeout schedules the next one
+// (avoids overlap and gives more precise control).
+function repeatTask() {
+    console.log("Runs every 1 second via recursion");
+    setTimeout(repeatTask, 1000); // Calls itself again after 1 second
+}
+repeatTask();
+
+--------------------------------
+4. MINDSET:
+--------------------------------
+// Time adds rhythm to user experience.
+// Example: Display notifications for 3 seconds, run a loader for 2 seconds, or refresh a dashboard every 5 seconds.
+
+--------------------------------
+5. PRACTICAL USE CASES (EXAMPLES):
+--------------------------------
+
+// (1) COUNTDOWN TIMER (5 seconds)
+let countdown = 5;
+let timer = setInterval(() => {
+    console.log(`Countdown: ${countdown}s`);
+    countdown--;
+
+    if (countdown < 0) {
+        clearInterval(timer);
+        console.log("Time's up!");
+    }
+}, 1000);
+
+// (2) AUTO-HIDE ALERT BANNER
+let banner = document.createElement("div");
+banner.textContent = "This message will disappear in 3 seconds!";
+banner.style.background = "orange";
+banner.style.padding = "10px";
+document.body.appendChild(banner);
+
+// Hide banner after 3 seconds
+setTimeout(() => {
+    banner.remove(); // Removes the banner from DOM
+}, 3000);
+
+--------------------------------
+6. INTERVIEW QUESTIONS:
+--------------------------------
+Q1: Difference between setTimeout() and setInterval()?
+Ans: 
+- setTimeout runs code once after a delay.
+- setInterval repeatedly runs code at fixed intervals.
+
+Q2: Which is better for repeated tasks: setInterval or recursive setTimeout?
+Ans:
+- Recursive setTimeout is better because it avoids overlap if task execution time varies.
+
+Q3: What happens if clearInterval() is not called?
+Ans:
+- The interval continues indefinitely, consuming memory and CPU.
+
+Q4: Can setTimeout() delay accuracy?
+Ans:
+- Yes, it's not exact due to event loop delays, especially if the main thread is busy.
+*/
+

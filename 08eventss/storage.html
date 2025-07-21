@@ -1,0 +1,120 @@
+/*
+=================================================
+5. LOCALSTORAGE, SESSIONSTORAGE, AND COOKIES
+=================================================
+
+These are **web storage mechanisms** used to store data in the browser, 
+so it persists across sessions (or temporarily). They differ by **lifetime, scope, and use cases**.
+
+------------------------------------
+1. TEACH (APIs and Syntax)
+------------------------------------
+ 
+// ===== LOCALSTORAGE ===== ~5mb
+// - Stores data with no expiration (persists even after browser is closed).
+// - Data is stored as STRING key-value pairs (must stringify objects).
+// - Size limit ~5MB (varies by browser).
+
+// Common Methods:
+localStorage.setItem("theme", "dark");          // Save data. // if name already exists then update
+let theme = localStorage.getItem("theme");      // Retrieve data
+localStorage.removeItem("theme");               // Remove a key
+localStorage.clear();                            // Clears all keys
+
+// Storing Objects (convert to JSON string)
+let user = { name: "Rahul", age: 25 };
+localStorage.setItem("user", JSON.stringify(user));
+let parsedUser = JSON.parse(localStorage.getItem("user")); // Retrieve & parse
+
+//------------------------------------------------------------
+
+// ===== SESSIONSTORAGE =====  ~5mb
+// - Works the same as localStorage but persists ONLY for the current tab/session. temporarily
+// - Data is cleared once the tab is closed.
+// - Use for temporary data like form progress.
+
+sessionStorage.setItem("sessionId", "abc123");
+console.log(sessionStorage.getItem("sessionId"));
+sessionStorage.removeItem("sessionId");
+
+//------------------------------------------------------------
+
+// ===== COOKIES =====
+// - Small text files (usually <4KB).
+// - Sent to server with every HTTP request (used for authentication).
+// - Can be set with expiration, domain, and path.
+// - Manual handling of expiry/encoding is needed.
+
+document.cookie = "username=Rahul; path=/; max-age=3600"; 
+// key=value; path specifies scope; max-age=3600 (1 hour)
+
+// Reading all cookies (returns a string)
+console.log(document.cookie); 
+
+// Deleting a cookie (set expiration in the past)
+document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+//------------------------------------------------------------
+
+------------------------------------
+2. CONFUSION POINTS
+------------------------------------
+
+// Q1: Why only strings in localStorage/sessionStorage?
+// - They only store strings internally. To store objects or arrays, we use JSON.stringify() 
+//   before saving and JSON.parse() when retrieving.
+
+// Q2: Why do cookies need manual encoding and expiration handling?
+// - Cookies travel over HTTP, so special characters must be URL-encoded.
+// - Expiration must be explicitly set (max-age or expires), otherwise cookies are session-only.
+
+------------------------------------
+3. MINDSET (When to Use What)
+------------------------------------
+// - Use localStorage for persisting UI preferences (dark mode, language, saved cart).
+// - Use sessionStorage for data specific to a tab (multi-step form progress).
+// - Use cookies for server communication (auth tokens, sessions across tabs).
+
+------------------------------------
+4. PRACTICAL EXAMPLES
+------------------------------------
+
+// (1) Save THEME preference in localStorage
+function toggleTheme() {
+    let currentTheme = localStorage.getItem("theme") || "light";
+    let newTheme = currentTheme === "light" ? "dark" : "light";
+    localStorage.setItem("theme", newTheme);
+    document.body.style.background = newTheme === "dark" ? "#333" : "#fff";
+}
+toggleTheme(); // Call on button click
+
+// (2) Login Form Remember Username
+let usernameInput = document.querySelector("#username");
+usernameInput.value = localStorage.getItem("savedUsername") || "";
+
+usernameInput.addEventListener("blur", () => {
+    localStorage.setItem("savedUsername", usernameInput.value);
+});
+
+------------------------------------
+5. INTERVIEW QUESTIONS
+------------------------------------
+
+// Q1: Difference between localStorage, sessionStorage, and cookies?
+// - localStorage: Persistent, client-only, 5MB, no auto-expiry.
+// - sessionStorage: Tab-specific, cleared on close.
+// - cookies: Small, auto-sent to server, can expire, ~4KB.
+
+// Q2: Why not store tokens in localStorage for authentication?
+// - Vulnerable to XSS attacks (JavaScript can read it).
+// - Safer approach: Use HttpOnly cookies (not accessible by JS).
+
+// Q3: Can localStorage share data across browser tabs?
+// - Yes, if they’re from the same domain (storage event can be used to sync changes).
+
+// Q4: How to detect changes in localStorage across tabs?
+window.addEventListener("storage", function(e) {
+    console.log("Key changed:", e.key, "New value:", e.newValue);
+});
+*/
+
