@@ -36,7 +36,7 @@ while (arr < myArray.length) {
 //     // Code to execute
 // } while (condition);
 
-// ✅ Example 3: Do-While Loop
+// ✅ Example 3: Do-While loop
 let score = 11;
 
 // The condition `score <= 10` is false, but the code inside the `do` block will still execute once.
