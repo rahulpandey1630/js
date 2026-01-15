@@ -165,4 +165,10 @@ No need for manual memory mgmt	Weak typing can lead to bugs
  * - External JS: Best practice
  * - defer: Safest and preferred
  * - async: Special use cases
+
+
+ 👉 There is NO fixed priority like:
+❌ inline > internal > external
+
+👉 Actual order = top to bottom HTML parsing order
  */
