@@ -22,7 +22,7 @@ console.log(firstName[firstName.length-2]);
 
 // last Index : length - 1 
 const gameName = new String('rahul-hc-com');
- 
+
 // Accessing characters and properties of a string object
 // console.log(gameName[0]);          // Outputs: 'r'
 // console.log(gameName.__proto__);   // Outputs: String prototype object

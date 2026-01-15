@@ -69,7 +69,6 @@ console.log([] instanceof Object);     // true → because Array inherits from O
 // console.log(p, q); // Output: 5 5
 // // ✅ Both p and q are 5 because pre-increment increments first, then assigns
 
-
 // let p = 4;
 // let q = p++; // post-increment → q gets old value (4), then p becomes 5
 

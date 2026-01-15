@@ -125,3 +125,13 @@ num = String(num); // other WAY
 // Convert String to number
 let cric = +"34";    
 cric = Number(cric);
+
+
+// V8 is a high-performance JavaScript engine developed by Google that compiles JavaScript into machine code and executes it in Chrome and Node.js.
+
+// Engine  	Browser	  Company
+// V8     	Chrome	  Google
+// SpiderMonkey  	Firefox	 Mozilla
+// JavaScriptCore	 Safari	  Apple
+// Chakra	 IE (old)	   Microsoft
+// V8  brave

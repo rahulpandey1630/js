@@ -102,7 +102,7 @@ console.log(+""); // 0 (empty string to number)
 
 // Chained assignments
 let num1, num2, num3;
-num1 = num2 = num3 = 2 + 2; // All variables get the value 4
+num1 = num2 = num3 = 2 + 2; // All variables get the value 4 
 
 let gameCounter = 100;
 ++gameCounter; // Pre-increment: increments before use
@@ -129,3 +129,5 @@ console.log(NaN === NaN); // false → NaN is the only value not equal to itself
 // 🔁 Summary:
 // - typeof NaN returns 'number' because NaN is a special value of the Number type
 // - But it's used to indicate an invalid number result
+
+

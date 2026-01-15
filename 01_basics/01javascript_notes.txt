@@ -85,7 +85,7 @@ No need to manually allocate/free memory.
 Helps prevent memory leaks in most cases.
 
 🧠 Conclusion: Is JavaScript a Good Language? 
-Pros	Cons
+Pros	Cons                                   
 Beginner friendly	Slower than compiled languages
 Widely used in web development	More runtime errors
 Flexible & dynamic	Difficult to debug large applications

@@ -14,6 +14,28 @@ console.table([3,4])
 // Browsers support older syntax but cannot run future features they don't recognize.
 //BABEL TOOL CAN TRANSPILE ES6 CODE TO ES5 SO THAT THEY CAN WORK ON OLD BROWSERS
 /*
+
+
+ECMAScript is maintained by Ecma International
+The technical committee responsible is TC39
+📌 TC39 decides:
+
+Syntax rules
+Data types
+Features (like promises, classes, async/await)
+
+Why ECMAScript Exists?   European Computer Manufacturers Association
+Before ECMAScript:
+Different browsers had different JavaScript behavior
+Code worked in one browser but failed in another
+👉 ECMAScript was created to:
+✔ Standardize JavaScript
+✔ Ensure cross-browser compatibility
+✔ Prevent vendor lock-in
+
+
+
+
  Web Development – Key Concepts
 🔹 What Do Browsers Understand?
 A web browser can only understand the following core technologies:
@@ -76,3 +98,8 @@ You write C++ → compile it to .wasm → browser runs that wasm.
 
 🔧 This is how you can technically run C++/Rust code in a browser — but only after converting it to WebAssembly.
 */
+
+
+// Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.(// Chrome V8 is Google's open-source JavaScript and WebAssembly engine.
+// It is written in C++ and powers Google Chrome and Node.js.
+// Role: Executes JavaScript code by converting it into machine code for fast execution.)
