@@ -92,3 +92,77 @@ Flexible & dynamic	Difficult to debug large applications
 No need for manual memory mgmt	Weak typing can lead to bugs
 
 🔧 Newer runtimes like Bun are working to optimize JS performance, but C++ or Rust still outperform JS for system-level or compute-heavy tasks.
+
+
+/**
+ * Ways to Add JavaScript in HTML – Notes
+ *
+ * 1. Inline JavaScript
+ * - JavaScript written directly inside HTML attributes
+ * - Example: onclick, onload
+ * - Not recommended because it mixes HTML and JS
+ *
+ * Example:
+ * <button onclick="alert('Hello')">Click</button>
+ *
+ * --------------------------------------------------
+ *
+ * 2. Internal JavaScript
+ * - JavaScript written inside <script> tag
+ * - Present in the same HTML file
+ * - Suitable only for small programs
+ *
+ * Example:
+ * <script>
+ *   console.log("Hello JS");
+ * </script>
+ *
+ * --------------------------------------------------
+ *
+ * 3. External JavaScript (Best Practice)
+ * - JavaScript written in a separate .js file
+ * - Linked using src attribute
+ * - Clean, reusable, and maintainable
+ *
+ * Example:
+ * <script src="app.js"></script>
+ *
+ * --------------------------------------------------
+ *
+ * 4. Script Placement
+ *
+ * a) Inside <head>
+ * - Can block HTML rendering
+ *
+ * b) Before </body> (Recommended)
+ * - HTML loads first, then JS executes
+ *
+ * --------------------------------------------------
+ *
+ * 5. defer Attribute
+ * - Script loads in background
+ * - Executes after HTML parsing
+ * - Maintains execution order
+ *
+ * Example:
+ * <script src="app.js" defer></script>
+ *
+ * --------------------------------------------------
+ *
+ * 6. async Attribute
+ * - Script loads and executes asynchronously
+ * - Execution order not guaranteed
+ * - Used for analytics or ads
+ *
+ * Example:
+ * <script src="app.js" async></script>
+ *
+ * --------------------------------------------------
+ *
+ * Summary:
+ * - Inline JS: Not recommended
+ * - Internal JS: Small projects
+ * - External JS: Best practice
+ * - defer: Safest and preferred
+ * - async: Special use cases
+ */
