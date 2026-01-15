@@ -31,7 +31,7 @@ const JsUser = {
     email: "hitesh@google.com",
     isLoggedIn: false,
     lastLoginDays: ["Monday", "Saturday"]
-};
+};  
 
 
 // ✅ Accessing Object Properties

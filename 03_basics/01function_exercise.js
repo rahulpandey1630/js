@@ -179,3 +179,21 @@ console.log(typeof secret); // undefined
 // }
 
 // greetUser("Rahul", sayBye); // greetUser is a HOF
+
+
+
+//  * typeof function
+//  *
+//  * Example:
+//  * function greet() {}
+//  * console.log(typeof greet);
+//  *
+//  * Output:
+//  * "function"
+//  *
+//  * --------------------------------------------------
+//  * Important Points
+//  *
+//  * - Functions are callable objects
+//  * - JavaScript gives functions a special typeof result
+//  * - Internally, functions are objects

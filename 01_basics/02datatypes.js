@@ -43,6 +43,7 @@ const sym2 = Symbol("id"); // different from sym1 even though description is sam
 
 // sym1 and sym2 are unique
 // console.log(sym1 === sym2); // false
+//  typeof Symbol is symbol
 
 // ✅ Using symbol as a unique object key
 const id = Symbol("userId");
