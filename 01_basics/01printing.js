@@ -103,3 +103,204 @@ You write C++ → compile it to .wasm → browser runs that wasm.
 // Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.(// Chrome V8 is Google's open-source JavaScript and WebAssembly engine.
 // It is written in C++ and powers Google Chrome and Node.js.
 // Role: Executes JavaScript code by converting it into machine code for fast execution.)
+
+
+
+
+
+
+
+
+
+/**
+ * JAVASCRIPT HISTORY
+ *
+ * 1995
+ * ─────────────────────────────────────────────────────────────
+ * JavaScript was created at Netscape by Brendan Eich.
+ *
+ * The original language was developed in roughly 10 days.
+ *
+ * Its first name was:
+ *      Mocha
+ *
+ * It was created to make web pages interactive instead of
+ * being limited to static HTML.
+ *
+ *
+ * Mocha
+ *   ↓
+ * LiveScript
+ *   ↓
+ * JavaScript
+ *
+ *
+ * Later in 1995
+ * ─────────────────────────────────────────────────────────────
+ * LiveScript was renamed JavaScript.
+ *
+ * IMPORTANT:
+ * JavaScript and Java are completely different languages.
+ * The name "JavaScript" was partly influenced by Java's popularity
+ * at the time.
+ *
+ *
+ * 1996
+ * ─────────────────────────────────────────────────────────────
+ * Microsoft created its own implementation called JScript
+ * for Internet Explorer.
+ *
+ * Now different browsers had different implementations.
+ *
+ * This created browser-compatibility problems for developers.
+ *
+ *
+ * 1997
+ * ─────────────────────────────────────────────────────────────
+ * JavaScript was submitted to Ecma International for
+ * standardization.
+ *
+ * The standardized language specification became:
+ *
+ *      ECMAScript
+ *
+ * The specification is known as:
+ *
+ *      ECMA-262
+ *
+ *
+ * IMPORTANT DIFFERENCE:
+ *
+ * JavaScript  → Common name of the programming language
+ *
+ * ECMAScript  → Standard/specification that defines the language
+ *
+ * JavaScript engines implement the ECMAScript specification.
+ *
+ *
+ * ECMAScript versions
+ * ─────────────────────────────────────────────────────────────
+ *
+ * ES1  → 1997
+ * ES2  → 1998
+ * ES3  → 1999
+ *
+ * Then there was a long gap in major language development.
+ *
+ * ES5  → 2009
+ *
+ *
+ * ES6 / ES2015
+ * ─────────────────────────────────────────────────────────────
+ * ES6 was released in 2015 and was one of the biggest updates
+ * in JavaScript history.
+ *
+ * It introduced many modern JavaScript features:
+ *
+ *      let
+ *      const
+ *      arrow functions
+ *      classes
+ *      template literals
+ *      destructuring
+ *      spread/rest operators
+ *      default parameters
+ *      promises
+ *      modules
+ *      Map
+ *      Set
+ *      and many more
+ *
+ *
+ * After ES6
+ * ─────────────────────────────────────────────────────────────
+ * ECMAScript moved to a yearly release cycle.
+ *
+ * ES2016
+ * ES2017
+ * ES2018
+ * ES2019
+ * ...
+ *
+ * Therefore, modern JavaScript continues to evolve every year.
+ *
+ *
+ * JAVASCRIPT TODAY
+ * ─────────────────────────────────────────────────────────────
+ *
+ * JavaScript is no longer limited to browsers.
+ *
+ * It is used for:
+ *
+ *      Frontend
+ *      Backend
+ *      Mobile applications
+ *      Desktop applications
+ *      APIs
+ *      Servers
+ *      Full-stack development
+ *
+ * Examples:
+ *
+ *      React
+ *      Node.js
+ *      Express
+ *      Next.js
+ *      Electron
+ *
+ *
+ * JAVASCRIPT ENGINE
+ * ─────────────────────────────────────────────────────────────
+ * JavaScript needs an engine to execute the code.
+ *
+ * Chrome / Node.js
+ *      → V8
+ *
+ * Firefox
+ *      → SpiderMonkey
+ *
+ * Safari
+ *      → JavaScriptCore
+ *
+ *
+ * V8 EXECUTION (simplified)
+ * ─────────────────────────────────────────────────────────────
+ *
+ * JavaScript Code
+ *       ↓
+ * Parser
+ *       ↓
+ * AST (Abstract Syntax Tree)
+ *       ↓
+ * Ignition
+ *       ↓
+ * Bytecode
+ *       ↓
+ * Profiler
+ *       ↓
+ * TurboFan (JIT Compiler)
+ *       ↓
+ * Optimized Machine Code
+ *       ↓
+ * CPU
+ *
+ *
+ * IN SHORT
+ * ─────────────────────────────────────────────────────────────
+ *
+ * 1995 → Mocha
+ * 1995 → LiveScript
+ * 1995 → JavaScript
+ * 1996 → Microsoft JScript
+ * 1997 → ECMAScript / ES1
+ * 2009 → ES5
+ * 2015 → ES6 / ES2015
+ * 2016+ → Yearly ECMAScript releases
+ *
+ *
+ * The main idea:
+ *
+ * JavaScript = language we use
+ * ECMAScript = standard/specification
+ * V8 = engine that executes JavaScript
+ */

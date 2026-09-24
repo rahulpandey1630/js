@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML — Complete Documented Notes</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;line-height:1.6;max-width:900px;margin:0 auto;padding:20px;color:#222;background:#fff;}
+  h1{font-size:1.8rem;border-bottom:3px solid #333;padding-bottom:8px;}
+  h2{font-size:1.4rem;background:#f0f0f0;padding:8px 12px;border-left:5px solid #444;margin-top:40px;}
+  h3{font-size:1.1rem;color:#333;margin-top:20px;}
+  h4{font-size:1rem;color:#555;}
+  p{margin:8px 0;}
+  table{border-collapse:collapse;width:100%;margin:12px 0;}
+  th,td{border:1px solid #999;padding:6px 10px;text-align:left;font-size:.92rem;}
+  th{background:#e8e8e8;}
+  pre{background:#1e1e1e;color:#eee;padding:12px 14px;border-radius:5px;overflow-x:auto;font-size:.88rem;}
+  code{background:#eee;padding:2px 5px;border-radius:3px;font-family:Consolas,"Courier New",monospace;font-size:.9em;}
+  pre code{background:none;padding:0;color:inherit;}
+  .rule{background:#fff8e1;border-left:5px solid #f0ad4e;padding:8px 12px;margin:10px 0;}
+  .bad{background:#fdecea;border-left:5px solid #d9534f;padding:8px 12px;margin:6px 0;}
+  .good{background:#eafaf1;border-left:5px solid #5cb85c;padding:8px 12px;margin:6px 0;}
+  .qa{margin:10px 0;padding:8px 12px;background:#f7f7f7;border-radius:4px;}
+  hr{border:none;border-top:1px solid #ccc;margin:30px 0;}
+</style>
+</head>
+<body>
+
+<h1>HTML — Complete Documented Notes</h1>
+<p><em>From Absolute Zero to Interview-Ready</em></p>
+
+<hr>
+
+<h2>Part 1 — What Actually Happens When You Open A Website</h2>
+
+<h3>Core definitions</h3>
+<ul>
+<li><b>Website</b> — a collection of linked pages under one domain (e.g. <code>amazon.com</code>).</li>
+<li><b>Web page</b> — a single document within that website.</li>
+<li><b>Browser</b> — software (Chrome, Firefox, Edge, Safari) that requests pages and renders them visually.</li>
+<li><b>Server</b> — a remote computer that stores website files and sends them out when requested.</li>
+</ul>
+
+<h3>Step-by-step: typing a URL and hitting Enter</h3>
+<ol>
+<li>You type <code>https://example.com</code> and press Enter.</li>
+<li>Browser performs a <b>DNS lookup</b> — converts the domain into an IP address.</li>
+<li>Browser opens a connection and sends an <b>HTTP(S) request</b>.</li>
+<li>Server sends back an <b>HTTP response</b> containing the HTML file.</li>
+<li>Browser parses the HTML top to bottom.</li>
+<li>Browser builds the <b>DOM</b> (Document Object Model) — a tree structure in memory.</li>
+<li>Linked CSS is parsed into the <b>CSSOM</b>; DOM + CSSOM combine into a <b>render tree</b>.</li>
+<li>Browser calculates <b>layout</b>, then <b>paints</b> pixels to the screen.</li>
+<li>Linked JavaScript runs, which can further modify the DOM live.</li>
+</ol>
+
+<h3>What each layer does</h3>
+<table>
+<tr><th>Layer</th><th>Responsibility</th><th>Analogy</th></tr>
+<tr><td>HTML</td><td>Structure &amp; content</td><td>Skeleton of a house — walls, rooms</td></tr>
+<tr><td>CSS</td><td>Appearance &amp; layout</td><td>Paint, furniture, interior design</td></tr>
+<tr><td>JavaScript</td><td>Behavior &amp; interactivity</td><td>Electricity — switches, automation</td></tr>
+</table>
+
+<div class="rule">HTML exists because browsers need a universal, standardized way to describe "this is a heading, this is a link" so any browser on any device renders the same content correctly.</div>
+
+<hr>
+
+<h2>Part 2 — The Basic HTML Document</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, World!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<table>
+<tr><th>Line</th><th>Why it exists</th></tr>
+<tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>Forces modern "standards mode" rendering instead of legacy "quirks mode." Must be the very first line.</td></tr>
+<tr><td><code>&lt;html lang="en"&gt;</code></td><td>Root element; <code>lang</code> helps screen readers and search engines.</td></tr>
+<tr><td><code>&lt;head&gt;</code></td><td>Metadata container — not directly visible.</td></tr>
+<tr><td><code>meta charset="UTF-8"</code></td><td>Character encoding; supports virtually every language/symbol.</td></tr>
+<tr><td><code>meta viewport</code></td><td>Matches page width to device width for correct mobile rendering.</td></tr>
+<tr><td><code>&lt;title&gt;</code></td><td>Tab text, bookmark text, search-result headline.</td></tr>
+<tr><td><code>&lt;body&gt;</code></td><td>Everything the user actually sees.</td></tr>
+</table>
+
+<div class="rule"><b>Hands-on:</b> save this as <code>index.html</code>, change the title, add a <code>&lt;p&gt;</code> below the heading, open the file directly in a browser.</div>
+
+<hr>
+
+<h2>Part 3 — HTML Syntax</h2>
+<ul>
+<li><b>Tag</b> — the markup keyword: <code>&lt;p&gt;</code> (opening), <code>&lt;/p&gt;</code> (closing).</li>
+<li><b>Element</b> — opening tag + content + closing tag: <code>&lt;p&gt;Hello&lt;/p&gt;</code>.</li>
+<li><b>Attribute</b> — configuration inside the opening tag: <code>href="page.html"</code>.</li>
+<li><b>Nesting</b> — elements inside elements create <b>parent → child → sibling</b> relationships.</li>
+<li><b>Void/empty elements</b> — no closing tag: <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;meta&gt;</code>.</li>
+</ul>
+<div class="bad"><b>Bad:</b> <code>&lt;p&gt;Hello</code> (unclosed tag — browser guesses where content ends, causing broken layout)</div>
+<div class="good"><b>Good:</b> <code>&lt;p&gt;Hello&lt;/p&gt;</code></div>
+
+<hr>
+
+<h2>Part 4 — Text Elements</h2>
+<table>
+<tr><th>Tag</th><th>Meaning</th></tr>
+<tr><td><code>h1</code>–<code>h6</code></td><td>Headings, decreasing importance/size</td></tr>
+<tr><td><code>p</code></td><td>Paragraph</td></tr>
+<tr><td><code>br</code></td><td>Line break within text, not for spacing</td></tr>
+<tr><td><code>hr</code></td><td>Thematic break / horizontal rule</td></tr>
+<tr><td><code>strong</code></td><td>Semantic importance — screen readers emphasize it</td></tr>
+<tr><td><code>b</code></td><td>Bold, purely visual, no semantic weight</td></tr>
+<tr><td><code>em</code></td><td>Semantic emphasis — changes sentence meaning</td></tr>
+<tr><td><code>i</code></td><td>Alternate voice/tone — foreign words, terms; no emphasis meaning</td></tr>
+<tr><td><code>mark</code></td><td>Highlighted text</td></tr>
+<tr><td><code>small</code></td><td>Fine print / side comments</td></tr>
+<tr><td><code>del</code> / <code>ins</code></td><td>Deleted / inserted text (strikethrough / underline)</td></tr>
+<tr><td><code>sub</code> / <code>sup</code></td><td>Subscript / superscript</td></tr>
+<tr><td><code>pre</code></td><td>Preformatted — preserves whitespace and line breaks exactly</td></tr>
+<tr><td><code>code</code></td><td>Inline code fragment</td></tr>
+<tr><td><code>blockquote</code></td><td>Long block quotation</td></tr>
+<tr><td><code>q</code></td><td>Short inline quotation</td></tr>
+<tr><td><code>abbr</code></td><td>Abbreviation — use <code>title</code> for full form</td></tr>
+<tr><td><code>cite</code></td><td>Title of a creative work</td></tr>
+<tr><td><code>time</code></td><td>Machine-readable date/time via <code>datetime</code></td></tr>
+</table>
+
+<h3>strong vs b / em vs i</h3>
+<pre><code>&lt;strong&gt;Warning: this cannot be undone.&lt;/strong&gt;  &lt;!-- semantic --&gt;
+&lt;b&gt;Netflix&lt;/b&gt; and &lt;b&gt;Amazon&lt;/b&gt; are giants.        &lt;!-- visual only --&gt;
+
+I &lt;em&gt;really&lt;/em&gt; need this by Friday.   &lt;!-- stress changes meaning --&gt;
+The term &lt;i&gt;bona fide&lt;/i&gt; is Latin.       &lt;!-- alternate voice --&gt;</code></pre>
+
+<hr>
+
+<h2>Part 5 — Headings &amp; Document Structure</h2>
+<p>Headings create a logical outline. Screen readers jump heading-to-heading; search engines weigh heading structure heavily.</p>
+<div class="rule">Exactly <b>one</b> <code>&lt;h1&gt;</code> per page. Never skip levels just to get smaller text — that's CSS's job.</div>
+<pre><code>&lt;h1&gt;Complete Guide to HTML&lt;/h1&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;h2&gt;Core Concepts&lt;/h2&gt;
+  &lt;h3&gt;Elements and Tags&lt;/h3&gt;
+  &lt;h3&gt;Attributes&lt;/h3&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;</code></pre>
+
+<hr>
+
+<h2>Part 6 — Links</h2>
+<pre><code>&lt;a href="about.html"&gt;About&lt;/a&gt;                                  &lt;!-- relative --&gt;
+&lt;a href="https://example.com" target="_blank" rel="noopener noreferrer"&gt;External&lt;/a&gt;
+&lt;a href="mailto:someone@example.com"&gt;Email us&lt;/a&gt;
+&lt;a href="tel:+911234567890"&gt;Call us&lt;/a&gt;
+&lt;a href="#section2"&gt;Jump to Section 2&lt;/a&gt;                        &lt;!-- fragment --&gt;</code></pre>
+<ul>
+<li><b>Absolute URL</b> — full address, works from anywhere: <code>https://example.com/about</code>.</li>
+<li><b>Relative URL</b> — path relative to current file: <code>about.html</code>, <code>../images/logo.png</code>.</li>
+<li><b>Fragment link</b> — <code>#id</code> scrolls to the element with that matching <code>id</code>.</li>
+</ul>
+<div class="rule"><b>Security:</b> without <code>rel="noopener"</code>, a tab opened via <code>target="_blank"</code> can access <code>window.opener</code> and redirect your original tab — a phishing risk called "tabnabbing." Always pair the two.</div>
+
+<hr>
+
+<h2>Part 7 — Images</h2>
+<pre><code>&lt;figure&gt;
+  &lt;img src="chart.png" alt="Sales grew 20% in Q3" width="600" height="400" loading="lazy"&gt;
+  &lt;figcaption&gt;Q3 sales performance&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+<ul>
+<li><code>src</code> — image path.</li>
+<li><code>alt</code> — screen-reader description, fallback text, image-search indexing. Use <code>alt=""</code> for decorative images.</li>
+<li><code>width</code>/<code>height</code> — reserve space before the image loads, preventing layout shift.</li>
+<li><code>loading="lazy"</code> — defers off-screen images until needed.</li>
+<li><code>&lt;figure&gt;</code>/<code>&lt;figcaption&gt;</code> — groups an image with its caption.</li>
+</ul>
+
+<hr>
+
+<h2>Part 8 — Lists</h2>
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Milk&lt;/li&gt;
+  &lt;li&gt;Bread&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Preheat oven&lt;/li&gt;
+  &lt;li&gt;Mix ingredients&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;Markup language for structuring web pages&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+<ul>
+<li><code>&lt;ul&gt;</code> — unordered, order doesn't matter.</li>
+<li><code>&lt;ol&gt;</code> — ordered, sequence matters.</li>
+<li><code>&lt;dl&gt;/&lt;dt&gt;/&lt;dd&gt;</code> — term/definition pairs, e.g. glossaries and FAQs.</li>
+</ul>
+<p>Lists nest for submenus. Navigation menus are almost always <code>&lt;ul&gt;&lt;li&gt;&lt;a&gt;</code>.</p>
+
+<hr>
+
+<h2>Part 9 — Tables</h2>
+<pre><code>&lt;table&gt;
+  &lt;caption&gt;Student Marks&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Subject&lt;/th&gt;&lt;th&gt;Marks&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Rahul&lt;/td&gt;&lt;td colspan="2"&gt;CS &amp; Maths — 180&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<ul>
+<li><code>&lt;thead&gt;/&lt;tbody&gt;/&lt;tfoot&gt;</code> — group header, body, footer rows.</li>
+<li><code>colspan</code>/<code>rowspan</code> — merge cells across columns/rows.</li>
+<li><code>&lt;caption&gt;</code> — describes the table for accessibility.</li>
+</ul>
+<div class="rule"><b>Rule:</b> use tables only for genuinely tabular data. Never for page layout — screen readers try to read layout tables as data grids, and they don't respond well to responsive design. Use CSS Grid/Flexbox for layout.</div>
+
+<hr>
+
+<h2>Part 10 — Forms</h2>
+<pre><code>&lt;form action="/submit" method="post"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Sign up&lt;/legend&gt;
+
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+
+    &lt;label for="pwd"&gt;Password&lt;/label&gt;
+    &lt;input type="password" id="pwd" name="pwd" minlength="8" required&gt;
+
+    &lt;label for="age"&gt;Age&lt;/label&gt;
+    &lt;input type="number" id="age" name="age" min="13" max="99"&gt;
+
+    &lt;label&gt;&lt;input type="checkbox" name="subscribe"&gt; Subscribe&lt;/label&gt;
+
+    &lt;label for="plan"&gt;Plan&lt;/label&gt;
+    &lt;select id="plan" name="plan"&gt;
+      &lt;option value="free"&gt;Free&lt;/option&gt;
+      &lt;option value="pro" selected&gt;Pro&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;label for="bio"&gt;Bio&lt;/label&gt;
+    &lt;textarea id="bio" name="bio" placeholder="Tell us about yourself"&gt;&lt;/textarea&gt;
+
+    &lt;button type="submit"&gt;Create account&lt;/button&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+
+<h3>Input types</h3>
+<p><code>text, password, email, number, date, time, checkbox, radio, file, range, color, hidden, submit, reset, button, search, tel, url</code></p>
+
+<h3>Key attributes</h3>
+<table>
+<tr><th>Attribute</th><th>Purpose</th></tr>
+<tr><td><code>name</code></td><td>Key used when data is sent to the server</td></tr>
+<tr><td><code>value</code></td><td>Current or default value</td></tr>
+<tr><td><code>placeholder</code></td><td>Hint text, disappears once typing starts — not a label replacement</td></tr>
+<tr><td><code>required</code></td><td>Must be filled before submission</td></tr>
+<tr><td><code>disabled</code></td><td>Inactive, not submitted</td></tr>
+<tr><td><code>readonly</code></td><td>Visible but not editable</td></tr>
+<tr><td><code>checked</code> / <code>selected</code></td><td>Pre-checks / pre-selects</td></tr>
+<tr><td><code>min</code>/<code>max</code>, <code>minlength</code>/<code>maxlength</code></td><td>Numeric or text length bounds</td></tr>
+<tr><td><code>pattern</code></td><td>Regex the value must match</td></tr>
+<tr><td><code>autocomplete</code></td><td>Hints browser autofill</td></tr>
+</table>
+
+<div class="rule"><code>&lt;label for="email"&gt;</code> must match <code>&lt;input id="email"&gt;</code> — links the label to the field for screen readers and click-to-focus.</div>
+<div class="rule"><b>Critical:</b> client-side validation is UX only — it can always be bypassed. The server must always re-validate everything for security.</div>
+
+<hr>
+
+<h2>Part 11 — Semantic HTML</h2>
+<p><b>Semantic</b> means the tag name describes its purpose. <code>&lt;nav&gt;</code> tells browsers, screen readers, and search engines "this is navigation." A <code>&lt;div class="nav"&gt;</code> tells the browser nothing.</p>
+<pre><code>&lt;header&gt;
+  &lt;h1&gt;Site Name&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;&lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Latest Posts&lt;/h2&gt;
+    &lt;article&gt;
+      &lt;h3&gt;Post Title&lt;/h3&gt;
+      &lt;p&gt;Post content...&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+  &lt;aside&gt;&lt;h2&gt;Related Links&lt;/h2&gt;&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;&lt;p&gt;&amp;copy; 2026 My Site&lt;/p&gt;&lt;/footer&gt;</code></pre>
+<table>
+<tr><th>Tag</th><th>Meaning</th></tr>
+<tr><td><code>header</code></td><td>Intro content for a page or section</td></tr>
+<tr><td><code>nav</code></td><td>Primary navigation links</td></tr>
+<tr><td><code>main</code></td><td>Dominant unique content, one per page</td></tr>
+<tr><td><code>section</code></td><td>Thematic grouping, usually with a heading</td></tr>
+<tr><td><code>article</code></td><td>Self-contained content that could stand alone</td></tr>
+<tr><td><code>aside</code></td><td>Tangential content — sidebar, related links</td></tr>
+<tr><td><code>footer</code></td><td>Closing content — copyright, links</td></tr>
+<tr><td><code>details</code>/<code>summary</code></td><td>Native collapsible disclosure widget</td></tr>
+<tr><td><code>address</code></td><td>Contact info for the page/article author</td></tr>
+</table>
+<div class="rule"><b>Decision guide:</b> if content could stand alone/be syndicated → <code>&lt;article&gt;</code>. If it's a themed part of the current page → <code>&lt;section&gt;</code>. If neither and you just need a wrapper → <code>&lt;div&gt;</code>.</div>
+
+<hr>
+
+<h2>Part 12 — Div and Span</h2>
+<p><code>&lt;div&gt;</code> = generic block container. <code>&lt;span&gt;</code> = generic inline container. Neither carries meaning — use only when no semantic tag fits.</p>
+<div class="bad"><b>Bad (div soup):</b>
+<pre><code>&lt;div class="header"&gt;&lt;div class="nav"&gt;&lt;div class="nav-item"&gt;Home&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</code></pre></div>
+<div class="good"><b>Good (semantic):</b>
+<pre><code>&lt;header&gt;&lt;nav&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/nav&gt;&lt;/header&gt;</code></pre></div>
+
+<hr>
+
+<h2>Part 13 — HTML Attributes</h2>
+<table>
+<tr><th>Attribute</th><th>Purpose</th></tr>
+<tr><td><code>id</code></td><td>Unique identifier — one per page — used for CSS, JS, fragment links</td></tr>
+<tr><td><code>class</code></td><td>Reusable label, multiple elements/classes allowed</td></tr>
+<tr><td><code>title</code></td><td>Hover tooltip</td></tr>
+<tr><td><code>style</code></td><td>Inline CSS — avoid in production</td></tr>
+<tr><td><code>hidden</code></td><td>Removes element from rendering</td></tr>
+<tr><td><code>lang</code></td><td>Language of the element's content</td></tr>
+<tr><td><code>data-*</code></td><td>Custom data, readable by JS: <code>data-user-id="42"</code></td></tr>
+<tr><td><code>aria-*</code></td><td>Accessibility metadata for assistive tech</td></tr>
+</table>
+<p><b>id vs class:</b> <code>id</code> unique and used once; <code>class</code> reusable across many elements.</p>
+
+<hr>
+
+<h2>Part 14 — HTML Comments</h2>
+<pre><code>&lt;!-- This section renders the pricing table --&gt;</code></pre>
+<div class="rule">Comments are visible to anyone who views page source. Never put passwords, notes, or API keys inside them.</div>
+
+<hr>
+
+<h2>Part 15 — HTML Entities</h2>
+<table>
+<tr><th>Entity</th><th>Renders as</th><th>Why</th></tr>
+<tr><td><code>&amp;lt;</code></td><td>&lt;</td><td>Reserved — starts a tag</td></tr>
+<tr><td><code>&amp;gt;</code></td><td>&gt;</td><td>Reserved — ends a tag</td></tr>
+<tr><td><code>&amp;amp;</code></td><td>&amp;</td><td>Reserved — starts an entity</td></tr>
+<tr><td><code>&amp;quot;</code></td><td>"</td><td>Quote inside attribute values</td></tr>
+<tr><td><code>&amp;apos;</code></td><td>'</td><td>Apostrophe</td></tr>
+<tr><td><code>&amp;nbsp;</code></td><td>(non-breaking space)</td><td>Prevents a line break at that space</td></tr>
+<tr><td><code>&amp;copy;</code></td><td>©</td><td>Copyright symbol</td></tr>
+<tr><td><code>&amp;trade;</code></td><td>™</td><td>Trademark symbol</td></tr>
+</table>
+
+<hr>
+
+<h2>Part 16 — Audio and Video</h2>
+<pre><code>&lt;video controls width="600" poster="thumb.jpg" preload="metadata"&gt;
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+  &lt;track kind="captions" src="captions.vtt" srclang="en"&gt;
+&lt;/video&gt;
+
+&lt;audio controls loop&gt;
+  &lt;source src="song.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+<p><code>controls</code>, <code>autoplay</code> (needs <code>muted</code> in most browsers), <code>loop</code>, <code>poster</code>, <code>preload</code>. Browsers block autoplay-with-sound to prevent an intrusive experience.</p>
+
+<hr>
+
+<h2>Part 17 — Embedding Content (iframe)</h2>
+<pre><code>&lt;iframe
+  src="https://www.youtube.com/embed/VIDEO_ID"
+  width="560" height="315"
+  sandbox="allow-scripts allow-same-origin"
+  loading="lazy"
+  title="Embedded video"&gt;
+&lt;/iframe&gt;</code></pre>
+<p>Embeds another page (YouTube, Maps, widgets). Use <code>sandbox</code> to restrict what embedded content can do; only embed trusted sources.</p>
+
+<hr>
+
+<h2>Part 18 — The &lt;head&gt; Section</h2>
+<pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;
+  &lt;meta name="description" content="Summary for search engines"&gt;
+  &lt;meta name="robots" content="index, follow"&gt;
+  &lt;link rel="canonical" href="https://example.com/page"&gt;
+  &lt;link rel="icon" href="/favicon.ico"&gt;
+  &lt;link rel="stylesheet" href="/css/style.css"&gt;
+  &lt;script src="/js/app.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre>
+<p><b>Essential:</b> <code>charset</code>, <code>viewport</code>, <code>title</code>. <b>Optional (SEO/perf):</b> <code>description</code>, <code>canonical</code>, <code>favicon</code>, <code>preload</code>.</p>
+
+<hr>
+
+<h2>Part 19 — HTML + CSS</h2>
+<pre><code>&lt;p class="intro"&gt;Welcome&lt;/p&gt;
+&lt;a href="/x" id="cta"&gt;Get Started&lt;/a&gt;
+
+/* CSS */
+p { color: gray; }                 /* element selector */
+.intro { font-weight: bold; }      /* class selector */
+#cta { background: orange; }       /* id selector */
+a[target="_blank"] { color: red; } /* attribute selector */</code></pre>
+<p>Semantic HTML gives CSS meaningful, stable selectors (<code>nav a</code>) instead of fragile class chains (<code>.header-nav-wrapper .nav-link-item</code>).</p>
+
+<hr>
+
+<h2>Part 20 — HTML + JavaScript</h2>
+<pre><code>&lt;script&gt;console.log("Inline — small snippets only");&lt;/script&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;</code></pre>
+<ul>
+<li><code>defer</code> — runs in order, after parsing completes. Sensible default.</li>
+<li><code>async</code> — runs as soon as downloaded, order not guaranteed. Good for independent scripts (analytics).</li>
+</ul>
+<pre><code>&lt;h1 id="title"&gt;Old text&lt;/h1&gt;
+&lt;script&gt;
+  document.getElementById("title").textContent = "Changed by JS!";
+&lt;/script&gt;</code></pre>
+<p>Flow: HTML → DOM built → JS reads/modifies DOM → browser repaints instantly, no reload.</p>
+
+<hr>
+
+<h2>Part 21 — The DOM</h2>
+<p>The <b>DOM</b> is the browser's live, in-memory tree of the parsed HTML — not the file itself. JavaScript reads and writes to it, and the browser repaints on change.</p>
+<pre><code>HTML:
+&lt;body&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+  &lt;p&gt;Welcome&lt;/p&gt;
+&lt;/body&gt;
+
+DOM Tree:
+document
+└── html
+    └── body
+        ├── h1
+        └── p</code></pre>
+<pre><code>document.querySelector("h1");
+document.getElementById("title");
+document.querySelectorAll("p");</code></pre>
+
+<hr>
+
+<h2>Part 22 — Accessibility</h2>
+<ul>
+<li>Semantic HTML first — a native <code>&lt;button&gt;</code> is keyboard-focusable and correctly announced by default; a styled <code>&lt;div&gt;</code> is not.</li>
+<li>Always: <code>alt</code> on images, <code>label</code> on inputs, logical heading order, full keyboard reachability.</li>
+<li><code>&lt;button&gt;</code> for actions, <code>&lt;a&gt;</code> for navigation — never swap them.</li>
+</ul>
+<div class="rule"><b>ARIA rule:</b> "No ARIA is better than bad ARIA." Use <code>aria-*</code> only when no native semantic tag already conveys that meaning.</div>
+
+<hr>
+
+<h2>Part 23 — SEO Basics</h2>
+<ul>
+<li><code>&lt;title&gt;</code> — biggest on-page SEO signal.</li>
+<li><code>meta description</code> — the search-result snippet.</li>
+<li>Heading hierarchy and semantic tags help crawlers understand structure.</li>
+<li><code>alt</code> text → image search indexing.</li>
+<li><code>rel="canonical"</code> — official URL for duplicate content.</li>
+<li><code>meta robots</code> — index/noindex, follow/nofollow control.</li>
+</ul>
+<div class="rule">HTML controls structure/crawlability only — rankings also depend on content quality, speed, and backlinks.</div>
+
+<hr>
+
+<h2>Part 24 — Security Basics</h2>
+<ul>
+<li>Never hardcode passwords/API keys in HTML/JS — visible via "View Page Source."</li>
+<li><b>XSS:</b> unescaped user input rendered into the page lets attackers inject scripts — always escape user-generated content.</li>
+<li>Always use HTTPS, especially with login forms.</li>
+<li><code>iframe sandbox</code> restricts embedded third-party content.</li>
+<li>Client-side validation is UX only — server must always re-validate.</li>
+</ul>
+
+<hr>
+
+<h2>Part 25 — Project File Structure</h2>
+<pre><code>project/
+├── index.html
+├── about.html
+├── contact.html
+├── assets/
+│   ├── images/
+│   └── icons/
+├── css/
+│   └── style.css
+└── js/
+    └── script.js</code></pre>
+<p><code>index.html</code> is the default page served for a folder URL. Assets separated by type for maintainability — mirrors the HTML/CSS/JS separation of concerns.</p>
+
+<hr>
+
+<h2>Part 26 — VS Code + Emmet</h2>
+<table>
+<tr><th>Type</th><th>Expands to</th></tr>
+<tr><td><code>!</code></td><td>Full HTML5 boilerplate</td></tr>
+<tr><td><code>div.container</code></td><td><code>&lt;div class="container"&gt;&lt;/div&gt;</code></td></tr>
+<tr><td><code>ul&gt;li*5</code></td><td>A <code>&lt;ul&gt;</code> with 5 <code>&lt;li&gt;</code> children</td></tr>
+<tr><td><code>header&gt;nav</code></td><td>Nested header/nav</td></tr>
+<tr><td><code>lorem</code></td><td>Placeholder paragraph text</td></tr>
+</table>
+<p>Other essentials: autocompletion, formatting (<code>Shift+Alt+F</code>), Live Server extension for auto-refresh preview.</p>
+
+<hr>
+
+<h2>Part 27 — Browser DevTools</h2>
+<ul>
+<li><b>Elements</b> — inspect/live-edit the DOM and CSS.</li>
+<li><b>Console</b> — run JS, view errors/logs.</li>
+<li><b>Network</b> — every request the page loads and its timing.</li>
+<li><b>Sources</b> — debug JS with breakpoints.</li>
+<li><b>Responsive mode</b> — preview at mobile/tablet sizes.</li>
+</ul>
+<div class="rule">Edits made in DevTools are temporary — they vanish on refresh. Real fixes must go back into your source files.</div>
+
+<hr>
+
+<h2>Part 28 — Common Mistakes</h2>
+
+<div class="bad"><b>1. Unclosed tag:</b> <code>&lt;p&gt;Hello&lt;p&gt;</code></div>
+<div class="good"><b>Fix:</b> <code>&lt;p&gt;Hello&lt;/p&gt;</code></div>
+
+<div class="bad"><b>2. Wrong nesting order:</b> <code>&lt;b&gt;&lt;i&gt;Text&lt;/b&gt;&lt;/i&gt;</code></div>
+<div class="good"><b>Fix:</b> <code>&lt;b&gt;&lt;i&gt;Text&lt;/i&gt;&lt;/b&gt;</code></div>
+
+<div class="bad"><b>3. Duplicate IDs:</b> two elements with <code>id="box"</code></div>
+<div class="good"><b>Fix:</b> unique ids per element</div>
+
+<div class="bad"><b>4. div instead of semantic tag:</b> <code>&lt;div class="title"&gt;My Page&lt;/div&gt;</code></div>
+<div class="good"><b>Fix:</b> <code>&lt;h1&gt;My Page&lt;/h1&gt;</code></div>
+
+<div class="bad"><b>5. br for spacing:</b> <code>Line1&lt;br&gt;&lt;br&gt;&lt;br&gt;Line2</code></div>
+<div class="good"><b>Fix:</b> use CSS margin</div>
+
+<div class="bad"><b>6. Table for layout:</b> arranging sidebar/content in a <code>&lt;table&gt;</code></div>
+<div class="good"><b>Fix:</b> CSS Flexbox/Grid</div>
+
+<div class="bad"><b>7. Missing alt:</b> <code>&lt;img src="dog.jpg"&gt;</code></div>
+<div class="good"><b>Fix:</b> <code>&lt;img src="dog.jpg" alt="A dog running"&gt;</code></div>
+
+<div class="bad"><b>8. No label:</b> input with only a placeholder</div>
+<div class="good"><b>Fix:</b> pair with a proper <code>&lt;label for&gt;</code></div>
+
+<div class="bad"><b>9. Skipped heading levels:</b> <code>h1</code> → <code>h4</code></div>
+<div class="good"><b>Fix:</b> keep sequential order</div>
+
+<div class="bad"><b>10. Missing viewport tag</b> — page unreadable on mobile</div>
+<div class="good"><b>Fix:</b> always include <code>meta viewport</code></div>
+
+<div class="bad"><b>11. div as button:</b> <code>&lt;div onclick="..."&gt;</code></div>
+<div class="good"><b>Fix:</b> use a real <code>&lt;button&gt;</code></div>
+
+<div class="bad"><b>12. Link used for an action:</b> <code>&lt;a href="#" onclick="deleteItem()"&gt;</code></div>
+<div class="good"><b>Fix:</b> <code>&lt;button onclick="deleteItem()"&gt;</code> — links are for navigation only</div>
+
+<hr>
+
+<h2>Part 29 — Best Practices</h2>
+<ul>
+<li>Prefer semantic HTML over generic div/span.</li>
+<li>Consistent indentation (2 or 4 spaces).</li>
+<li>Meaningful class names (<code>product-card</code>, not <code>d1</code>).</li>
+<li>Build accessibility in from the start.</li>
+<li>Write valid HTML — validate occasionally.</li>
+<li>Keep HTML/CSS/JS in separate files.</li>
+<li>Avoid unnecessary wrapper divs.</li>
+<li>One <code>h1</code>, logical heading order, descriptive links (SEO).</li>
+<li>Progressive enhancement: works with plain HTML first, then CSS/JS layer on top.</li>
+</ul>
+
+<hr>
+
+<h2>Part 30 — Interview Q&amp;A</h2>
+
+<div class="qa"><b>1. What is HTML?</b><br>A markup language defining page structure/content. Not a programming language — no logic, loops, or conditionals.</div>
+<div class="qa"><b>2. HTML vs HTML5?</b><br>HTML5 added semantic tags, native audio/video, new input types, canvas/SVG, offline storage.</div>
+<div class="qa"><b>3. Semantic HTML?</b><br>Tags whose names describe meaning (<code>article</code>, <code>nav</code>) vs generic containers.</div>
+<div class="qa"><b>4. div vs span?</b><br>div = block-level; span = inline. Both meaningless.</div>
+<div class="qa"><b>5. id vs class?</b><br>id unique/one element; class reusable/many elements; id has higher CSS specificity.</div>
+<div class="qa"><b>6. strong vs b?</b><br>strong = semantic importance; b = visual only.</div>
+<div class="qa"><b>7. em vs i?</b><br>em = stress/meaning change; i = alternate voice, no emphasis.</div>
+<div class="qa"><b>8. section vs article?</b><br>article = standalone content; section = themed grouping, not standalone.</div>
+<div class="qa"><b>9. GET vs POST?</b><br>GET = params in URL, visible, cacheable, idempotent; POST = body data, creates/changes data.</div>
+<div class="qa"><b>10. What is the DOM?</b><br>Live in-memory tree of parsed HTML that JS reads/modifies.</div>
+<div class="qa"><b>11. Accessibility?</b><br>Designing so people with disabilities can perceive/navigate/interact with a page.</div>
+<div class="qa"><b>12. ARIA?</b><br>Attributes adding accessibility info to custom widgets when no native tag fits.</div>
+<div class="qa"><b>13. iframe?</b><br>Embeds another HTML document inside the current page.</div>
+<div class="qa"><b>14. DOCTYPE purpose?</b><br>Declares HTML5, forces standards-mode rendering.</div>
+<div class="qa"><b>15. Why viewport meta tag?</b><br>Without it mobile browsers render desktop-width and zoom out; the tag matches width to device.</div>
+<div class="qa"><b>16. Block vs inline?</b><br>Block = new line, full width (div, p, h1); inline = flows within line (span, a, strong).</div>
+<div class="qa"><b>17. Void elements?</b><br>No closing tag/content: img, br, input, hr, meta, link.</div>
+<div class="qa"><b>18. HTML entity?</b><br>Reserved code (<code>&amp;lt;</code>) to display characters that are otherwise HTML syntax.</div>
+<div class="qa"><b>19. Client-side validation?</b><br>Browser-level form checks (required, pattern) before sending to server.</div>
+<div class="qa"><b>20. Why isn't it enough for security?</b><br>Can be bypassed/disabled; server must independently validate all input.</div>
+<div class="qa"><b>21. Purpose of alt?</b><br>Screen-reader description, fallback on load failure, image-search indexing.</div>
+<div class="qa"><b>22. Why avoid tables for layout?</b><br>Breaks accessibility/responsiveness; tables are for tabular data only.</div>
+<div class="qa"><b>23. button vs anchor?</b><br>button = triggers action, no navigation; a[href] = navigates to a resource.</div>
+<div class="qa"><b>24. async vs defer?</b><br>async = runs as soon as downloaded, unordered; defer = runs in order after parsing.</div>
+<div class="qa"><b>25. Browser load sequence?</b><br>DNS → HTTP request → HTML response → parsed to DOM → CSSOM built → render tree → layout → paint → linked JS executes.</div>
+
+<hr>
+
+<h2>Part 31 — Practice Projects (build in order)</h2>
+<ol>
+<li>Personal profile page</li>
+<li>Resume webpage</li>
+<li>Restaurant menu</li>
+<li>Registration form</li>
+<li>Product page</li>
+<li>Blog article page</li>
+<li>College/student portal page</li>
+<li>Portfolio website structure</li>
+<li>Multi-page website</li>
+<li>Complete semantic website</li>
+</ol>
+<p><b>Final project:</b> Professional Portfolio (header, nav, hero, about, skills, projects, education, experience, contact form, footer) — pure HTML first, then layer CSS, then JS.</p>
+
+<hr>
+
+<h2>Part 32 — Master Revision Sheet</h2>
+<table>
+<tr><th>Topic</th><th>Key takeaway</th></tr>
+<tr><td>Boilerplate</td><td>DOCTYPE→html→head→body; charset+viewport always</td></tr>
+<tr><td>Syntax</td><td>tag ≠ element ≠ attribute; void elements have no closing tag</td></tr>
+<tr><td>Text</td><td>strong/em = meaning, b/i = style only</td></tr>
+<tr><td>Headings</td><td>one h1; never skip levels</td></tr>
+<tr><td>Links</td><td>target="_blank" + rel="noopener noreferrer"</td></tr>
+<tr><td>Images</td><td>alt mandatory; set width/height</td></tr>
+<tr><td>Lists</td><td>ul unordered, ol ordered, dl term/definition</td></tr>
+<tr><td>Tables</td><td>tabular data only, never layout</td></tr>
+<tr><td>Forms</td><td>label for = input id; client validation ≠ security</td></tr>
+<tr><td>Semantic</td><td>header/nav/main/section/article/aside/footer over div</td></tr>
+<tr><td>div/span</td><td>meaningless, last resort</td></tr>
+<tr><td>Attributes</td><td>id unique, class reusable, data-* for JS</td></tr>
+<tr><td>Comments</td><td>visible in source, no secrets</td></tr>
+<tr><td>Entities</td><td>escape reserved characters</td></tr>
+<tr><td>Audio/video</td><td>autoplay needs muted in most browsers</td></tr>
+<tr><td>iframe</td><td>sandbox + trusted sources only</td></tr>
+<tr><td>head</td><td>charset/viewport/title essential; description/canonical for SEO</td></tr>
+<tr><td>HTML+CSS</td><td>selectors = element/class/id/attribute</td></tr>
+<tr><td>HTML+JS</td><td>defer = ordered after parse, async = as soon as ready</td></tr>
+<tr><td>DOM</td><td>live node tree, JS reads/writes it</td></tr>
+<tr><td>Accessibility</td><td>semantic first, ARIA only as fallback</td></tr>
+<tr><td>SEO</td><td>title, description, headings, alt, canonical</td></tr>
+<tr><td>Security</td><td>no secrets in HTML, escape input (XSS), use HTTPS</td></tr>
+<tr><td>File structure</td><td>index.html + css/ + js/ + assets/</td></tr>
+<tr><td>Best practice</td><td>semantic, valid, accessible, separated concerns, progressive enhancement</td></tr>
+</table>
+
+<div class="rule"><b>Core model:</b> HTML = structure → CSS = presentation → JavaScript = behavior.</div>
+
+</body>
+</html>

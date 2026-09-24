@@ -1,311 +1,526 @@
-const accountId = 144553; // `const` is used for variables that shouldn't change
-let accountEmail = "hitesh@google.com"; // `let` is used for variables that can change
-var accountPassword = "12345"; // `var` is function-scoped and should be avoided in modern JavaScript
-accountCity = "Jaipur"; // Without `let`, `const`, or `var`, this creates a global variable (not recommended)
-let accountState; // `let` allows declaration without initialization
-var id;
-let id2;
+/*===============================================================================
+                    JAVASCRIPT VARIABLES & SCOPING GUIDE
+===============================================================================
+
+'use strict' enables strict mode, which catches common coding mistakes and makes
+JavaScript safer. It prevents usage of undeclared variables and reserved keywords,
+improving code quality. Always place it at the top of a script or function to 
+enforce stricter parsing rules.
+
+
+===============================================================================
+                            PART 1: VARIABLE DECLARATION
+===============================================================================
+
+There are three ways to declare variables in JavaScript:
+
+1. const — for variables that should NOT change (constant reference)
+2. let — for variables that CAN change (block-scoped)
+3. var — for variables that CAN change (function-scoped, avoid in modern code)
+
+
+EXAMPLES:
+--------
+const accountId = 144553;           // const: cannot be reassigned
+let accountEmail = "hitesh@google.com";  // let: can be reassigned
+var accountPassword = "12345";      // var: can be reassigned (avoid)
+accountCity = "Jaipur";             // Without declaration: creates GLOBAL variable (NOT RECOMMENDED)
+let accountState;                   // let: allows declaration without initialization
+var id;                             // var: allows declaration without initialization
+let id2;                            // let: allows declaration without initialization
 
 const pi = 3.14;
 console.log(pi);
-//CASE SENSITIVE 
-
-//RULES FOR VARIABLE NAMING
-
-// Variable names in JavaScript must start with a letter, underscore (_) or dollar sign ($).
-// They can contain letters, digits, underscores, and dollar signs but cannot start with a digit.
-// Variable names are case-sensitive and cannot be JavaScript reserved keywords like "var" or "if".
-
-// you cannot use spaces 
-// var first_name = "harshit"; // snake case writing 
-// var firstName = "harshit"; // camel case writing  PREFER // convention 
-// start with small letter and use camelCase 
-// first name (invalid)
-
-// 'use strict' enables strict mode, which catches common coding mistakes and makes JS safer.
-// It prevents usage of undeclared variables and reserved keywords, improving code quality.
-// Always place it at the top of a script or function to enforce stricter parsing rules.
 
 
-// The following line would throw an error because `accountId` is a constant
-// accountId = 2; // not allowed
+===============================================================================
+                        PART 2: VARIABLE NAMING RULES
+===============================================================================
 
-/*
-Prefer not to use var
-because of issue in block scope and functional scope
-*/
+RULES FOR VARIABLE NAMING:
+--------------------------
 
-console.table([accountId, accountEmail, accountPassword, accountCity, accountState,id2,id])
-/*var vs let in JavaScript
-Scope 
-                     
-var: Function-scoped.(will be SAme throughout program).Allows re-declaration
-let: Block-scoped. ALLOW REASSIGNMENT BUT NOT REDECLARATION
-Hoisting
-var: Hoisted and initialized with undefined.
-let: Hoisted but not initialized (temporal dead zone). intialized with undefined
+✅ VALID:
+   - Must start with a letter, underscore (_), or dollar sign ($)
+   - Can contain letters, digits, underscores, and dollar signs
+   - Case-sensitive (myVar ≠ myvar)
 
+❌ INVALID:
+   - Cannot start with a digit (e.g., 1stName is invalid)
+   - Cannot be JavaScript reserved keywords (var, if, for, etc.)
+   - Cannot contain spaces
 
-// =================== BLOCK SCOPE vs FUNCTION SCOPE ===================
+NAMING CONVENTIONS:
+-------------------
+- snake_case: first_name = "harshit"  (rarely used in modern JS)
+- camelCase: firstName = "harshit"     (PREFERRED CONVENTION in JavaScript)
+- PascalCase: FirstName = "harshit"    (used for class/constructor names)
 
-// ------------------------ Key Concepts ------------------------
+BEST PRACTICE: Use camelCase for variables and functions, start with a lowercase letter.
 
-// 'let' and 'const' are BLOCK SCOPED:
-// - They are only accessible within the block (i.e., inside { ... }) where they are defined.
-
-// 'var' is FUNCTION SCOPED:
-// - It is accessible anywhere inside the entire function where it is declared,
-//   even if declared inside a smaller block like an if/for block.
-
-The window object is the global object.
-Variables declared with var at the global level are added as properties to the window object.
-However, variables declared with let or const at the global level are not added to window.
+EXAMPLES:
+---------
+var firstName = "Harshit";     // ✅ camelCase (preferred)
+var first_name = "Harshit";    // ❌ snake_case (not preferred in JavaScript)
+var FirstName = "Harshit";     // ❌ PascalCase (used for classes only)
+var first name = "Harshit";    // ❌ INVALID - contains space
 
 
-// ======================== CODE EXAMPLE ========================
+===============================================================================
+                        PART 3: var vs let vs const
+===============================================================================
 
-function myApp() {
-    if (true) {
-        // Declared using 'var', which is FUNCTION scoped
-        var firstName = "harshit";
-        console.log(firstName);  // ✅ Output: "harshit"
-    }
+┌──────────────┬─────────────────┬──────────────┬────────────────────┐
+│ Feature      │ var             │ let          │ const              │
+├──────────────┼─────────────────┼──────────────┼────────────────────┤
+│ Scope        │ Function-scoped │ Block-scoped │ Block-scoped       │
+│ Hoisting     │ Hoisted & init  │ Hoisted,TDZ  │ Hoisted, TDZ       │
+│              │ to undefined    │              │                    │
+│ Reassignment │ ✅ Allowed      │ ✅ Allowed   │ ❌ NOT allowed     │
+│ Redeclaration│ ✅ Allowed      │ ❌ NOT allow │ ❌ NOT allowed     │
+│ Global obj   │ Added to window │ NOT added    │ NOT added          │
+│ Modern use   │ ❌ Avoid        │ ✅ Preferred │ ✅ Preferred       │
+└──────────────┴─────────────────┴──────────────┴────────────────────┘
 
-    if (true) {
-        // Even though we are in a different block,
-        // 'firstName' is still accessible because 'var' is function-scoped
-        console.log(firstName);  // ✅ Output: "harshit"
-    }
 
-    // Still accessible here as well
-    console.log(firstName);      // ✅ Output: "harshit"
+CONST RULES:
+-----------
+const means the variable BINDING cannot change, but object/array CONTENTS can change.
+
+const person = { name: "Harsh" };
+person.name = "Sharma";  // ✅ Allowed - modifying object properties
+person = {};             // ❌ NOT allowed - reassigning the variable itself
+
+const arr = [1, 2, 3];
+arr.push(4);             // ✅ Allowed - modifying array contents
+arr = [];                // ❌ NOT allowed - reassigning the variable
+
+
+GLOBAL SCOPE BEHAVIOR:
+---------------------
+var is ADDED to the window object:
+    var globalVar = 10;
+    console.log(window.globalVar); // 10 ✅
+
+let and const are NOT added to window:
+    let globalLet = 20;
+    const globalConst = 30;
+    console.log(window.globalLet);     // undefined ❌
+    console.log(window.globalConst);   // undefined ❌
+
+
+===============================================================================
+                    PART 4: SCOPE (Global, Function, Block)
+===============================================================================
+
+SCOPE DEFINITION:
+-----------------
+Scope determines where variables are accessible in your code.
+
+There are three main scopes:
+1. Global Scope — accessible everywhere in the program
+2. Function Scope — accessible only inside the function where declared
+3. Block Scope — accessible only inside the { ... } block where declared
+
+
+TYPE 1: GLOBAL SCOPE
+--------------------
+✅ Accessible everywhere in the program
+
+var globalVar = 10;
+
+function myFunction() {
+    console.log(globalVar); // ✅ 10 - accessible here
 }
 
-// Call the function
-myApp();
+myFunction();
+console.log(globalVar);     // ✅ 10 - accessible here too
 
-/* ================= OUTPUT =================
-harshit
-harshit
-harshit
-============================================ */
 
-/* =============== What Happens Behind the Scenes ===============
+TYPE 2: FUNCTION SCOPE
+----------------------
+Variables declared inside a function are only accessible within that function.
 
-- The variable 'firstName' is declared with 'var' inside an if-block.
-- Because 'var' is function-scoped (not block-scoped), it is hoisted and available
-  throughout the entire function `myApp`, not just inside the if-block.
-
-So the same variable is being accessed in all three places, and it works fine.
-
-======================================================
-     Now, let’s contrast this behavior with `let` or `const`
-======================================================
-
-function myApp() {
-    if (true) {
-        let firstName = "harshit";
-        console.log(firstName); // ✅ "harshit"
-    }
-
-    if (true) {
-        console.log(firstName); // ❌ ReferenceError: firstName is not defined
-    }
-
-    console.log(firstName);     // ❌ ReferenceError: firstName is not defined
+function funcScopeExample() {
+    var funcVar = 20;
+    let funcLet = 30;
+    const funcConst = 40;
+    console.log(funcVar, funcLet, funcConst); // ✅ All accessible here
 }
 
-- In this version, `firstName` is block-scoped due to `let`.
-- So it's only accessible **within** the first `if` block.
-- Any access outside that block results in a ReferenceError.
-
-======================================================
-                SUMMARY
-======================================================
-- `var` → function-scoped: accessible anywhere in the function
-- `let` and `const` → block-scoped: accessible only inside the block `{}` where declared
-*/
+funcScopeExample();
+console.log(funcVar);  // ❌ ReferenceError: funcVar is not defined
 
 
-// 🔁 Hoisting means JavaScript moves declarations to the top of their scope
-// 🟡 Only declarations are hoisted, not initializations
+TYPE 3: BLOCK SCOPE
+-------------------
+'let' and 'const' are block-scoped (only accessible within { ... })
+'var' is NOT block-scoped (leaks out of blocks)
 
-// hoisting -> jab hum JS mein koi variable banate hain to wo do parts mein toot jaata hai:
-// 1. declaration part -> upar chala jaata hai (hoist hota hai)
-// 2. initialization part -> wahi reh jaata hai jahan likha gaya hai
-console.log(a); // undefined
-var a = 10;
-// JavaScript internally does:
-// var a;
-// console.log(a); // undefined
-// a = 10;
+EXAMPLE 1: let and const (BLOCK-SCOPED)
+------
+if (true) {
+    let blockLet = 50;
+    const blockConst = 60;
+    console.log(blockLet, blockConst);  // ✅ 50, 60 (accessible here)
+}
 
-
-
-// console.log(nm);    // Output: undefined (not error)
-// var nm = "Harsh";
-// var nm;             // declaration hoisted to the top
-// console.log(nm);    // undefined (because initialization hasn't happened yet)
-// nm = "Harsh";       // initialization happens here
+console.log(blockLet);    // ❌ ReferenceError: blockLet is not defined
+console.log(blockConst);  // ❌ ReferenceError: blockConst is not defined
 
 
+EXAMPLE 2: var (NOT BLOCK-SCOPED - LEAKS OUT)
+------
+if (true) {
+    var blockVar = 70;
+    console.log(blockVar);  // ✅ 70 (accessible here)
+}
 
-// var x = 1;   // global
-
-// {
-//    var x = 2; // still global
-// }
-
-// console.log(x); // Output: 2 ✅
-
-
+console.log(blockVar);  // ✅ 70 (LEAKS OUT - var is not block-scoped)
 
 
-// let a = 10; // 'a' declared in the outer (global) scope
+EXAMPLE 3: SHADOWING WITH let (Block-scoped)
+------
+let a = 10;  // Outer 'a'
 
-// {
-//   // This 'a' is a new variable, scoped only to this block
-//   let a = 20; 
-//   console.log("Inside:", a); // Output: 20 => refers to block-scoped 'a'
-// }
+{
+    let a = 20;  // Inner 'a' (shadows outer 'a')
+    console.log("Inside:", a);  // ✅ 20 (refers to block-scoped 'a')
+}
 
-// console.log("Outside:", a); // Output: 10 => refers to outer 'a', unaffected by block
-
-
-
-// const person = { name: "Harsh" };
-
-// person.name = "Sharma"; // ✅ allowed
-// person = {};            // ❌ Not allowed (TypeError)
-// // 'const' means the variable binding (reference) cannot change
-// // BUT if it's an object or array, you can still modify its contents
-
-// const person = { name: "Harsh" }; // person holds reference to the object
-
-// person.name = "Sharma"; // ✅ Allowed: we're changing a property of the object
-
-// person = {}; // ❌ Not allowed: we're trying to reassign the 'person' variable itself
+console.log("Outside:", a);  // ✅ 10 (refers to outer 'a', unaffected)
 
 
+EXAMPLE 4: SHADOWING WITH var (Function-scoped)
+------
+var x = 1;  // Global
 
-// ================= GLOBAL EXECUTION CONTEXT (GEC) ==================
+{
+    var x = 2;  // Same variable, NOT block-scoped
+}
 
-// When a JavaScript program starts, the JS engine creates a Global Execution Context.
-// It has two phases:
-// 1. Creation Phase
-// 2. Execution Phase
+console.log(x);  // ✅ 2 (overwritten because var is function-scoped)
 
-// -------------------- CREATION PHASE --------------------
-// - Memory is allocated for variables and functions.
-// - Variables declared with 'var' are hoisted and initialized to undefined.
-// - Functions are hoisted with their actual definitions.
-// - 'let' and 'const' are also hoisted, BUT not initialized. They go into the Temporal Dead Zone.
 
-// -------------------- EXECUTION PHASE --------------------
-// - Code is executed line by line.
-// - Variables are assigned actual values.
-// - Function calls are made and their execution contexts are pushed to the Call Stack.
+===============================================================================
+                        PART 5: HOISTING
+===============================================================================
 
-// ======================= EXAMPLE ========================
+HOISTING DEFINITION:
+--------------------
+Hoisting means JavaScript moves DECLARATIONS to the top of their scope during
+the creation phase, BEFORE code execution.
 
+IMPORTANT: Only DECLARATIONS are hoisted, NOT INITIALIZATIONS.
+
+
+HOISTING WITH var:
+------------------
+var is hoisted AND initialized to 'undefined'
+
+CODE AS WRITTEN:
+    console.log(a);  // What will this print?
+    var a = 10;
+
+CODE AS JAVASCRIPT INTERPRETS IT:
+    var a;           // Declaration hoisted
+    console.log(a);  // undefined (initialization hasn't happened yet)
+    a = 10;          // Initialization stays in place
+
+OUTPUT: undefined ✅
+
+
+HOISTING WITH let:
+------------------
+let is hoisted BUT NOT initialized (goes into Temporal Dead Zone)
+
+CODE AS WRITTEN:
+    console.log(age);  // What will this print?
+    let age = 25;
+
+OUTPUT: ❌ ReferenceError: Cannot access 'age' before initialization
+
+
+HOISTING WITH const:
+-------------------
+const is hoisted BUT NOT initialized (goes into Temporal Dead Zone)
+
+CODE AS WRITTEN:
+    console.log(country);  // What will this print?
+    const country = "India";
+
+OUTPUT: ❌ ReferenceError: Cannot access 'country' before initialization
+
+
+FUNCTION HOISTING:
+------------------
+Functions are hoisted COMPLETELY with their definitions
+
+CODE AS WRITTEN:
+    sayHello();  // Can we call before declaration?
+
+    function sayHello() {
+        console.log("Hello!");
+    }
+
+OUTPUT: ✅ "Hello!" (functions are fully hoisted)
+
+
+FUNCTION EXPRESSIONS ARE NOT HOISTED:
+------
+    greet();  // What will this print?
+
+    var greet = function() {
+        console.log("Hi!");
+    };
+
+OUTPUT: ❌ TypeError: greet is not a function
+REASON: Only the 'var' is hoisted (to undefined), not the function definition
+
+
+===============================================================================
+                    PART 6: TEMPORAL DEAD ZONE (TDZ)
+===============================================================================
+
+TEMPORAL DEAD ZONE DEFINITION:
+------------------------------
+The Temporal Dead Zone (TDZ) is the time between entering a scope and initializing
+a 'let' or 'const' variable. During this time, accessing the variable throws a
+ReferenceError.
+
+KEY POINTS:
+- Variables are hoisted but NOT initialized
+- Accessing them before initialization causes ReferenceError
+- TDZ ends when the line of declaration is executed
+
+
+EXAMPLE 1: let in Temporal Dead Zone
+-----
+{
+    // TDZ for 'city' starts here
+    // console.log(city); ❌ ReferenceError: Cannot access 'city' before initialization
+    let city = "Delhi";  // TDZ ends here
+    console.log(city);   // ✅ "Delhi" (now accessible)
+}
+
+
+EXAMPLE 2: const in Temporal Dead Zone
+-----
+{
+    // TDZ for 'country' starts here
+    // console.log(country); ❌ ReferenceError
+    const country = "India";  // TDZ ends here (and must be initialized)
+    console.log(country);     // ✅ "India"
+}
+
+
+EXAMPLE 3: Nested Scopes and TDZ
+-----
+let x = 100;  // Outer scope
+
+{
+    // TDZ for inner 'x' starts here
+    // console.log(x); ❌ ReferenceError (not accessing outer x, inner x is in TDZ)
+    let x = 200;  // TDZ ends here
+    console.log(x);  // ✅ 200
+}
+
+console.log(x);  // ✅ 100 (outer x, unaffected)
+
+
+WHY TDZ EXISTS:
+---------------
+TDZ is a safeguard to catch bugs. It prevents using variables before they are
+properly declared and initialized, making code more predictable and safe.
+
+
+===============================================================================
+                        PART 7: GLOBAL EXECUTION CONTEXT (GEC)
+===============================================================================
+
+GLOBAL EXECUTION CONTEXT DEFINITION:
+------------------------------------
+When a JavaScript program starts, the JS engine creates a Global Execution Context.
+The GEC has two phases:
+1. Creation Phase
+2. Execution Phase
+
+
+CREATION PHASE:
+---------------
+- Memory is allocated for variables and functions
+- Variables declared with 'var' are hoisted and initialized to 'undefined'
+- Functions are hoisted with their complete definitions
+- 'let' and 'const' are hoisted but NOT initialized (go into Temporal Dead Zone)
+- The global object (window in browsers, global in Node.js) is created
+- 'this' is set to the global object
+
+
+EXECUTION PHASE:
+----------------
+- Code is executed line by line
+- Variables are assigned actual values
+- Function calls create their own execution contexts (pushed to Call Stack)
+- Return values are processed
+
+
+EXAMPLE:
+--------
 console.log(myName);    // undefined (hoisted, but value not yet assigned)
 var myName = "Rahul";
+console.log(myName);    // "Rahul"
 
-// Behind the scenes:
-// var myName is hoisted to the top and initialized to undefined during the creation phase
-// In the execution phase, it gets the value "Rahul"
-
-sayHello();  // Output: "Hello!"
+sayHello();  // "Hello!" (function is fully hoisted)
 
 function sayHello() {
-  console.log("Hello!");
+    console.log("Hello!");
 }
 
-// The function 'sayHello' is hoisted completely with its definition
-// So we can call it before its actual declaration in code
-
-// ================= TEMPORAL DEAD ZONE (TDZ) =================
-
-// Variables declared using 'let' and 'const' are hoisted,
-// but they are not initialized until the actual line of code is executed.
-
-// The time between entering the block and initializing the variable is the Temporal Dead Zone
-
-// -------------------- EXAMPLE --------------------
-
-console.log(age);  // ❌ ReferenceError: Cannot access 'age' before initialization
-let age = 25;
-
-// What happens behind the scenes:
-// During creation phase: 'age' is hoisted but stays in TDZ
-// Trying to access it before initialization throws ReferenceError
-
-// -------------------- Another Example --------------------
-
-{
-  // TDZ for 'city' starts here
-  // console.log(city); ❌ ReferenceError
-  let city = "Delhi"; // TDZ ends here
-  console.log(city);  // ✅ Works fine, prints "Delhi"
-}
+BEHIND THE SCENES:
+- Creation Phase: var myName is initialized to undefined, sayHello function is stored
+- Execution Phase: Line 1 prints undefined, Line 2 assigns "Rahul", Line 3 calls function
 
 
+===============================================================================
+                    PART 8: REASSIGNMENT vs REDECLARATION
+===============================================================================
+
+REASSIGNMENT:
+-------------
+Reassignment means changing the VALUE of a variable that already exists.
+
+var a = 10;
+a = 20;      // ✅ Reassignment (changing value)
+
+let b = 30;
+b = 40;      // ✅ Reassignment (changing value)
+
+const c = 50;
+c = 60;      // ❌ Reassignment NOT allowed for const
 
 
-// This behavior helps prevent bugs caused by using variables before they are properly declared and initialized
+REDECLARATION:
+--------------
+Redeclaration means declaring the same variable name again.
 
-// Note: 'const' works the same way as 'let' in terms of hoisting and TDZ,
-// but you must also initialize it at the time of declaration
+var a = 10;
+var a = 20;   // ✅ Redeclaration allowed with var
 
-// -------------------- const Example --------------------
+let b = 30;
+let b = 40;   // ❌ Redeclaration NOT allowed with let
 
-{
-  // console.log(country); ❌ ReferenceError
-  const country = "India";  // Must be initialized
-  console.log(country);     // ✅ Prints "India"
-}
-
-// ================= SUMMARY =================
-// - All variables are hoisted during the creation phase.
-// - 'var' is initialized to undefined; 'let' and 'const' are not initialized.
-// - Accessing 'let' or 'const' before their line of declaration causes a ReferenceError due to TDZ.
-// - GEC is created when the script starts and contains global variables, functions, and the 'this' keyword.
-// - TDZ is a safeguard to ensure variables are not accessed before proper initialization.
+const c = 50;
+const c = 60; // ❌ Redeclaration NOT allowed with const
 
 
-// Re-declaration
-// var: Allows re-declaration within the same scope.
-// let: Does not allow re-declaration within the same scope.cannot access outside the scope
-// Usage
-// var: Older code, backward compatibility.
-// let: Modern code, preferred due to block-scoping and fewer bugs.
-// Summary
-// Use let for block-scoped variables.
-// Use var for function-scoped variables or older code compatibility.*/
+COMPARISON TABLE:
+-----------------
+┌─────────────────────┬────────┬────────┬────────┐
+│ Operation           │ var    │ let    │ const  │
+├─────────────────────┼────────┼────────┼────────┤
+│ Reassignment        │ ✅     │ ✅     │ ❌     │
+│ Redeclaration       │ ✅     │ ❌     │ ❌     │
+├─────────────────────┼────────┼────────┼────────┤
+│ var a = 10;         │        │        │        │
+│ var a = 20;         │ ✅     │ N/A    │ N/A    │
+│ a = 30;             │ ✅     │ ✅     │ ❌     │
+└─────────────────────┴────────┴────────┴────────┘
 
 
+===============================================================================
+                        PART 9: BEST PRACTICES
+===============================================================================
 
-// // ✅ Global Scope - accessible everywhere
-// var globalVar = 10;
+1. ✅ ALWAYS USE 'let' or 'const' (AVOID 'var')
+   - var causes confusion with scoping and hoisting
+   - let and const have clearer, more predictable behavior
+   - Modern JavaScript strongly prefers let/const
 
-// function funcScopeExample() {
-//   // ✅ Function Scope - only inside this function
-//   var funcVar = 20;
-//   let funcLet = 30;
-//   const funcConst = 40;
-// }
+2. ✅ USE 'const' BY DEFAULT
+   - Prevents accidental reassignment
+   - Shows intent: this value should not change
+   - If you need to reassign, then use let
 
-// // ❌ console.log(funcVar); // Error: not accessible outside
+3. ✅ USE 'let' WHEN YOU NEED REASSIGNMENT
+   - Only when the value will definitely change
 
-// if (true) {
-//   // ✅ Block Scope - only inside this block
-//   let blockLet = 50;
-//   const blockConst = 60;
+4. ✅ USE CAMELCASE FOR VARIABLE NAMES
+   - firstName, accountId, userEmail (not first_name, account_id)
 
-//   // ❌ var is NOT block-scoped, it leaks out
-//   var blockVar = 70;
-// }
+5. ✅ DECLARE VARIABLES CLOSE TO WHERE THEY'RE USED
+   - Don't declare everything at the top
+   - Improves code readability
 
-// // ❌ console.log(blockLet); // Error
-// // ❌ console.log(blockConst); // Error
-// console.log(blockVar); // ✅ 70 (var is not block-scoped)
+6. ❌ AVOID GLOBAL VARIABLES
+   - Creates tight coupling
+   - Makes code hard to test and maintain
+   - Use function/block scope instead
+
+7. ✅ INITIALIZE VARIABLES WHEN DECLARING THEM
+   - Avoid undefined values if possible
+   - Makes code more predictable
+
+
+EXAMPLE OF BEST PRACTICES:
+--------------------------
+// ❌ Bad
+var name;
+var age;
+var email;
+// ... 100 lines of code ...
+name = "Rahul";
+age = 25;
+email = "rahul@example.com";
+
+// ✅ Good
+const name = "Rahul";
+const age = 25;
+const email = "rahul@example.com";
+
+// ✅ Good (if value changes)
+let userCount = 0;
+userCount++;  // Reassignment when needed
+
+
+===============================================================================
+                        PART 10: CONSOLE OUTPUT EXAMPLE
+===============================================================================
+
+const accountId = 144553;
+let accountEmail = "hitesh@google.com";
+var accountPassword = "12345";
+let accountState;
+var id;
+let id2;
+
+console.log(accountId, accountEmail, accountPassword, accountState, id, id2);
+// Output: 144553, hitesh@google.com, 12345, undefined, undefined, undefined
+
+console.table([accountId, accountEmail, accountPassword, accountState, id, id2]);
+// Output: Displays data in a formatted table
+
+
+===============================================================================
+                            SUMMARY TABLE
+===============================================================================
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│                                                                            │
+│ USE const        → By default, for values that won't change               │
+│ USE let          → When you need to reassign a variable                   │
+│ AVOID var        → Avoid in modern JavaScript (use let/const instead)      │
+│                                                                            │
+│ SCOPE:           → let & const are block-scoped, var is function-scoped   │
+│ HOISTING:        → All are hoisted, but var initializes to undefined      │
+│ TDZ:             → let & const go into Temporal Dead Zone until executed   │
+│                                                                            │
+│ REASSIGN:        → const ❌, let ✅, var ✅                               │
+│ REDECLARE:       → const ❌, let ❌, var ✅                               │
+│                                                                            │
+│ NAMING:          → Use camelCase (myVariable, not my_variable)            │
+│ RULES:           → Start with letter/_ /$ , no spaces, no reserved words  │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+===============================================================================
+*/

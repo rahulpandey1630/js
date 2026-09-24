@@ -32,23 +32,16 @@ It's not compiled ahead-of-time (AOT) like C++.
 It's compiled at runtime for performance
 
 
-
-
-
 🔹 2. Dynamically Typed
 In JavaScript, variables are not tied to a specific data type. Their type is determined at runtime and can change during execution.
 
 Example:
-cpp
-Copy
-Edit 
+
 // ❌ C++ Code (will not compile)
 int a = 1;
 a = "hello";   // Error
 a = true;      // Error
-js
-Copy
-Edit
+
 // ✅ JavaScript Code (valid)
 var a = 1;
 a = "harkirat";
@@ -85,10 +78,10 @@ No need to manually allocate/free memory.
 Helps prevent memory leaks in most cases.
 
 🧠 Conclusion: Is JavaScript a Good Language? 
-Pros	Cons                                   
-Beginner friendly	Slower than compiled languages
+Pros	                        Cons                                   
+Beginner friendly	            Slower than compiled languages
 Widely used in web development	More runtime errors
-Flexible & dynamic	Difficult to debug large applications
+Flexible & dynamic	            Difficult to debug large applications
 No need for manual memory mgmt	Weak typing can lead to bugs
 
 🔧 Newer runtimes like Bun are working to optimize JS performance, but C++ or Rust still outperform JS for system-level or compute-heavy tasks.
