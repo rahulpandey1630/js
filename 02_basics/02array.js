@@ -1,55 +1,101 @@
-// Define arrays for Marvel and DC heroes
+/*
+===============================================================================
+                  JAVASCRIPT ARRAY MANIPULATION – CONCISE GUIDE
+===============================================================================
+
+===============================================================================
+                    COMBINING ARRAYS
+===============================================================================
+
+PUSH (Creates nested array):
 const marvel_heros = ["thor", "Ironman", "spiderman"];
 const dc_heros = ["superman", "flash", "batman"];
 
-// Add the dc_heros array as a single element to marvel_heros
-// This creates a nested array
-// marvel_heros.push(dc_heros);
+marvel_heros.push(dc_heros);
+console.log(marvel_heros);     // ["thor", "Ironman", "spiderman", ["superman", "flash", "batman"]]
+console.log(marvel_heros[3][1]); // "flash" (access nested element)
 
-// Check the updated marvel_heros array and access the nested dc_heros
-// console.log(marvel_heros);             // Outputs: ["thor", "Ironman", "spiderman", ["superman", "flash", "batman"]]
-// console.log(marvel_heros[3][1]);       // Outputs: "flash"
+CONCAT (Merges arrays):
+const allHeros = marvel_heros.concat(dc_heros);
+console.log(allHeros); // ["thor", "Ironman", "spiderman", "superman", "flash", "batman"]
 
-// Concatenate marvel_heros and dc_heros into a single array
-// const allHeros = marvel_heros.concat(dc_heros);
-// console.log(allHeros);                 // Outputs: ["thor", "Ironman", "spiderman", "superman", "flash", "batman"]
-  
-// Use spread operator to merge marvel_heros and dc_heros into a new array
+SPREAD OPERATOR (Merges arrays):
 const all_new_heros = [...marvel_heros, ...dc_heros];
-console.log(all_new_heros);              // Outputs: ["thor", "Ironman", "spiderman", "superman", "flash", "batman"]
+console.log(all_new_heros); // ["thor", "Ironman", "spiderman", "superman", "flash", "batman"]
 
-// Define a nested array
+SPREAD with extra elements:
+const array1 = [1, 2, 3];
+const array2 = [5, 6, 7];
+const newArray = [...array1, ...array2, 89, 69];
+console.log(newArray); // [1, 2, 3, 5, 6, 7, 89, 69]
+
+SPREAD a string into array:
+const newArray = [..."123456789"];
+console.log(newArray); // ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+
+===============================================================================
+                    FLATTENING NESTED ARRAYS
+===============================================================================
+
+flat(depth) – Flatten nested arrays
 const another_array = [1, 2, 3, [4, 5, 6], 7, [6, 7, [4, 5]]];
 
-// Flatten the nested array to a single level using Infinity depth(can give depth 1 2 )
-const real_another_array = another_array.flat(Infinity);
-console.log(real_another_array);         // Outputs: [1, 2, 3, 4, 5, 6, 7, 6, 7, 4, 5]
+console.log(another_array.flat()); // Depth 1 (default)
+// [1, 2, 3, 4, 5, 6, 7, 6, 7, [4, 5]]
 
-// Check if a value is an array
-console.log(Array.isArray("Hitesh"));    // Outputs: false (since "Hitesh" is a string)
-console.log(Array.from("Hitesh"));       // Converts a string to an array of characters: [ 'H', 'i', 't', 'e', 's', 'h' ]
-console.log(Array.from({name: "hitesh"})); // Interesting case: Outputs an empty array since the object is not iterable
+console.log(another_array.flat(2)); // Depth 2
+// [1, 2, 3, 4, 5, 6, 7, 6, 7, 4, 5]
 
-// Create an array from individual  scores
+console.log(another_array.flat(Infinity)); // Flatten completely
+// [1, 2, 3, 4, 5, 6, 7, 6, 7, 4, 5]
+
+
+===============================================================================
+                    ARRAY CHECKING & CONVERSION
+===============================================================================
+
+Array.isArray() – Check if value is array
+console.log(Array.isArray("Hitesh")); // false (string, not array)
+console.log(Array.isArray([1, 2, 3])); // true
+
+Array.from() – Convert iterable to array
+console.log(Array.from("Hitesh")); // ['H', 'i', 't', 'e', 's', 'h']
+console.log(Array.from({name: "hitesh"})); // [] (objects not iterable)
+
+Array.of() – Create array from individual values
 let score1 = 100;
 let score2 = 200;
 let score3 = 300;
-console.log(Array.of(score1, score2, score3)); // Outputs: [100, 200, 300]
+
+console.log(Array.of(score1, score2, score3)); // [100, 200, 300]
 
 
+===============================================================================
+                    QUICK REFERENCE
+===============================================================================
 
+COMBINING ARRAYS:
+- push(array) → add as nested element (mutates)
+- concat(array) → merge, returns new array
+- [...array1, ...array2] → spread operator, merge
 
-// ----------- Spread Operator with Arrays -----------
+FLATTENING:
+- flat() → flatten 1 level (default)
+- flat(depth) → flatten to specified depth
+- flat(Infinity) → flatten completely
 
-const array1 = [1, 2, 3];
-const array2 = [5, 6, 7];
+CONVERSION:
+- Array.isArray(value) → boolean check
+- Array.from(iterable) → convert to array
+- Array.of(values...) → create array from values
 
-// Combine array1 and array2 with extra values using spread
-// const newArray = [...array1, ...array2, 89, 69];
-// console.log(newArray);
-// Output: [1, 2, 3, 5, 6, 7, 89, 69]
+KEY DIFFERENCES:
+✅ push() creates nested array
+✅ concat() and spread merge arrays
+✅ flat() removes nesting levels
+✅ Array.from() converts iterables to arrays
+✅ Array.of() creates array from arguments
 
-// Spread a string into individual characters (each becomes an element in array)
-const newArray = [..."123456789"];
-console.log(newArray);
-// Output: ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+===============================================================================
+*/

@@ -1,4 +1,13 @@
-  // Function to print letters of a name
+/* 
+===============================================================================
+            JAVASCRIPT FUNCTIONS – DECLARATIONS, PARAMETERS & CALLBACKS
+===============================================================================
+
+===============================================================================
+                    FUNCTION DECLARATION
+===============================================================================
+
+Simple function (no parameters, no return):
 function sayMyName() {
     console.log("H");
     console.log("I");
@@ -8,121 +17,129 @@ function sayMyName() {
     console.log("H");
 }
 
-// sayMyName()
-// Output:
-// H
-// I
-// T
-// E
-// S
-// H
+sayMyName();
+// Output: H, I, T, E, S, H
 
-/* 
-Important Points:
-1. The `sayMyName` function is a **Function Declaration**.
-2. It can be called **before or after** its definition because of **hoisting**.
-
-sayHello(); // ✅ No error! This works due to hoisting.
-
-function sayHello() {
-    console.log("Hello, Rahul!");
-}
-Explanation: Even though sayHello() is called before the function sayHello() is defined, 
-it works fine because JavaScript hoists the function declaration to the top internally.
-3. It does not take any parameters or return any value.
-*/
-
-// Function Declaration Example
-function addTwoNumbers(number1, number2) { //during function declaration are parameters
-    return number1 + number2; // no statement will run after return statement
-}
-const result1 = addTwoNumbers(3, 5); // during function call are arguments
-console.log("Result: ", result1); 
-// Output: Result: 8
-
-// Function Expression Example
-const subtractTwoNumbers = function(number1, number2) {
-    return number1 - number2;
-}
-const resultSubtraction = subtractTwoNumbers(10, 5);
-console.log("Subtraction Result: ", resultSubtraction);
-// Output: Subtraction Result: 5
-
-// Arrow Function Example
-const multiplyTwoNumbers = (number1, number2) => number1 * number2;
-const resultMultiplication = multiplyTwoNumbers(4, 5);
-console.log("Multiplication Result: ", resultMultiplication);
-// Output: Multiplication Result: 20
-
-
-// -------------------- Arrow Functions in JavaScript --------------------
-
-// 🔹 What is an Arrow Function?
-// Arrow functions provide a shorter syntax for writing functions.
-// Best used for small, anonymous functions.
-
-// 🔹 Syntax Comparison:
-
-// Normal function
-function add(a, b) {
-  return a + b;
-}
-
-// Arrow function
-const addArrow = (a, b) => {
-  return a + b;
-};
-
-// 🔹 One-liner Arrow Function (with implicit return)
-const multiply = (a, b) => a * b;
-console.log(multiply(3, 4)); // ✅ Output: 12
-
-// 🔹 Arrow Function with One Parameter
-const square = x => x * x;
-console.log(square(5)); // ✅ Output: 25
-
-// 🔹 Arrow Function with No Parameters
-const greet = () => "Hello!";
-console.log(greet()); // ✅ Output: "Hello!"
-
-// 🔹 Arrow Function inside forEach (commonly used in array methods)
-const nums = [1, 2, 3];
-nums.forEach(num => { 
-  console.log(num * 2);
-});
-// ✅ Output:
-// 2
-// 4
-// 6
-
-// ⚠️ Note:
-// Arrow functions DO NOT have their own 'this' context.
-// They inherit 'this' from the surrounding (lexical) scope.
-// So avoid arrow functions as methods inside objects if 'this' is needed.
-
-
-
-/*
-Key Points on Functions:
-1. **Function Declaration** is hoisted.
-2. **Function Expression** and **Arrow Functions** are not hoisted.
-3. Functions can accept parameters and return values.
-4. If no `return` is provided, the function returns `undefined`.
-*/
-
+With parameters and return:
 function addTwoNumbers(number1, number2) {
     return number1 + number2;
 }
 
 const result = addTwoNumbers(3, 5);
-console.log("Result: ", result);
-// Output: Result: 8
+console.log("Result:", result); // Result: 8
+
+HOISTING:
+Function declarations are hoisted – can call before defining:
+
+sayHello(); // ✅ Works (hoisted)
+
+function sayHello() {
+    console.log("Hello, Rahul!");
+}
+
+KEY POINTS:
+✅ Called before or after definition (hoisted)
+✅ Use 'return' to send value back (nothing after return runs)
+✅ No return = undefined
+✅ Parameters at declaration, Arguments at call
 
 
+===============================================================================
+                    FUNCTION EXPRESSION
+===============================================================================
 
-// Function with Default Parameters
- // if no parameters provide then  sam used. even no default parameter provided then undefined printed at username
-function loginUserMessage(username = "sam") { //undefined when no values provided.    undefined+undefined=NaN
+Store function in variable:
+const subtractTwoNumbers = function(number1, number2) {
+    return number1 - number2;
+};
+
+const resultSubtraction = subtractTwoNumbers(10, 5);
+console.log("Subtraction Result:", resultSubtraction); // Subtraction Result: 5
+
+NOT HOISTED:
+subtractTwoNumbers(10, 5); // ❌ ReferenceError (not hoisted)
+
+const subtractTwoNumbers = function(number1, number2) {
+    return number1 - number2;
+};
+
+KEY POINTS:
+✅ Stored in variable
+✅ NOT hoisted (TDZ with let/const)
+✅ Can be anonymous
+
+
+===============================================================================
+                    ARROW FUNCTIONS
+===============================================================================
+
+SYNTAX COMPARISON:
+
+Regular function:
+function add(a, b) {
+    return a + b;
+}
+
+Arrow function (explicit return):
+const addArrow = (a, b) => {
+    return a + b;
+};
+
+One-liner arrow (implicit return):
+const multiply = (a, b) => a * b;
+console.log(multiply(3, 4)); // 12
+
+SINGLE PARAMETER (no parentheses):
+const square = x => x * x;
+console.log(square(5)); // 25
+
+NO PARAMETERS (empty parentheses):
+const greet = () => "Hello!";
+console.log(greet()); // Hello!
+
+WITH ARRAY METHODS (common pattern):
+const nums = [1, 2, 3];
+nums.forEach(num => console.log(num * 2));
+// Output: 2, 4, 6
+
+HOISTING:
+NOT hoisted (like function expressions)
+
+add(2, 3); // ❌ ReferenceError
+
+const add = (a, b) => a + b;
+
+'this' CONTEXT:
+⚠️ Arrow functions DO NOT have their own 'this'
+   They inherit 'this' from surrounding (lexical) scope
+
+❌ Avoid as object methods if 'this' needed:
+const obj = {
+    value: 10,
+    getValue: () => this.value // Wrong! 'this' = global scope
+};
+
+✅ Use regular function for 'this':
+const obj = {
+    value: 10,
+    getValue: function() { return this.value; } // Correct
+};
+
+KEY POINTS:
+✅ Shorter syntax than regular functions
+✅ Implicit return for one-liners
+✅ NOT hoisted (TDZ with const/let)
+✅ No 'this' context (lexical binding)
+✅ Great for callbacks, array methods
+✅ Avoid for object methods needing 'this'
+
+
+===============================================================================
+                    DEFAULT PARAMETERS
+===============================================================================
+
+Default value used if no argument passed:
+function loginUserMessage(username = "sam") {
     if (!username) {
         console.log("Please enter a username");
         return;
@@ -130,120 +147,128 @@ function loginUserMessage(username = "sam") { //undefined when no values provide
     return `${username} just logged in`;
 }
 
-console.log(loginUserMessage());
-// Output: sam just logged in
+console.log(loginUserMessage()); // sam just logged in
+console.log(loginUserMessage("Rahul")); // Rahul just logged in
 
-console.log(loginUserMessage("Rahul"));
-// Output: Rahul just logged in
+BEHAVIOR:
+✅ Argument passed → overrides default
+✅ No argument → uses default
+✅ undefined passed → uses default
+✅ If no default, undefined parameter remains undefined
 
-/*
-Important Points on Default Parameters:
-1. If no value is passed for `username`, the default value "sam" is used.
-2. If a value is passed, it overrides the default.
-3. If a parameter is `undefined`, the default value is used.
-*/
+Multiple defaults:
+function greet(name = "Guest", greeting = "Hello") {
+    return `${greeting}, ${name}!`;
+}
 
-// Rest Parameters Example
+console.log(greet()); // Hello, Guest!
+console.log(greet("Rahul")); // Hello, Rahul!
+console.log(greet("Rahul", "Hi")); // Hi, Rahul!
+
+
+===============================================================================
+                    REST PARAMETERS (...)
+===============================================================================
+
+Accept any number of arguments as array:
 function calculateCartPrice(val1, val2, ...num1) {
-    return num1;
+    return num1; // returns rest as array
 }
 
 console.log(calculateCartPrice(200, 400, 500, 2000));
-// Output: [500, 2000] as 200 and 400 are val 1 and 2
+// Output: [500, 2000]
 
-
-
-// The '...' operator in JavaScript has two meanings based on where it is used:
-
-// ✅ Rest Operator:
-// When used in function parameters, it gathers multiple arguments into a single array.stores in the array
-// Example:
-function sum(...nums) {
-  return nums.reduce((a, b) => a + b, 0);
-}
-// sum(1, 2, 3) → nums = [1, 2, 3]
-
-// ✅ Spread Operator:
-// When used in arrays or objects, it expands or unpacks elements from them.
-// Example with array:
-const arr1 = [1, 2];
-const arr2 = [...arr1, 3, 4]; // arr2 = [1, 2, 3, 4]
-
-// Example with object:
-const obj1 = { a: 1 };
-const obj2 = { ...obj1, b: 2 }; // obj2 = { a: 1, b: 2 }
-
-
-
-
-
-// Define a function 'addAll' using rest parameters (...numbers)
-// This allows us to pass any number of arguments to the function
-
-
-function addAll(...numbers){
-    // Initialize a variable 'total' to store the sum
+SUM ALL ARGUMENTS:
+function addAll(...numbers) {
     let total = 0;
-
-    // Loop through each 'number' in the 'numbers' array
-    for(let number of numbers){
-        // Add each number to the total
+    for (let number of numbers) {
         total = total + number;
     }
-
-    // Return the final total
     return total;
 }
 
-// Call the function 'addAll' with arguments 4, 5, 4, 2, 10
-const ans = addAll(4,5,4,2,10); 
+const ans = addAll(4, 5, 4, 2, 10);
+console.log(ans); // Output: 25
 
-// Print the result to the console
-console.log(ans);  // Output: 25
+WITH REDUCE:
+function sum(...nums) {
+    return nums.reduce((a, b) => a + b, 0);
+}
 
-/*
-Key Points on Rest Parameters:
-1. **Rest Parameters** allow a function to accept an indefinite number of arguments as an array.
-2. `val1` and `val2` are handled separately, and the rest of the values go into `num1`.
-*/
+console.log(sum(1, 2, 3)); // 6
+
+KEY POINTS:
+✅ '...' gathers arguments into array
+✅ Must be last parameter
+✅ Collects all remaining arguments
+✅ Useful for variable arguments
+✅ Parameter becomes array
 
 
-// ✅ PARAMETER DESTRUCTURING IN JAVASCRIPT
-// This is especially useful when working with objects, such as in React props.
+===============================================================================
+                    SPREAD vs REST OPERATOR
+===============================================================================
 
-// Defining an object named 'person'
+BOTH use '...' but different purposes:
+
+REST OPERATOR (...):
+Used in FUNCTION PARAMETERS
+Gathers multiple arguments into SINGLE ARRAY
+
+function sum(...nums) {
+    return nums.reduce((a, b) => a + b, 0);
+}
+
+sum(1, 2, 3); // nums = [1, 2, 3]
+
+SPREAD OPERATOR (...):
+Used in ARRAYS and OBJECTS
+Expands/unpacks elements FROM array/object
+
+Spread in array:
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3, 4]; // [1, 2, 3, 4]
+
+Spread in object:
+const obj1 = { a: 1 };
+const obj2 = { ...obj1, b: 2 }; // { a: 1, b: 2 }
+
+REST: Gathering values INTO array
+SPREAD: Spreading values FROM array/object
+
+
+===============================================================================
+                    PARAMETER DESTRUCTURING
+===============================================================================
+
+DESTRUCTURING OBJECTS IN PARAMETERS:
+
+Traditional way:
+function printDetails(obj) {
+    console.log(obj.firstName);
+    console.log(obj.gender);
+}
+
+Parameter destructuring (modern):
+function printDetails({ firstName, gender, age }) {
+    console.log(firstName); // "harshit"
+    console.log(gender); // "male"
+    console.log(age); // 500
+}
+
 const person = {
-    firstName: "harshit",  // key-value pair: firstName
-    gender: "male",        // key-value pair: gender
-    age: 500               // key-value pair: age
-}
+    firstName: "harshit",
+    gender: "male",
+    age: 500
+};
 
-// ❌ Traditional way of accessing object properties inside a function
-// function printDetails(obj){
-//     console.log(obj.firstName);
-//     console.log(obj.gender);
-// }
-
-// ✅ Parameter destructuring method
-function printDetails({firstName, gender, age}) {
-    // The object is destructured directly in the function parameter
-    // So, 'firstName', 'gender', and 'age' are extracted from the 'person' object
-
-    console.log(firstName); // Output: "harshit"
-    console.log(gender);    // Output: "male"
-    console.log(age);       // Output: 500
-}
-
-// Calling the function with the 'person' object
 printDetails(person);
 
-
-
-// Handling Objects as Function Parameters
+PRACTICAL EXAMPLE:
 const user = {
     username: "hitesh",
     price: 199
-}
+};
 
 function handleObject(anyobject) {
     console.log(`Username is ${anyobject.username} and price is ${anyobject.price}`);
@@ -252,66 +277,154 @@ function handleObject(anyobject) {
 handleObject(user);
 // Output: Username is hitesh and price is 199
 
-//another way passing object directly 
+// Or pass object directly:
 handleObject({
     username: "sam",
     price: 399
 });
 // Output: Username is sam and price is 399
 
-/*
-Key Points on Objects as Function Parameters:
-1. Functions can accept objects as parameters.
-2. Object properties can be accessed using dot notation.
-3. You can pass an entire object or create one directly in the function call.
-*/
 
-// Handling Arrays as Function Parameters
-const myNewArray = [200, 400, 100, 600];
-
+DESTRUCTURING ARRAYS IN PARAMETERS:
 function returnSecondValue(getArray) {
     return getArray[1];
 }
 
-console.log(returnSecondValue(myNewArray));
-// Output: 400
-
 console.log(returnSecondValue([200, 400, 500, 1000]));
 // Output: 400
 
-/*
-Key Points on Arrays as Function Parameters:
-1. Functions can accept arrays and access their elements using index notation.
-2. Arrays can be passed directly in the function call or via a variable.
-*/
-
-
-
-
-// ✅ A **callback function** is a function that is **passed as an argument** to another function,
-//    and is then **executed inside that function**.
-//    It's commonly used when you want one function to "call back" another function after it finishes some work.
-//    This is especially useful in asynchronous programming (e.g., in setTimeout, fetch, etc.)
-
-// This is a simple function that takes a `name` and logs some messages.
-// We'll use this as our callback function.
-function myFunc2(name){
-    console.log("inside my func 2");                 // This line runs when the callback is executed
-    console.log(`your name is ${name}`);             // Prints the name passed by the caller
+Better with destructuring:
+function returnSecondValue([, second]) {
+    return second;
 }
 
-// This function accepts another function as its argument — this is how we accept a callback.
-// The `callback` parameter is expected to be a function.
-function myFunc(callback){
-    console.log("hello there I am a func and I can.."); // A message before calling the callback
-    callback("harshit");                                  // We call the passed-in function (callback) and pass "harshit" as argument
+console.log(returnSecondValue([200, 400, 500, 1000])); // 400
+
+
+===============================================================================
+                    CALLBACK FUNCTIONS
+===============================================================================
+
+Definition: Function passed as argument to another function,
+executed inside that function.
+
+BASIC EXAMPLE:
+function myFunc2(name) {
+    console.log("inside my func 2");
+    console.log(`your name is ${name}`);
 }
 
-// Now we call `myFunc` and pass `myFunc2` as an argument.
-// This means: inside `myFunc`, it will run `myFunc2("harshit")`
+function myFunc(callback) {
+    console.log("hello there I am a func and I can..");
+    callback("harshit"); // Execute callback with argument
+}
+
 myFunc(myFunc2);
+// Output:
+// hello there I am a func and I can..
+// inside my func 2
+// your name is harshit
+
+CALLBACK AS ARROW FUNCTION:
+function myFunc(callback) {
+    console.log("Starting task");
+    callback("data");
+}
+
+myFunc((data) => {
+    console.log("Callback received:", data);
+});
+// Output:
+// Starting task
+// Callback received: data
+
+CALLBACK IN ARRAY METHODS:
+const nums = [1, 2, 3];
+nums.forEach((num) => {
+    console.log(num * 2);
+});
+// Output: 2, 4, 6
+
+Filter with callback:
+const even = nums.filter((num) => num % 2 === 0);
+
+Map with callback:
+const doubled = nums.map((num) => num * 2);
+
+CALLBACK IN SETTIMEOUT:
+setTimeout(() => {
+    console.log("After 1 second");
+}, 1000);
+
+KEY POINTS:
+✅ Function passed as argument
+✅ Executed inside another function
+✅ Often used for async operations
+✅ Common in setTimeout, fetch, array methods
+✅ Arrow functions ideal for callbacks
 
 
+===============================================================================
+                    QUICK REFERENCE
+===============================================================================
 
+DECLARATION TYPES:
+- Function declaration: function name() { } (hoisted)
+- Function expression: const f = function() { } (not hoisted)
+- Arrow function: const f = () => { } (not hoisted)
 
+PARAMETERS:
+- Regular: function(a, b) { }
+- Default: function(a = 5, b = 10) { }
+- Rest: function(a, b, ...rest) { }
+- Destructured: function({ name, age }) { }
 
+RETURN:
+- explicit: return value
+- implicit arrow: const f = (a, b) => a + b
+- no return: returns undefined
+
+ARROW SYNTAX:
+- Multiple params: (a, b) => a + b
+- Single param: x => x * 2
+- No params: () => "hi"
+- Multi-line: (a, b) => { const sum = a + b; return sum; }
+
+COMMON PATTERNS:
+- Callback: func(callback) { callback() }
+- Array method: arr.map(x => x * 2)
+- Default params: function(name = "Guest")
+- Rest params: function(...args)
+- Object param: function({ name, age })
+- Array destructuring: function([first, second])
+
+HOISTING:
+- Function declarations: fully hoisted
+- Function expressions: not hoisted (TDZ)
+- Arrow functions: not hoisted (TDZ)
+
+'this' CONTEXT:
+- Regular function: 'this' = call context
+- Arrow function: 'this' = lexical scope
+- Use regular for object methods
+- Use arrow for callbacks
+
+COMMON CALLBACKS:
+- setTimeout(callback, delay)
+- array.forEach(callback)
+- array.map(callback)
+- array.filter(callback)
+- fetch(url).then(callback)
+
+KEY POINTS:
+✅ Functions are first-class objects
+✅ Can pass functions as arguments
+✅ Can return functions
+✅ Closures capture outer scope
+✅ Callbacks enable async patterns
+✅ Destructuring simplifies parameter access
+✅ Default parameters prevent undefined
+✅ Rest params handle variable arguments
+
+===============================================================================
+*/

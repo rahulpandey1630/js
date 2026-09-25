@@ -1,127 +1,161 @@
-// Arrays allow storing a collection of multiple values under a single variable name.
-// They are resizable, zero-indexed, and can hold a mix of different data types (numbers, strings, etc.).
-// Arrays are a special type of object; typeof returns "object" because arrays are built on top of objects.
+/*
+===============================================================================
+                        JAVASCRIPT ARRAYS – CONCISE GUIDE
+===============================================================================
 
-const myArr = [0, 1, 2, 3, 4, 5];            // Define an array with numbers 0 to 5
-const myHeroes = ["shaktiman", "naagraj"];   // Define an array with hero names
-// let mixed = [1,2,2.3, "string", null, undefined]; // in js array can hold different types of values
- //modifying   myArr[2]=6;
-const myArr2 = new Array(1, 2, 3, 4);        // Create a new array using the Array constructor
-// console.log(myArr[1]);                       // Access and print the second element (1) of myArr
-                                             //undefined when no element at that index
-//console.log(Array.isArray(fruits)); TO CHECK IF IT IS ARRAY
+Arrays are collections of multiple values under a single variable.
+- Zero-indexed
+- Resizable
+- Can hold mixed data types
+- typeof returns "object" (arrays are special objects)
+- Use const for array variables
 
+===============================================================================
+                    ARRAY CREATION
+===============================================================================
 
-// Use const for creating array
-const fruits = ["apple", "mango"]; // The variable 'fruits' holds a reference to heap memory (e.g., 0x11)
+Array literal:
+const myArr = [0, 1, 2, 3, 4, 5];
+const myHeroes = ["shaktiman", "naagraj"];
 
-// Modifying the contents of the array is allowed
-fruits.push("banana");
+Mixed data types:
+let mixed = [1, 2, 2.3, "string", null, undefined];
 
-// Output: ["apple", "mango", "banana"]
-console.log(fruits);
+Array constructor:
+const myArr2 = new Array(1, 2, 3, 4);
 
-
-// Array methods
-
-// Add elements to the end of the array
-// myArr.push(6);
-// myArr.push(7);
-
-// Remove the last element from the array
-// myArr.pop();
-
-// // Add elements to the beginning of the array. time consuming if large set
-// myArr.unshift(9);
-
-// // Remove the first element from the array
-// myArr.shift();
-
-// // Check if the array includes the number 9
-// // console.log(myArr.includes(9));              // Outputs false if 9 is not present
-
-// // Get the index of the number 3 in the array
-// // console.log(myArr.indexOf(3));               // Outputs the index of 3, or -1 if not found
-
-// // Join the elements of the array into a string
-// const newArr = myArr.join();                 // Joins all elements into a string separated by commas 0,1,2,3,4,5
-
-// // console.log(myArr);                          // Outputs the current state of myArr
-// // console.log(newArr);                         // Outputs the string representation of myArr
-
-// // slice and splice
-
-console.log("A ", myArr);                    // Outputs the initial state of myArr
-
-// Slice a portion of the array from index 1 to 2 (3rd element is not included)
-const myn1 = myArr.slice(1, 3);
-
-console.log(myn1);                           // Outputs the sliced portion [1, 2]
-console.log("B ", myArr);                    // Outputs the state of myArr after slice (unchanged)
-
-// Splice removes elements from the array and can insert new elements. so splice make modifications in original array
-const myn2 = myArr.splice(1, 3);             // Removes 3 elements starting from index 1
-
-console.log("C ", myArr);                    // Outputs the state of myArr after splice
-console.log(myn2);                           // Outputs the removed elements [1, 2, 3]
-
-// Important Notes:
-// - `push()` and `pop()` modify the array by adding/removing elements at the end.
-// - `unshift()` and `shift()` modify the array by adding/removing elements at the beginning.
-// - `includes()` checks for the presence of an element and returns a boolean.
-// - `indexOf()` returns the first index of an element or -1 if not found.
-// - `join()` converts the array into a string with elements separated by commas (or any specified delimiter).
-// - `slice()` returns a shallow copy of a portion of an array into a new array, without modifying the original array.
-// - `splice()` changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.and last ranges is also included in splice.
-// splice make changes in original array
+Check if variable is array:
+Array.isArray(fruits); // true or false
 
 
+===============================================================================
+                    ADDING & REMOVING ELEMENTS
+===============================================================================
+
+push() – Add to end
+myArr.push(6);
+myArr.push(7);
+
+pop() – Remove from end
+myArr.pop();
+
+unshift() – Add to beginning (slow for large arrays)
+myArr.unshift(9);
+
+shift() – Remove from beginning
+myArr.shift();
 
 
+===============================================================================
+                    SEARCH METHODS
+===============================================================================
 
-// ✅ 1. Reverse an Array
-let arr = [10, 20, 30, 40];
+includes() – Check if element exists
+myArr.includes(9); // true or false
 
-arr.reverse(); // Modifies the original array
-console.log("Reversed:", arr); // [40, 30, 20, 10]
-
-
-// ✅ 2. Sort an Array (Ascending / Descending)
-
-// 🔹 Default Sort (Lexicographic / ASCII based)
-let nums = [5, 100, 20];
-nums.sort();
-console.log("Default sort:", nums); // [100, 20, 5] — ❌ incorrect for numbers
-
-// 🔹 Proper Numeric Sort (Ascending)
-let numsAsc = [5, 100, 20];
-numsAsc.sort((a, b) => a - b); // ascending
-console.log("Ascending:", numsAsc); // [5, 20, 100]
-
-// 🔹 Numeric Sort (Descending)
-let numsDesc = [5, 100, 20];
-numsDesc.sort((a, b) => b - a); // descending
-console.log("Descending:", numsDesc); // [100, 20, 5]
+indexOf() – Get index of element
+myArr.indexOf(3); // Returns index or -1 if not found
 
 
-// 🔁 Combined Example: Sort ascending then reverse
-let mixArr = [4, 1, 7, 3];
+===============================================================================
+                    JOIN
+===============================================================================
 
-// Sort ascending
-mixArr.sort((a, b) => a - b); // [1, 3, 4, 7]
-
-// Reverse the sorted array
-mixArr.reverse();             // [7, 4, 3, 1]
-
-console.log("Sorted then reversed:", mixArr);
+join() – Convert array to string
+const newArr = myArr.join(); // Joins with commas: "0,1,2,3,4,5"
+const newArr = myArr.join('-'); // Joins with '-': "0-1-2-3-4-5"
 
 
+===============================================================================
+                    SLICE vs SPLICE
+===============================================================================
 
+SLICE (Non-mutating):
+Returns shallow copy, doesn't modify original
 
+const myArr = [0, 1, 2, 3, 4, 5];
+const myn1 = myArr.slice(1, 3); // [1, 2] (3 not included)
+console.log(myArr); // [0, 1, 2, 3, 4, 5] (unchanged)
 
-let colors = ["green", "yellow", "black"];
+SPLICE (Mutating):
+Modifies original array, can remove and insert
 
-// 🔹 splice(index, deleteCount, item1, item2, ...)
-colors.splice(1, 0, "red", "blue");
+const myn2 = myArr.splice(1, 3); // Removes 3 elements starting at index 1
+console.log(myArr); // [0, 4, 5] (modified)
+console.log(myn2); // [1, 2, 3] (removed elements)
 
+SPLICE with insertion:
+const colors = ["green", "yellow", "black"];
+colors.splice(1, 0, "red", "blue"); // Remove 0, insert "red", "blue" at index 1
 console.log(colors); // ["green", "red", "blue", "yellow", "black"]
+
+
+===============================================================================
+                    REVERSE
+===============================================================================
+
+reverse() – Reverse array in place
+let arr = [10, 20, 30, 40];
+arr.reverse(); // [40, 30, 20, 10] (modifies original)
+
+
+===============================================================================
+                    SORT
+===============================================================================
+
+DEFAULT SORT (Lexicographic/ASCII):
+⚠️ Converts to strings and sorts alphabetically
+let nums = [5, 100, 20];
+nums.sort(); // [100, 20, 5] ❌ WRONG for numbers!
+
+NUMERIC SORT (Ascending):
+let numsAsc = [5, 100, 20];
+numsAsc.sort((a, b) => a - b); // [5, 20, 100] ✅
+
+NUMERIC SORT (Descending):
+let numsDesc = [5, 100, 20];
+numsDesc.sort((a, b) => b - a); // [100, 20, 5] ✅
+
+Sort then reverse:
+let mixArr = [4, 1, 7, 3];
+mixArr.sort((a, b) => a - b); // [1, 3, 4, 7]
+mixArr.reverse(); // [7, 4, 3, 1]
+
+
+===============================================================================
+                    QUICK REFERENCE
+===============================================================================
+
+ADDING/REMOVING:
+- push(element) → add to end (mutates)
+- pop() → remove from end (mutates)
+- unshift(element) → add to start (mutates, slow)
+- shift() → remove from start (mutates)
+
+SEARCH:
+- includes(element) → boolean
+- indexOf(element) → index or -1
+
+CONVERSION:
+- join(delimiter) → string
+
+MANIPULATION:
+- slice(start, end) → shallow copy, no mutation
+- splice(start, deleteCount, items...) → remove/insert, mutates
+- reverse() → reverse in place, mutates
+- sort() → sort in place, mutates (default: ASCII)
+- sort((a, b) => a - b) → numeric ascending, mutates
+- sort((a, b) => b - a) → numeric descending, mutates
+
+CHECK:
+- Array.isArray(variable) → boolean
+
+KEY POINTS:
+✅ const works with arrays (reference is constant, contents can change)
+✅ slice() doesn't modify original
+✅ splice() modifies original and returns removed elements
+✅ Default sort() is lexicographic, use comparator for numbers
+✅ unshift() and shift() are slow for large arrays
+
+===============================================================================
+*/
