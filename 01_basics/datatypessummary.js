@@ -1,83 +1,142 @@
-// Primitive Types
-//  JS IS DYNAMICALLY TYPED LANGUAGE
-// 7 types: String, Number, Boolean, null, undefined, Symbol, BigInt
+/*
+===============================================================================
+                    JAVASCRIPT DATA TYPES – CONCISE GUIDE
+===============================================================================
 
+JavaScript is a DYNAMICALLY TYPED language.
+Variable types are determined at runtime, not at declaration.
+
+
+===============================================================================
+                    PRIMITIVE TYPES (7 TYPES)
+===============================================================================
+
+1. STRING
 const score = 100; // Number
+
+2. NUMBER (integer and decimal)
 const scoreValue = 100.3; // Number
 
+3. BOOLEAN
 const isLoggedIn = false; // Boolean
-const outsideTemp = null; // null (special primitive type)
-let userEmail; // undefined (variable declared but not assigned)
 
-const id = Symbol('123'); // Symbol (unique and immutable)
-const anotherId = Symbol('123'); // Another unique Symbol
+4. NULL
+const outsideTemp = null; // Special primitive type (intentional absence)
 
+5. UNDEFINED
+let userEmail; // Variable declared but not assigned
+
+6. SYMBOL (ES6+)
+Unique and immutable identifiers
+const id = Symbol('123');
+const anotherId = Symbol('123');
 console.log(id === anotherId); // false (each Symbol is unique)
 
-// const bigNumber = 3456543576654356754n; // BigInt for large integers
+7. BIGINT (ES2020+)
+Large integers beyond Number.MAX_SAFE_INTEGER
+const bigNumber = 3456543576654356754n;
 
-// Reference (Non-primitive) Types
- 
-// Arrays, Objects, Functions
 
-const heros = ["shaktiman", "naagraj", "doga"]; // Array
+===============================================================================
+                    REFERENCE TYPES (NON-PRIMITIVE)
+===============================================================================
+
+ARRAYS
+const heros = ["shaktiman", "naagraj", "doga"];
+
+OBJECTS
 let myObj = {
     name: "hitesh",
     age: 22,
-}; // Object
-//declaring function in variable way
+};
+
+FUNCTIONS (Function expressions)
 const myFunction = function() {
     console.log("Hello world");
-}; 
-//defining with function keyword
-function greet(name)
-{
+};
+
+FUNCTIONS (Function declarations)
+function greet(name) {
     console.log('hello' + name);
 }
-greet('rahul')
+greet('rahul');
 
-console.log(typeof anotherId); // "symbol" (type of Symbol)
-console.log(typeof myObj);
-console.log(typeof myFunction);
-console.log(typeof heros);
 
-// Link to study more about type conversion in JavaScript:
-// https://262.ecma-international.org/5.1/#sec-11.4.3 check once
-/*For null, typeof returns "object".
-For undefined, it returns "undefined".
-For functions, it returns "function object".
-For other objects (including arrays), it returns "object".*/
-/*               Type                                   typeof
+===============================================================================
+                    TYPEOF OPERATOR
+===============================================================================
 
-i)               Object                                object
-ii)              Array                                  object
-iii)             Function                            function(object)
+console.log(typeof 100); // "number"
+console.log(typeof "string"); // "string"
+console.log(typeof true); // "boolean"
+console.log(typeof undefined); // "undefined"
+console.log(typeof Symbol('id')); // "symbol"
+console.log(typeof 123n); // "bigint"
+console.log(typeof null); // "object" (historical quirk, not actually object)
+console.log(typeof {}); // "object"
+console.log(typeof []); // "object" (arrays are objects)
+console.log(typeof function(){}); // "function"
+
+
+TYPEOF RESULTS:
+
+Type                typeof Result
+────────────────────────────────
+String              "string"
+Number              "number"
+Boolean             "boolean"
+Undefined           "undefined"
+Symbol              "symbol"
+BigInt              "bigint"
+Object              "object"
+Array               "object" ← (arrays are objects)
+Function            "function" ← (special object type)
+null                "object" ← (historical bug)
+
+
+===============================================================================
+                    DYNAMIC TYPING EXAMPLE
+===============================================================================
+
+let score = 100;
+console.log(typeof score); // "number"
+
+score = "One Hundred"; // Reassigned to string
+console.log(typeof score); // "string"
+
+score = true; // Reassigned to boolean
+console.log(typeof score); // "boolean"
+
+KEY POINT:
+JavaScript allows changing variable types at runtime.
+This is called dynamic typing (no type enforcement).
+
+
+===============================================================================
+                    QUICK REFERENCE
+===============================================================================
+
+PRIMITIVES (Stored on Stack):
+- String: "text"
+- Number: 42, 3.14
+- Boolean: true, false
+- null: intentional absence
+- undefined: no value assigned
+- Symbol: unique identifier
+- BigInt: large integers
+
+REFERENCE TYPES (Stored on Heap):
+- Object: {...}
+- Array: [...]
+- Function: function() {}
+
+CHARACTERISTICS:
+✅ Primitives: Independent copies when assigned
+✅ References: Share same object when assigned
+✅ typeof shows variable type
+✅ null returns "object" (bug, not actual object)
+✅ Arrays return "object" (arrays are objects)
+✅ Functions return "function" (special object type)
+
+===============================================================================
 */
-
-
-
-
-// 🔹 JavaScript is a dynamically typed language
-// This means variable types are determined at runtime, not during declaration
-// You don't need to specify types (like int, float, string)
-
-// ✅ Example of dynamic typing:
-
-// let score = 100;           // score is a number
-// console.log(typeof score); // Output: "number"
-
-// score = "One Hundred";     // reassigned to a string
-// console.log(typeof score); // Output: "string"
-
-// score = true;              // reassigned to a boolean
-// console.log(typeof score); // Output: "boolean"
-
-// 🔁 Summary:
-// - JavaScript allows changing the type of a variable at any point
-// - This is called dynamic typing
-// - No type enforcement like in statically typed languages (e.g., Java, C++)
-
-// ✔ Static Typing is better for:
-// - Large-scale applications
-// - Team collaboration
-// - Code that needs to be reliable and maintainable long-term

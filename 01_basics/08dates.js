@@ -1,44 +1,128 @@
-// Dates
 
-// Create a new Date object with the current date and time
+/*
+===============================================================================
+                        JAVASCRIPT DATES – CONCISE GUIDE
+===============================================================================
+
+===============================================================================
+                    CREATING DATE OBJECTS
+===============================================================================
+
+Current date and time:
 let myDate = new Date();
-console.log(myDate );       // Outputs the date and time as a string
-console.log(myDate.toString());       // Outputs the date and time as a string
-console.log(myDate.toDateString());   // Outputs the date as a string (without time)
-console.log(myDate.toLocaleString()); // Outputs the date and time in local format
-console.log(typeof myDate);           // Outputs the type of myDate (object)
+console.log(myDate); // Outputs the date and time as a string
+console.log(typeof myDate); // Outputs: object
 
-// Create a new Date object with a specific date
-// Uncomment one of the following lines to see different date formats
-// let d = new Date(year,month,day,hour,minute,second)
-//month start from 0 in js
-// let myCreatedDate = new Date(2023, 0, 23);          // January 23, 2023
-// let myCreatedDate = new Date(2023, 0, 23, 5, 3);    // January 23, 2023, 05:03:00
-// let myCreatedDate = new Date("2023-01-14");         // January 14, 2023
-let myCreatedDate = new Date("01-14-2023");            // January 14, 2023
-console.log(myCreatedDate.toLocaleString());           // Outputs the created date in local format
+Specific date (year, month, day, hour, minute, second):
+// Note: Month starts from 0 in JavaScript (0 = January)
+let myCreatedDate = new Date(2023, 0, 23);        // January 23, 2023
+let myCreatedDate = new Date(2023, 0, 23, 5, 3); // January 23, 2023, 05:03:00
 
-// Get the current timestamp in milliseconds since January 1, 1970
-let myTimeStamp = Date.now(); 
-console.log(myTimeStamp);                              // Outputs the current timestamp . Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.
-console.log(myCreatedDate.getTime());                  // Outputs the timestamp for the created date
-console.log(Math.floor(Date.now() / 1000));            // Outputs the current timestamp in seconds
-
-// Create a new Date object with the current date and time
-let newDate = new Date();
-console.log(newDate);                                  // Outputs the current date and time
-console.log(newDate.getMonth() + 1);                   // Outputs the current month (0-based index, so add 1)
-console.log(newDate.getDay());                         // Outputs the current day of the week (0 = Sunday, 6 = Saturday)
-
-// Get the current day of the week in long format
-// `${newDate.getDay()} and the time `
+String format:
+let myCreatedDate = new Date("2023-01-14");       // January 14, 2023
+let myCreatedDate = new Date("01-14-2023");       // January 14, 2023
 
 
-// Extract the weekday from the current date using toLocaleString
-// 'default' refers to the default locale (system locale)
-// { weekday: "long" } specifies that we want the full name of the weekday (e.g., "Monday", "Tuesday")
-let weekday = newDate.toLocaleString('default', { weekday: "long" });
+===============================================================================
+                    DATE STRING METHODS
+===============================================================================
 
-// Log the day of the week to the console
-// This will output something like "Today is Monday" if the current day is Monday
-console.log(`Today is ${weekday}`);
+toString()
+console.log(myDate.toString()); // Full date and time string
+
+toDateString()
+console.log(myDate.toDateString()); // Date only (without time)
+
+toLocaleString()
+console.log(myDate.toLocaleString()); // Date and time in local format
+
+toLocaleString() with options:
+let weekday = myDate.toLocaleString('default', { weekday: "long" });
+console.log(`Today is ${weekday}`); // E.g., "Today is Monday"
+
+
+===============================================================================
+                    GETTING TIMESTAMPS
+===============================================================================
+
+Date.now()
+Returns current timestamp in milliseconds since January 1, 1970 UTC
+let myTimeStamp = Date.now();
+console.log(myTimeStamp); // E.g., 1704067200000
+
+getTime()
+Returns timestamp for specific date in milliseconds
+console.log(myCreatedDate.getTime()); // Timestamp of created date
+
+Timestamp in seconds:
+console.log(Math.floor(Date.now() / 1000)); // Current time in seconds
+
+
+===============================================================================
+                    GETTING DATE COMPONENTS
+===============================================================================
+
+getMonth()
+Returns month (0-11, so add 1 for human readable)
+console.log(newDate.getMonth() + 1); // 1 = January, 12 = December
+
+getDay()
+Returns day of week (0 = Sunday, 6 = Saturday)
+console.log(newDate.getDay()); // 0-6
+
+getDate()
+Returns day of month (1-31)
+console.log(newDate.getDate());
+
+getYear()
+Returns year (deprecated, use getFullYear())
+
+getFullYear()
+Returns full year
+console.log(newDate.getFullYear()); // E.g., 2024
+
+getHours()
+console.log(newDate.getHours());
+
+getMinutes()
+console.log(newDate.getMinutes());
+
+getSeconds()
+console.log(newDate.getSeconds());
+
+
+===============================================================================
+                    QUICK REFERENCE
+===============================================================================
+
+CREATING DATES:
+- new Date() → current date/time
+- new Date(year, month, day, hour, minute, second)
+- new Date("YYYY-MM-DD") or new Date("MM-DD-YYYY")
+  Note: Month is 0-indexed (0 = January)
+
+STRING CONVERSION:
+- toString() → full format
+- toDateString() → date only
+- toLocaleString() → local format
+- toLocaleString('default', {weekday: "long"}) → day name
+
+TIMESTAMPS:
+- Date.now() → current time in ms
+- getTime() → timestamp of date in ms
+
+EXTRACTING VALUES:
+- getMonth() → 0-11 (add 1 for readable month)
+- getDay() → 0-6 (day of week)
+- getDate() → 1-31 (day of month)
+- getFullYear() → year
+- getHours() → 0-23
+- getMinutes() → 0-59
+- getSeconds() → 0-59
+
+CONVERSION:
+- Milliseconds to seconds: divide by 1000
+- Seconds to milliseconds: multiply by 1000
+
+===============================================================================
+*/

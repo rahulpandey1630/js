@@ -1,118 +1,179 @@
+/*===============================================================================
+                    JAVASCRIPT STRINGS – CONCISE GUIDE
+===============================================================================
+
+STRINGS ARE IMMUTABLE
+Strings cannot be changed after creation. Methods return new strings.
+
+
+===============================================================================
+                    TEMPLATE LITERALS & STRING BASICS
+===============================================================================
+
 const name = "Rahul";
 const repoCount = 50;
 
-//String Are immutAble
-// Using template literals for string interpolation
+// String interpolation with template literals
 console.log(`Hello my name is ${name} and my repo count is ${repoCount}`);
 
-// String indexing 
 
+STRING INDEXING:
+---------------
 let firstName = "harshitdfjakldsfdf";
-
 //  h    a   r   s   h   i   t 
 //  0    1   2   3   4   5   6
 
-// console.log(firstName[0]);
-// length of string 
-// firstName.length 
+console.log(firstName.length);              // Length of string
+console.log(firstName[0]);                  // First character
+console.log(firstName[firstName.length-1]); // Last character
+console.log(firstName[firstName.length-2]); // Second to last
 
-console.log(firstName.length);
 
-console.log(firstName[firstName.length-2]);
+===============================================================================
+                    STRING OBJECT & BASIC METHODS
+===============================================================================
 
-// last Index : length - 1 
 const gameName = new String('rahul-hc-com');
 
-// Accessing characters and properties of a string object
-// console.log(gameName[0]);          // Outputs: 'r'
-// console.log(gameName.__proto__);   // Outputs: String prototype object
+console.log(gameName[0]);           // 'r'
+console.log(gameName.__proto__);    // String prototype
+console.log(gameName.length);       // 12
+console.log(gameName.toUpperCase()); // 'RAHUL-HC-COM'
+console.log(gameName.toLowerCase()); // 'rahul-hc-com'
 
-// Getting the length of the string
-// console.log(gameName.length);      // Outputs: 12
 
-// Converting the string to uppercase
-// console.log(gameName.toUpperCase()); // Outputs: 'RAHUL-HC-COM'
+===============================================================================
+                    ACCESSING CHARACTERS
+===============================================================================
 
-// Getting the character at a specific index
-console.log(gameName.charAt(2));    // Outputs: 'h'
+charAt(index)
+console.log(gameName.charAt(2));    // 'h' (character at index 2)
 
-// Finding the index of the first occurrence of a character
-console.log(gameName.indexOf('t')); // Outputs: 5
+indexOf(substring)
+console.log(gameName.indexOf('t')); // 5 (first occurrence)
 
-// Extracting a substring from the string
-const newString = gameName.substring(0, 4); //last value not include . if given -ve value than start from 0.
-console.log(newString);             // Outputs: 'rahu'
+lastIndexOf(substring)
+const s = "chhaya";
+console.log(s.lastIndexOf('a'));   // 5 (last occurrence)
 
-// Using slice with negative index
-const anotherString = gameName.slice(-8, 4); //START INDEX,END INDEX , EXCLUDE END INDEX
-console.log(anotherString);         // Outputs: '' (incorrect usage)
 
-// Removing whitespace from both ends of the string
+===============================================================================
+                    SUBSTRING EXTRACTION
+===============================================================================
+
+substring(start, end)
+- End index NOT included
+- Negative values treated as 0
+
+const newString = gameName.substring(0, 4); // 'rahu'
+console.log(s.substring(0, 4));            // 'chha'
+
+slice(start, end)
+- End index NOT included
+- Supports negative indices (from end)
+
+const anotherString = gameName.slice(-8, 4); // '' (empty)
+console.log(s.slice(0, 4));                 // 'chha'
+
+
+===============================================================================
+                    WHITESPACE & REPLACEMENT
+===============================================================================
+
+trim()
 const newStringOne = "   rahul    ";
-console.log(newStringOne);          // Outputs: '   rahul    '
-console.log(newStringOne.trim());   // trim start and trim rnd is also there Outputs: 'rahul'
+console.log(newStringOne.trim());   // 'rahul'
+// trimStart() and trimEnd() also available
 
-// Replacing a substring within a string
+replace(old, new)
+- Replaces FIRST occurrence only
+
 const url = "https://rahul.com/rahul%20choudhary";
-console.log(url.replace('%20', '-')); // Outputs: 'https://rahul.com/rahul-choudhary'
+console.log(url.replace('%20', '-')); // 'https://rahul.com/rahul-choudhary'
 
-// Checking if a substring is present within the string
-console.log(url.includes('sundar'));  // Outputs: false
-
-// Splitting a string into an array using a delimiter
-console.log(gameName.split('-'));     // Outputs: ['rahul', 'hc', 'com']
-
-// Additional String Operations
-const s="chhaya";
-// Converting to lowercase
-console.log(s.toLowerCase());         // Outputs: "chhaya"
-
-// Converting to uppercase
-console.log(s.toUpperCase());         // Outputs: "CHHAYA"
-
-// Finding index of first occurrence of 'y'
-console.log(s.indexOf('y'));          // Outputs: 4
-
-// Finding index of last occurrence of 'a'
-console.log(s.lastIndexOf('a'));      // Outputs: 5
-
-// Getting length of the string
-console.log(s.length);                // Outputs: 6
-
-// Extracting substring from index 0 to 3 (excluding 4)
-console.log(s.slice(0, 4));           // Outputs: "Chha"
-
-// Extracting substring from index 0 to 3 (excluding 4)
-console.log(s.substring(0, 4));       // Outputs: "Chha"
-// Note: Similar to slice, but does not accept negative indices
-
-// Getting character at index 1
-console.log(s.charAt(1));             // Outputs: "h"
-
-// Checking if the string includes "Chha"
-console.log(s.includes("Chha"));      // Outputs: true
-
-// Checking if the string includes "shaya"
-console.log(s.includes("shaya"));     // Outputs: false
-
-// Checking if the string ends with "aya"
-console.log(s.endsWith("aya"));       // Outputs: true
-
-// URL manipulation example
 url = "www.userid?20.com";
-// Replacing '20' with '-'
-console.log(url.replace('20', '-'));  // Outputs: "www.userid?-com"
+console.log(url.replace('20', '-'));  // 'www.userid?-com'
 
-// Splitting a string into an array of words
+
+===============================================================================
+                    SEARCH & VALIDATION
+===============================================================================
+
+includes(substring)
+console.log(url.includes('sundar'));     // false
+console.log(s.includes("Chha"));         // true
+console.log(s.includes("shaya"));        // false
+
+endsWith(substring)
+console.log(s.endsWith("aya"));          // true
+
+startsWith(substring)
+console.log(s.startsWith("chh"));        // true
+
+
+===============================================================================
+                    SPLIT & CONCATENATION
+===============================================================================
+
+split(delimiter)
+console.log(gameName.split('-'));        // ['rahul', 'hc', 'com']
+
 let word = "Chhaya is Shanaya and she is a baby girl";
-// Splitting by space
-console.log(word.split(" "));  
-// Outputs: ["Chhaya", "is", "Shanaya", "and", "she", "is", "a", "baby", "girl"]
+console.log(word.split(" "));
+// ["Chhaya", "is", "Shanaya", "and", "she", "is", "a", "baby", "girl"]
 
-// Concatenating strings
+concat(string)
 name = "Shanaya";
-console.log(name.concat(" Gupta"));   // Outputs: "Shanaya Gupta"
-//console.log(string1+string2)
-// Removing whitespace from both ends
-let remSpace = "  good bye guys  ";
-console.log(remSpace.trim());         // Outputs: "good bye guys"
+console.log(name.concat(" Gupta"));      // 'Shanaya Gupta'
+// Alternative: string1 + string2
+
+
+===============================================================================
+                    QUICK REFERENCE
+===============================================================================
+
+LENGTH PROPERTIES:
+- length → number of characters
+- lastIndexOf() → find position from end
+- indexOf() → find position from start
+
+CASE CONVERSION:
+- toUpperCase()
+- toLowerCase()
+
+EXTRACTION:
+- charAt(index)
+- substring(start, end) → end NOT included, no negatives
+- slice(start, end) → end NOT included, supports negatives
+- substr(start, length) → deprecated
+
+MANIPULATION:
+- replace(old, new) → first occurrence only
+- replaceAll() → all occurrences
+- trim() → remove whitespace from both ends
+- split(delimiter) → returns array
+- concat(string) → join strings
+
+SEARCH:
+- includes() → boolean
+- indexOf() → number
+- lastIndexOf() → number
+- startsWith() → boolean
+- endsWith() → boolean
+
+
+===============================================================================
+                    KEY POINTS
+===============================================================================
+
+✅ Strings are immutable
+✅ Methods return new strings, don't modify original
+✅ Index is 0-based
+✅ slice() supports negative indices, substring() doesn't
+✅ substring() excludes end index
+✅ replace() only changes first match (use replaceAll() for all)
+✅ trim() removes whitespace only from ends, not middle
+✅ split() returns an array
+
+===============================================================================
+*/
